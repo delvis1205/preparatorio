@@ -34,6 +34,8 @@ pnpm dev
 
 O repositório contém [`render.yaml`](./render.yaml) e o guia completo [`RENDER_DEPLOY.md`](./RENDER_DEPLOY.md). Utilize uma base MySQL/TiDB externa; a base gerenciada pela Manus não deve ser exposta nem reutilizada fora do ambiente da plataforma.
 
+Para a configuração acompanhada, consulte [`GUIA_CONFIGURACAO_RENDER.md`](./GUIA_CONFIGURACAO_RENDER.md).
+
 ## Apoio
 
 Os dados de apoio, bancos e IBANs oficiais são apresentados na página pública **Autor e apoio** dentro da aplicação. Confirme sempre o titular antes de efectuar qualquer transferência. A plataforma não processa pagamentos.

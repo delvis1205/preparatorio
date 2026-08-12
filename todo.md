@@ -81,3 +81,10 @@
 - [x] Criar README do projeto com autoria, contactos, funcionalidades, execução local e deploy.
 - [x] Capturar uma imagem actualizada da interface e disponibilizá-la no repositório.
 - [x] Preparar um roteiro de deploy pós-configuração, incluindo base de dados e as variáveis privadas necessárias.
+
+## Guia de configuração assistida
+
+- [x] Verificar as instruções actuais do Render para Blueprints, variáveis, deploy hooks e health checks.
+- [x] Documentar passo a passo a criação de uma base MySQL/TiDB externa e a obtenção de `DATABASE_URL`.
+- [x] Documentar a origem, o preenchimento e a validação de cada variável de ambiente do LUANDA PREP.
+- [x] Entregar o roteiro de deploy com verificações e resolução de falhas frequentes.
