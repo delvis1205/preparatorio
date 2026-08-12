@@ -48,7 +48,10 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const generatedClientPath = path.resolve(process.cwd(), "dist", "public");
+  // Funciona tanto quando este módulo é executado a partir de server/_core/
+  // como quando é incorporado pelo esbuild em dist/: ambos os caminhos levam
+  // ao mesmo artefacto Vite gerado em <raiz-do-projeto>/dist/public.
+  const generatedClientPath = path.resolve(import.meta.dirname, "..", "..", "dist", "public");
   const bundledClientPath = path.resolve(import.meta.dirname, "public");
   // A publicação executa o bundle em dist/, mas algumas runtimes preservam uma
   // árvore antiga junto ao código. Damos prioridade ao artefacto Vite criado no
