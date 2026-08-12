@@ -66,8 +66,8 @@
 
 ## Distribuição: GitHub e Render
 
-- [ ] Avaliar a configuração actual de servidor, autenticação e persistência para execução fora da Manus.
-- [ ] Criar ficheiros de configuração do Render e um modelo seguro de variáveis de ambiente.
-- [ ] Documentar o provisionamento de base de dados externa, migrações e os limites de compatibilidade da base Manus.
-- [ ] Actualizar a autenticação e CORS para a origem pública configurada no Render.
-- [ ] Executar build de produção no modo de deploy e sincronizar o código preparado com delvis1205/preparatorio.
+- [x] Avaliar a configuração actual de servidor, autenticação e persistência para execução fora da Manus.
+- [x] Criar ficheiros de configuração do Render e um modelo seguro de variáveis de ambiente.
+- [x] Documentar o provisionamento de base de dados externa, migrações e os limites de compatibilidade da base Manus.
+- [ ] Validar o fluxo OAuth e de cookies em um serviço Render real após configurar o domínio público, as variáveis privadas e o callback autorizado.
+- [x] Executar build de produção no modo de deploy e sincronizar o código preparado com delvis1205/preparatorio.
