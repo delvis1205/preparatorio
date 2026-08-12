@@ -11,6 +11,8 @@ export type Lesson = {
   examTip: string;
   examples?: { title: string; prompt: string; walkthrough: string }[];
   quickCheck?: { prompt: string; answer: string };
+  concepts?: { term: string; definition: string; application: string }[];
+  conceptQuestions?: { prompt: string; answer: string }[];
 };
 
 export type CurriculumModule = {
@@ -154,8 +156,174 @@ const LESSON_EXTENSIONS: Record<string, Pick<Lesson, "examples" | "quickCheck">>
   "aula-tic-angola": { examples: [{ title: "Exemplo guiado", prompt: "Associe MINTTICS, INACOM e ANGOTIC às suas funções.", walkthrough: "MINTTICS formula e conduz políticas sectoriais; INACOM regula o sector; ANGOTIC é um fórum e exposição de TIC em Luanda." }], quickCheck: { prompt: "Ao estudar uma iniciativa de TIC, que três elementos devem ser associados?", answer: "O projecto ou evento, a instituição ligada a ele e o impacto ou propósito esperado." } },
 };
 
+const CONCEPTUAL_EXTENSIONS: Record<string, Pick<Lesson, "concepts" | "conceptQuestions">> = {
+  "aula-polinomios": {
+    concepts: [
+      { term: "Termo algébrico", definition: "É cada parcela de uma expressão algébrica, formada por coeficiente, variável e eventual expoente.", application: "Antes de operar, compare a parte literal e o expoente de cada termo." },
+      { term: "Polinómio", definition: "É uma soma finita de termos algébricos em que os expoentes das variáveis são inteiros não negativos.", application: "Use esta definição para distinguir expressões polinomiais de frações com variável no denominador." },
+    ],
+    conceptQuestions: [
+      { prompt: "Por que 3x² e −5x² podem ser somados, mas 3x² e −5x não?", answer: "Os dois primeiros têm a mesma parte literal, x²; no segundo caso os expoentes são diferentes, por isso representam termos diferentes." },
+      { prompt: "Qual é o coeficiente do termo −7x³?", answer: "O coeficiente é −7; x³ é a parte literal do termo." },
+    ],
+  },
+  "aula-logica": {
+    concepts: [
+      { term: "Proposição", definition: "É uma frase declarativa à qual se pode atribuir valor verdadeiro ou falso.", application: "Comece por separar as proposições simples antes de analisar uma expressão lógica." },
+      { term: "Conectivo lógico", definition: "É o símbolo ou palavra que liga proposições, como e, ou, não, se... então.", application: "O conectivo principal determina a última operação na tabela de verdade." },
+    ],
+    conceptQuestions: [
+      { prompt: "A frase “Fecha a porta!” é uma proposição?", answer: "Não. É uma ordem, não uma frase declarativa que possa ser classificada como verdadeira ou falsa." },
+      { prompt: "Quando P ∧ Q é verdadeira?", answer: "A conjunção é verdadeira apenas quando P e Q são ambas verdadeiras." },
+    ],
+  },
+  "aula-geometria": {
+    concepts: [
+      { term: "Plano cartesiano", definition: "É um sistema de eixos perpendiculares usado para localizar pontos por pares ordenados (x, y).", application: "Escreva sempre primeiro a coordenada horizontal e depois a vertical." },
+      { term: "Distância", definition: "É a medida não negativa que separa dois pontos no plano.", application: "Calcule as diferenças em x e y antes de aplicar Pitágoras." },
+    ],
+    conceptQuestions: [
+      { prompt: "O que representa o primeiro número do ponto A(−2, 4)?", answer: "Representa a coordenada x, isto é, a posição horizontal do ponto." },
+      { prompt: "Por que a fórmula da distância usa quadrados?", answer: "Porque deriva do teorema de Pitágoras e os quadrados tornam positivas as diferenças de coordenadas." },
+    ],
+  },
+  "aula-trigonometria": {
+    concepts: [
+      { term: "Hipotenusa", definition: "É o lado oposto ao ângulo reto e o maior lado de um triângulo retângulo.", application: "Identifique-a antes de escolher seno ou cosseno." },
+      { term: "Ângulo de referência", definition: "É o ângulo agudo em relação ao qual se definem os catetos oposto e adjacente.", application: "Mudar o ângulo de referência pode mudar qual cateto é oposto ou adjacente." },
+    ],
+    conceptQuestions: [
+      { prompt: "O cateto oposto é sempre o mesmo lado?", answer: "Não. Ele é definido em relação ao ângulo de referência escolhido." },
+      { prompt: "Qual razão usa cateto oposto e cateto adjacente?", answer: "A tangente: tg(θ) = oposto/adjacente." },
+    ],
+  },
+  "aula-sucessoes": {
+    concepts: [
+      { term: "Sucessão", definition: "É uma lista ordenada de números associada às posições 1, 2, 3 e assim por diante.", application: "Observe a regra que liga um termo ao seguinte para identificar o padrão." },
+      { term: "Razão de uma PA", definition: "É a diferença constante entre dois termos consecutivos de uma progressão aritmética.", application: "Subtraia termos vizinhos para confirmar se a sucessão é uma PA." },
+    ],
+    conceptQuestions: [
+      { prompt: "A sucessão 10, 7, 4, 1 é uma PA?", answer: "Sim. A diferença entre termos consecutivos é sempre −3." },
+      { prompt: "O que acontece a uma PA quando a razão é zero?", answer: "Todos os termos permanecem iguais ao primeiro termo." },
+    ],
+  },
+  "aula-funcoes": {
+    concepts: [
+      { term: "Função", definition: "É uma relação que associa a cada elemento do domínio exatamente uma imagem.", application: "Verifique se cada entrada recebe uma única saída." },
+      { term: "Domínio", definition: "É o conjunto de entradas para as quais uma expressão ou relação está definida.", application: "Exclua valores que anulem denominadores ou tornem raízes pares impossíveis no conjunto real." },
+    ],
+    conceptQuestions: [
+      { prompt: "Uma mesma entrada pode ter duas imagens numa função?", answer: "Não. Cada elemento do domínio deve ter exatamente uma imagem." },
+      { prompt: "Por que x = 3 não pertence ao domínio de 1/(x−3)?", answer: "Porque nesse valor o denominador seria zero e a divisão não estaria definida." },
+    ],
+  },
+  "aula-limites": {
+    concepts: [
+      { term: "Limite", definition: "É o valor de aproximação de uma função quando a variável se aproxima de determinado ponto.", application: "Analise o comportamento próximo do ponto, não apenas o valor no próprio ponto." },
+      { term: "Indeterminação", definition: "É uma forma como 0/0 que não determina sozinha o resultado de um limite.", application: "Factorize, simplifique ou use outra técnica antes de concluir." },
+    ],
+    conceptQuestions: [
+      { prompt: "O limite pode existir se a função não estiver definida no ponto?", answer: "Sim. O limite depende da aproximação ao ponto, não necessariamente do valor nele." },
+      { prompt: "O que indica encontrar 0/0 por substituição direta?", answer: "Indica que é preciso transformar a expressão; não é o resultado do limite." },
+    ],
+  },
+  "aula-derivadas": {
+    concepts: [
+      { term: "Derivada", definition: "É a medida da taxa de variação instantânea de uma função.", application: "Use-a para interpretar crescimento, declive de tangentes e taxas de mudança." },
+      { term: "Regra da potência", definition: "Para xⁿ, a derivada é n·xⁿ⁻¹.", application: "Aplique-a termo a termo em polinómios." },
+    ],
+    conceptQuestions: [
+      { prompt: "O que representa geometricamente a derivada num ponto?", answer: "Representa o declive da reta tangente ao gráfico da função nesse ponto." },
+      { prompt: "Qual é a derivada de 9?", answer: "É zero, pois uma constante não varia." },
+    ],
+  },
+  "aula-integrais": {
+    concepts: [
+      { term: "Primitiva", definition: "É uma função cuja derivada recupera a expressão que se pretende integrar.", application: "Verifique uma integral derivando a resposta encontrada." },
+      { term: "Constante de integração", definition: "É o termo C acrescentado a integrais indefinidas porque constantes desaparecem ao derivar.", application: "Nunca omita C quando a integral não tiver limites de integração." },
+    ],
+    conceptQuestions: [
+      { prompt: "Por que integrais indefinidas têm + C?", answer: "Porque várias funções que diferem por uma constante têm a mesma derivada." },
+      { prompt: "Qual operação ajuda a confirmar uma integral?", answer: "Derivar a resposta para verificar se se recupera a função original." },
+    ],
+  },
+  "aula-comunicacao": {
+    concepts: [
+      { term: "Emissor e receptor", definition: "O emissor produz a mensagem e o receptor a interpreta ou recebe.", application: "Identifique esses papéis no contexto antes de classificar a comunicação." },
+      { term: "Função da linguagem", definition: "É a finalidade predominante da mensagem, como informar, emocionar, convencer ou manter contacto.", application: "Observe em que elemento da comunicação a mensagem concentra a atenção." },
+    ],
+    conceptQuestions: [
+      { prompt: "Que elemento permite que emissor e receptor compreendam os mesmos sinais?", answer: "O código, como a língua portuguesa ou um sistema de sinais partilhado." },
+      { prompt: "Uma mensagem que procura convencer o destinatário destaca qual função?", answer: "A função apelativa ou conativa." },
+    ],
+  },
+  "aula-textos": {
+    concepts: [
+      { term: "Informação explícita", definition: "É a informação declarada diretamente no texto.", application: "Localize-a e confirme o trecho antes de responder." },
+      { term: "Inferência", definition: "É uma conclusão construída a partir de pistas textuais, sem ultrapassar as evidências.", application: "Justifique a inferência com palavras, conectores ou fatos do texto." },
+    ],
+    conceptQuestions: [
+      { prompt: "Qual a diferença entre opinião e inferência?", answer: "A inferência é sustentada pelo texto; a opinião pode não ter apoio nas evidências apresentadas." },
+      { prompt: "Por que os conectores ajudam na interpretação?", answer: "Eles mostram relações como causa, oposição, consequência e conclusão entre ideias." },
+    ],
+  },
+  "aula-gramatica": {
+    concepts: [
+      { term: "Pontuação", definition: "É o conjunto de sinais que organiza relações sintáticas, pausas e sentidos na escrita.", application: "Leia a estrutura da oração antes de inserir vírgulas ou outros sinais." },
+      { term: "Modo verbal", definition: "É a forma que expressa a atitude do falante perante a ação, como certeza, ordem ou hipótese.", application: "Observe a intenção da frase ao distinguir indicativo, imperativo e conjuntivo." },
+    ],
+    conceptQuestions: [
+      { prompt: "Uma vírgula deve separar sujeito e verbo?", answer: "Em regra, não; sujeito e verbo formam uma unidade essencial da oração." },
+      { prompt: "Que modo verbal aparece em “Estuda para o exame”?", answer: "O imperativo, pois a frase exprime uma orientação ou ordem." },
+    ],
+  },
+  "aula-palavras": {
+    concepts: [
+      { term: "Classe de palavras", definition: "É a categoria gramatical de uma palavra, como substantivo, verbo, adjetivo ou advérbio.", application: "Classifique pela função exercida no contexto, não apenas pela forma." },
+      { term: "Relação semântica", definition: "É a relação de sentido entre palavras, como sinonímia, antonímia ou polissemia.", application: "Use o contexto para decidir qual sentido uma palavra assume." },
+    ],
+    conceptQuestions: [
+      { prompt: "Por que “estudo” pode mudar de classe conforme a frase?", answer: "Porque uma mesma forma pode nomear uma atividade ou indicar a ação de estudar, dependendo do contexto." },
+      { prompt: "O que caracteriza duas palavras sinónimas?", answer: "Elas têm sentidos próximos em determinado contexto, embora nem sempre possam ser trocadas em qualquer frase." },
+    ],
+  },
+  "aula-frases": {
+    concepts: [
+      { term: "Oração", definition: "É um enunciado organizado em torno de um verbo ou locução verbal.", application: "Conte os verbos para começar a identificar as orações de um período." },
+      { term: "Subordinação", definition: "É a relação em que uma oração depende sintaticamente de outra para completar ou precisar o sentido.", application: "Observe conectores e pergunte se uma oração exerce função na outra." },
+    ],
+    conceptQuestions: [
+      { prompt: "O que ajuda a identificar quantas orações há num período?", answer: "A identificação dos verbos ou locuções verbais." },
+      { prompt: "Na coordenação, as orações são necessariamente dependentes?", answer: "Não. A coordenação liga orações relativamente independentes." },
+    ],
+  },
+  "aula-tic-angola": {
+    concepts: [
+      { term: "Política pública de TIC", definition: "É o conjunto de orientações e iniciativas que promove o desenvolvimento digital de um país.", application: "Associe a política à instituição responsável e ao objetivo social ou económico." },
+      { term: "Regulação das comunicações", definition: "É a supervisão das regras e do funcionamento do sector das comunicações eletrónicas e serviços postais.", application: "Diferencie regulador, projeto de conectividade e evento tecnológico nas questões." },
+    ],
+    conceptQuestions: [
+      { prompt: "Qual a diferença entre MINTTICS e INACOM no estudo do sector?", answer: "O MINTTICS conduz políticas sectoriais; o INACOM regula, supervisiona e fiscaliza o mercado das comunicações." },
+      { prompt: "Por que relacionar um projeto de TIC ao seu impacto é importante?", answer: "Porque questões de Cultura Geral avaliam não só o nome do projeto, mas também sua finalidade, público e contributo para inclusão ou conectividade." },
+    ],
+  },
+};
+
 for (const module of CURRICULUM) {
   Object.assign(module.lesson, LESSON_EXTENSIONS[module.lesson.id]);
+  Object.assign(module.lesson, CONCEPTUAL_EXTENSIONS[module.lesson.id]);
+  const concepts = module.lesson.concepts ?? [];
+  const questions = module.lesson.conceptQuestions ?? [];
+  if (questions.length) {
+    module.lesson.examples = [
+      ...(module.lesson.examples ?? []),
+      ...questions.map((question, index) => ({
+        title: `Pergunta de compreensão ${index + 1}`,
+        prompt: question.prompt,
+        walkthrough: `Resposta explicada: ${question.answer}`,
+      })),
+    ];
+  }
 }
 
 export const TRAINING_QUESTIONS: TrainingQuestion[] = [

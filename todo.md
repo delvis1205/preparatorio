@@ -124,4 +124,17 @@
 - [x] Exibir recomendações de próximo passo e acesso aos desafios no plano de estudo.
 - [x] Adicionar lógica persistente de desafio diário, com rotação por data e conclusão visível ao estudante.
 - [x] Validar visualmente e por testes o novo ciclo de estudo, desafio e revisão.
-- [ ] Após publicar a versão pedagógica mais recente, validar no domínio publicado os filtros por disciplina, o desafio diário concluído e a aula com exemplo guiado/verificação rápida.
+- [ ] Validar no domínio publicado uma aula enriquecida e confirmar visualmente o exemplo guiado e a verificação rápida; os desafios por disciplina e o desafio diário já foram confirmados.
+
+## Domínio personalizado
+
+- [x] Associação de preparatorio.morasio.shop suspensa a pedido do utilizador.
+- [x] Configuração DNS suspensa a pedido do utilizador.
+- [x] Validação HTTPS do domínio personalizado adiada a pedido do utilizador.
+
+## Aulas completas por sessão
+
+- [x] Incluir definições e conceitos fundamentais em todos os módulos, além de exercícios de treino.
+- [x] Adicionar perguntas de compreensão com resposta explicada em cada aula.
+- [x] Exibir na interface uma sequência pedagógica clara: conceito → definição → exemplo → pergunta → exercício.
+- [x] Validar conteúdo, tipagem, testes e visualização de aulas das três disciplinas.

@@ -10,6 +10,14 @@ describe("currículo pedagógico", () => {
     }
   });
 
+  it("inclui definições e perguntas de compreensão em todos os módulos", () => {
+    for (const module of CURRICULUM) {
+      expect(module.lesson.concepts?.length, `${module.id} deve ter definições`).toBeGreaterThanOrEqual(2);
+      expect(module.lesson.conceptQuestions?.length, `${module.id} deve ter perguntas conceituais`).toBeGreaterThanOrEqual(2);
+      expect(module.lesson.examples?.filter((item) => item.title.startsWith("Pergunta de compreensão")).length, `${module.id} deve exibir perguntas`).toBeGreaterThanOrEqual(2);
+    }
+  });
+
   it("mantém o currículo distribuído pelas três disciplinas da preparação", () => {
     expect(new Set(CURRICULUM.map((module) => module.disciplineId))).toEqual(new Set(["matematica", "portugues", "cultura"]));
   });
