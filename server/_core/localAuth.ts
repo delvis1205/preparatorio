@@ -8,8 +8,10 @@ export const LOCAL_SESSION_COOKIE = "luanda_prep_session";
 const encoder = new TextEncoder();
 
 function secret() {
-  if (!ENV.cookieSecret || ENV.cookieSecret.length < 24) throw new Error("JWT_SECRET não está configurado com segurança.");
-  return encoder.encode(ENV.cookieSecret);
+  if (!ENV.localSessionSecret || ENV.localSessionSecret.length < 32) {
+    throw new Error("LOCAL_SESSION_SECRET não está configurado com segurança.");
+  }
+  return encoder.encode(ENV.localSessionSecret);
 }
 
 export async function createLocalSession(userId: number) {

@@ -94,3 +94,21 @@
 - [x] Verificar o fluxo actual de criação manual de um Web Service gratuito no Render.
 - [x] Criar um guia alternativo com campos de repositório, branch, comandos e variáveis preenchidos manualmente.
 - [x] Orientar a utilização segura dos dados TiDB Cloud já criados pelo utilizador sem solicitar a senha no chat.
+
+## Bloqueio no Render
+
+- [ ] Investigar a causa de “This action is not allowed” ao criar o Web Service no Render.
+- [ ] Orientar a verificação de conta, workspace, região e limitações do plano antes de novo deploy.
+- [ ] Definir uma alternativa de hospedagem gratuita caso o bloqueio seja uma restrição definitiva do Render.
+
+## Alternativa gratuita de hospedagem
+
+- [ ] Pesquisar opções gratuitas para backend Node persistente ligado ao TiDB Cloud.
+- [ ] Comparar limitações práticas de disponibilidade, configuração de segredos, domínio e deploy pelo GitHub.
+- [ ] Preparar a opção recomendada para o repositório LUANDA PREP sem migrar a base de dados.
+
+## Correção de login na Manus
+
+- [x] Diagnosticar o bloqueio “JWT_SECRET não está configurado com segurança” no primeiro acesso.
+- [x] Corrigir a sessão local para usar de forma segura o segredo exclusivo gerenciado pela Manus.
+- [ ] Validar no site publicado a criação automática do perfil e o login repetido.
