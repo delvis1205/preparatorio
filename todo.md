@@ -69,5 +69,15 @@
 - [x] Avaliar a configuração actual de servidor, autenticação e persistência para execução fora da Manus.
 - [x] Criar ficheiros de configuração do Render e um modelo seguro de variáveis de ambiente.
 - [x] Documentar o provisionamento de base de dados externa, migrações e os limites de compatibilidade da base Manus.
-- [ ] Validar o fluxo OAuth e de cookies em um serviço Render real após configurar o domínio público, as variáveis privadas e o callback autorizado.
+- [ ] Validar o fluxo local de cookies em um serviço Render real após configurar o domínio público e as variáveis privadas.
 - [x] Executar build de produção no modo de deploy e sincronizar o código preparado com delvis1205/preparatorio.
+
+## Acesso local e informações institucionais
+
+- [x] Criar primeiro acesso único com nome, e-mail e palavra-passe, sem página de cadastro separada.
+- [x] Guardar palavra-passe exclusivamente como hash e criar sessões locais seguras por cookie.
+- [x] Substituir entradas Manus OAuth pela tela de acesso local e manter o perfil persistente.
+- [x] Criar página pública de autor, contactos e apoio com os dados oficiais fornecidos.
+- [x] Criar README do projeto com autoria, contactos, funcionalidades, execução local e deploy.
+- [x] Capturar uma imagem actualizada da interface e disponibilizá-la no repositório.
+- [x] Preparar um roteiro de deploy pós-configuração, incluindo base de dados e as variáveis privadas necessárias.

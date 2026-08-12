@@ -6,7 +6,6 @@ Copie os nomes abaixo para o painel **Environment** do serviço Render. Não env
 # Runtime
 NODE_ENV=production
 PORT=10000
-APP_ORIGIN=https://SEU-SERVICO.onrender.com
 
 # Base de dados MySQL/TiDB externa
 # Exemplo de estrutura: mysql://UTILIZADOR:SENHA@HOST:3306/NOME_DA_BASE?ssl={"rejectUnauthorized":true}
@@ -14,12 +13,6 @@ DATABASE_URL=
 
 # Sessão: gerar aleatoriamente e manter privado
 JWT_SECRET=
-
-# OAuth Manus — somente se o callback do domínio Render for autorizado
-VITE_APP_ID=
-VITE_OAUTH_PORTAL_URL=
-OAUTH_SERVER_URL=
-OWNER_OPEN_ID=
 
 # Serviços gerenciados Forge da Manus — opcionais no Render
 BUILT_IN_FORGE_API_URL=
@@ -32,4 +25,4 @@ No Blueprint, `JWT_SECRET` está configurado com `generateValue: true`. Para con
 
 ## Valores que não podem ser copiados da Manus
 
-As credenciais da base de dados e as chaves integradas da Manus pertencem ao ambiente gerenciado e não devem ser exportadas para o Render. Utilize uma `DATABASE_URL` própria de uma instância externa MySQL/TiDB. O serviço só deve receber segredos pelo painel privado do Render.
+As credenciais da base de dados e as chaves integradas da Manus pertencem ao ambiente gerenciado e não devem ser exportadas para o Render. Utilize uma `DATABASE_URL` própria de uma instância externa MySQL/TiDB. O serviço só deve receber segredos pelo painel privado do Render. O acesso principal da aplicação usa agora nome, e-mail e palavra-passe local, sem depender de OAuth Manus.

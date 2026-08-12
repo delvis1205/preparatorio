@@ -89,4 +89,39 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result[0];
+}
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
+  return result[0];
+}
+
+export async function createLocalUser(input: { name: string; email: string; passwordHash: string }) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível. Tente novamente em instantes.");
+  const email = input.email.toLowerCase();
+  await db.insert(users).values({
+    openId: `local:${crypto.randomUUID()}`,
+    name: input.name.trim(),
+    email,
+    passwordHash: input.passwordHash,
+    loginMethod: "local",
+    lastSignedIn: new Date(),
+  });
+  return getUserByEmail(email);
+}
+
+export async function touchLocalUser(userId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(users).set({ lastSignedIn: new Date() }).where(eq(users.id, userId));
+}
+
 // TODO: add feature queries here as your schema grows.

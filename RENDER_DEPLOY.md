@@ -13,9 +13,6 @@ O projecto contém `render.yaml`, um endpoint de saúde em `/api/health`, servid
 | `DATABASE_URL` | Sim | String MySQL/TiDB para dados de utilizador, progresso, respostas e simulados. |
 | `JWT_SECRET` | Sim | Assinatura segura das sessões. O Blueprint gera um valor; mantenha-o privado e estável. |
 | `NODE_ENV` | Sim | Use `production`. |
-| `APP_ORIGIN` | Sim | URL pública final, por exemplo `https://luanda-prep.onrender.com`. |
-| `VITE_APP_ID`, `VITE_OAUTH_PORTAL_URL`, `OAUTH_SERVER_URL` | Para login Manus | Necessárias ao fluxo OAuth actualmente usado no projecto. Registe `https://SEU-DOMINIO/api/oauth/callback` como callback permitido no provedor. |
-| `OWNER_OPEN_ID` | Opcional | Identifica o administrador inicial na autenticação Manus. |
 | `BUILT_IN_FORGE_API_URL`, `BUILT_IN_FORGE_API_KEY` | Para serviços Forge | Necessárias ao LUANDA AI baseado nos serviços gerenciados Manus. Não são preenchidas automaticamente no Render. |
 
 ## Migração de base de dados
@@ -26,7 +23,7 @@ O projecto contém `render.yaml`, um endpoint de saúde em `/api/health`, servid
 
 ## Autenticação e IA
 
-O login actual é Manus OAuth. Para continuar a utilizá-lo fora da Manus, é indispensável que a aplicação OAuth aceite o domínio Render no callback. Se isso não estiver disponível, migre o login para um provedor externo antes de tornar o serviço público.
+O primeiro acesso é local: o estudante informa nome, e-mail e palavra-passe, e a aplicação guarda somente o hash da palavra-passe. Portanto, não é necessário configurar callback OAuth para utilizar o percurso de estudo no Render.
 
 O LUANDA AI actual utiliza a integração Forge da Manus. Não exponha as chaves Forge no cliente e não faça commit de segredos. Se desejar operar a IA sem qualquer dependência Manus, o próximo passo é integrar um provedor LLM externo e adicionar a respetiva chave somente nas variáveis privadas do Render.
 

@@ -1,6 +1,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
+import AboutPage from "@/pages/AboutPage";
+import LoginPage from "@/pages/LoginPage";
 import QuizPage from "@/pages/QuizPage";
 import TicTimelinePage from "@/pages/TicTimelinePage";
 import {
@@ -25,6 +27,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/sobre" component={AboutPage} />
+      <Route path="/entrar" component={LoginPage} />
       <Route path="/app" component={StudentDashboard} />
       <Route path="/app/estudar" component={StudyPage} />
       <Route path="/app/aula/:moduleId" component={LessonPage} />
