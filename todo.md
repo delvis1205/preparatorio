@@ -1,0 +1,55 @@
+# LUANDA PREP — plano de implementação
+
+## Conteúdo e arquitectura
+
+- [x] Reestruturar a arquitectura do produto para uma plataforma de estudo full-stack, não uma landing page institucional.
+- [x] Usar o nome LUANDA PREP e o subtítulo oficial do plano em toda a experiência principal.
+- [ ] Organizar a estrutura curricular oficial do PDF em disciplina → módulo → tópico → aula → exemplos → exercícios → quiz → revisão.
+- [x] Manter separado e identificado qualquer conteúdo complementar que não venha do PDF.
+
+## Conta e progresso
+
+- [ ] Adicionar autenticação simples com nome, email e palavra-passe.
+- [x] Persistir progresso, módulos, respostas, pontuações, favoritos, anotações, tempo e histórico de simulados.
+- [ ] Construir dashboard com progresso geral, acerto, sequência, pontos fortes, pontos fracos e próxima acção.
+
+## Aprendizagem
+
+- [ ] Expor a contagem de exercícios por módulo e disciplina directamente na listagem de estudo.
+- [ ] Criar aula didáctica com conceito, explicação, exemplos, fórmulas, erros comuns, dicas e mini quiz.
+- [x] Renderizar equações matemáticas e mostrar resoluções passo a passo.
+
+## Prática e avaliação
+
+- [ ] Criar banco de questões com múltipla escolha, verdadeiro/falso, resposta numérica e resposta curta.
+- [ ] Mostrar correcção detalhada, explicação do erro, nova tentativa, favorito e inclusão na revisão.
+- [ ] Criar filtros por disciplina, módulo, tópico, dificuldade, erros, favoritos e não respondidas.
+- [ ] Implementar quizzes configuráveis e resultados com recomendações.
+- [x] Implementar “Meus Erros” com sessão de prática dedicada.
+- [ ] Implementar revisão recomendada e revisão espaçada básica.
+- [ ] Implementar simulados com cronómetro, navegação, marcação e confirmação antes de finalizar.
+- [x] Implementar Modo Exame sem respostas, explicações ou tutor durante a prova.
+- [ ] Expor no relatório visual do simulado o resumo agregado por tópico, além de disciplina, tempo, erros e recomendação.
+
+## LUANDA AI
+
+- [x] Criar tutor contextual que conduz o raciocínio antes de entregar a solução.
+- [ ] Passar contexto de aula e questão para o tutor quando o estudante pedir ajuda.
+- [ ] Criar gerador de exercícios por disciplina, assunto, dificuldade e quantidade.
+- [x] Guardar histórico de conversas quando a integração estiver disponível.
+
+## Qualidade
+
+- [x] Resolver os conflitos do upgrade full-stack e confirmar auth, tRPC e base de dados operacionais.
+- [x] Criar em código a estrutura curricular persistente derivada do PDF e ligá-la à experiência de estudo.
+- [ ] Validar fluxos de login, estudo, resposta, revisão, quiz, simulado e tutor.
+- [x] Validar responsividade mobile, estados vazios, acessibilidade, foco e feedback de erro.
+- [x] Confirmar build de produção e preparar checkpoint antes da publicação pela UI.
+
+## Concluído com a arquitectura da plataforma
+
+- [x] Integrar autenticação Manus OAuth em vez de armazenar palavras-passe próprias.
+- [x] Criar uma landing pública, dashboard autenticado e navegação persistente de estudante.
+- [x] Criar o banco inicial de módulos e 15 questões de treino, identificadas como não oficiais.
+- [x] Criar aula, prática com correcção, notas, favoritos de módulos, plano de estudo e relatório de simulado.
+- [x] Disponibilizar a estrutura de contagem por módulo e resumo por tópico no backend, pronta para os próximos painéis visuais.

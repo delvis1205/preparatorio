@@ -1,26 +1,49 @@
-// Direção visual: Editorial académico atlântico — azul Luanda, marfim, dourado e composição assimétrica.
 import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
+import Home from "@/pages/Home";
+import {
+  AiPage,
+  ExamSessionPage,
+  LessonPage,
+  PlanPage,
+  PracticePage,
+  ProfilePage,
+  ProgressPage,
+  ReviewPage,
+  SimulationsPage,
+  StudentDashboard,
+  StudyPage,
+} from "@/pages/StudentApp";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/app" component={StudentDashboard} />
+      <Route path="/app/estudar" component={StudyPage} />
+      <Route path="/app/aula/:moduleId" component={LessonPage} />
+      <Route path="/app/praticar" component={PracticePage} />
+      <Route path="/app/revisao" component={ReviewPage} />
+      <Route path="/app/simulados" component={SimulationsPage} />
+      <Route path="/app/simulado" component={ExamSessionPage} />
+      <Route path="/app/ia" component={AiPage} />
+      <Route path="/app/plano" component={PlanPage} />
+      <Route path="/app/progresso" component={ProgressPage} />
+      <Route path="/app/perfil" component={ProfilePage} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme="light" switchable>
         <TooltipProvider>
           <Toaster />
           <Router />
@@ -29,5 +52,3 @@ function App() {
     </ErrorBoundary>
   );
 }
-
-export default App;
