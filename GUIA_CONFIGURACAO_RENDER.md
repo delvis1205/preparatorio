@@ -2,6 +2,8 @@
 
 Este guia configura o **LUANDA PREP** para funcionar no Render com login local por nome, e-mail e palavra-passe. O repositório já contém `render.yaml`, migrações Drizzle e a rota de diagnóstico `/api/health`.
 
+> Para o plano gratuito **sem Blueprint**, siga o guia direto em [`GUIA_RENDER_GRATUITO.md`](./GUIA_RENDER_GRATUITO.md). Ele substitui as etapas de Blueprint deste documento.
+
 > **Não publique nenhum segredo no GitHub.** A palavra-passe da base de dados e o segredo de sessão pertencem somente ao painel privado do Render.
 
 ## 1. Criar a base de dados MySQL compatível

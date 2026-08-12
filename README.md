@@ -36,6 +36,8 @@ O repositório contém [`render.yaml`](./render.yaml) e o guia completo [`RENDER
 
 Para a configuração acompanhada, consulte [`GUIA_CONFIGURACAO_RENDER.md`](./GUIA_CONFIGURACAO_RENDER.md).
 
+No plano gratuito, use o fluxo manual em [`GUIA_RENDER_GRATUITO.md`](./GUIA_RENDER_GRATUITO.md), sem Blueprint.
+
 ## Apoio
 
 Os dados de apoio, bancos e IBANs oficiais são apresentados na página pública **Autor e apoio** dentro da aplicação. Confirme sempre o titular antes de efectuar qualquer transferência. A plataforma não processa pagamentos.

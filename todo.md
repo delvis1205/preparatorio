@@ -88,3 +88,9 @@
 - [x] Documentar passo a passo a criação de uma base MySQL/TiDB externa e a obtenção de `DATABASE_URL`.
 - [x] Documentar a origem, o preenchimento e a validação de cada variável de ambiente do LUANDA PREP.
 - [x] Entregar o roteiro de deploy com verificações e resolução de falhas frequentes.
+
+## Deploy gratuito sem Blueprint
+
+- [x] Verificar o fluxo actual de criação manual de um Web Service gratuito no Render.
+- [x] Criar um guia alternativo com campos de repositório, branch, comandos e variáveis preenchidos manualmente.
+- [x] Orientar a utilização segura dos dados TiDB Cloud já criados pelo utilizador sem solicitar a senha no chat.
