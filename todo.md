@@ -53,3 +53,5 @@
 - [x] Criar o banco inicial de módulos e 15 questões de treino, identificadas como não oficiais.
 - [x] Criar aula, prática com correcção, notas, favoritos de módulos, plano de estudo e relatório de simulado.
 - [x] Disponibilizar a estrutura de contagem por módulo e resumo por tópico no backend, pronta para os próximos painéis visuais.
+- [ ] Adicionar estados explícitos de carregamento, vazio e erro na experiência de Quiz Rápido.
+- [ ] Validar no browser o fluxo completo do quiz, da configuração ao resultado persistido.

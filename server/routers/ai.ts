@@ -35,8 +35,8 @@ export const aiRouter = router({
       const result = await db.insert(aiConversations).values({ userId: ctx.user.id, title: input.message.slice(0, 80), context: { moduleId: input.moduleId, questionId: input.questionId } });
       conversationId = Number((result as unknown as [{ insertId: number }])[0].insertId);
     }
-    const module = input.moduleId ? getModule(input.moduleId) : undefined;
     const question = input.questionId ? getQuestion(input.questionId) : undefined;
+    const module = input.moduleId ? getModule(input.moduleId) : question ? getModule(question.moduleId) : undefined;
     const history = await db.select().from(aiMessages).where(eq(aiMessages.conversationId, conversationId)).orderBy(aiMessages.createdAt).limit(8);
     const context = [module ? `Módulo actual: ${module.discipline} — ${module.title}. Tópicos oficiais: ${module.officialTopics.join("; ")}.` : "", question ? `Questão de treino actual: ${question.prompt}. O estudante não deve receber a alternativa certa imediatamente; conduza-o por perguntas antes de revelar a solução.` : ""].filter(Boolean).join("\n");
     const systemPrompt = `Você é o LUANDA AI, tutor de uma plataforma independente de preparação para o exame de admissão em Informática de Gestão. Ensine em português claro, apropriado a estudantes angolanos. Use um tom paciente e socrático: em vez de entregar a solução imediatamente, pergunte qual seria o primeiro passo, dê pistas progressivas e só apresente a solução completa se o estudante pedir ou continuar bloqueado. O conteúdo oficial do programa é limitado aos tópicos fornecidos pelo produto; deixe explícito quando estiver a dar conteúdo complementar. Nunca afirme que uma questão de treino é oficial, que certamente cairá no exame ou que há garantia de aprovação. Para pedidos de exercício, crie explicitamente “Questão de treino” com resposta e explicação separadas. Não use pesquisa na web.\n${context}`;

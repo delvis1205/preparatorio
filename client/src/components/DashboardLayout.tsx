@@ -44,6 +44,7 @@ const menuItems = [
   { icon: LayoutDashboard, label: "Visão geral", path: "/app" },
   { icon: BookOpen, label: "Estudar", path: "/app/estudar" },
   { icon: PenLine, label: "Praticar", path: "/app/praticar" },
+  { icon: ClipboardCheck, label: "Quiz rápido", path: "/app/quiz" },
   { icon: ClipboardCheck, label: "Revisão", path: "/app/revisao" },
   { icon: Route, label: "Simulados", path: "/app/simulados" },
   { icon: BrainCircuit, label: "LUANDA AI", path: "/app/ia" },
