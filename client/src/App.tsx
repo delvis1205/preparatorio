@@ -4,6 +4,7 @@ import Home from "@/pages/Home";
 import AboutPage from "@/pages/AboutPage";
 import LoginPage from "@/pages/LoginPage";
 import QuizPage from "@/pages/QuizPage";
+import ChallengesPage from "@/pages/ChallengesPage";
 import TicTimelinePage from "@/pages/TicTimelinePage";
 import {
   AiPage,
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/app/aula/:moduleId" component={LessonPage} />
       <Route path="/app/praticar" component={PracticePage} />
       <Route path="/app/quiz" component={QuizPage} />
+      <Route path="/app/desafios" component={ChallengesPage} />
       <Route path="/app/tic-angola" component={TicTimelinePage} />
       <Route path="/app/revisao" component={ReviewPage} />
       <Route path="/app/simulados" component={SimulationsPage} />

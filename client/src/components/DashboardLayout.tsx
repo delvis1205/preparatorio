@@ -45,6 +45,7 @@ const menuItems = [
   { icon: BookOpen, label: "TIC em Angola", path: "/app/tic-angola" },
   { icon: PenLine, label: "Praticar", path: "/app/praticar" },
   { icon: ClipboardCheck, label: "Quiz rápido", path: "/app/quiz" },
+  { icon: GraduationCap, label: "Desafios", path: "/app/desafios" },
   { icon: ClipboardCheck, label: "Revisão", path: "/app/revisao" },
   { icon: Route, label: "Simulados", path: "/app/simulados" },
   { icon: BrainCircuit, label: "LUANDA AI", path: "/app/ia" },

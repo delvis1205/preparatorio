@@ -112,11 +112,27 @@ export const learningRouter = router({
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
       const saved = await db.select().from(studyPlans).where(eq(studyPlans.userId, ctx.user.id)).limit(1);
       if (saved[0]) return saved[0];
+      const [profileRows, progressRows] = await Promise.all([
+        db.select().from(studentProfiles).where(eq(studentProfiles.userId, ctx.user.id)).limit(1),
+        db.select().from(moduleProgress).where(eq(moduleProgress.userId, ctx.user.id)),
+      ]);
+      const dailyMinutes = profileRows[0]?.dailyMinutes ?? 45;
+      const weakest = CURRICULUM.map((module) => ({ module, mastery: progressRows.find((item) => item.moduleId === module.id)?.mastery ?? 0 })).sort((a, b) => a.mastery - b.mastery);
+      const first = weakest[0]?.module ?? CURRICULUM[0];
+      const second = weakest[1]?.module ?? CURRICULUM[1];
+      const third = weakest[2]?.module ?? CURRICULUM[2];
       return {
         id: 0,
-        title: "Plano de preparação",
-        dailyMinutes: 45,
-        tasks: CURRICULUM.slice(0, 3).map((module, index) => ({ id: `initial-${index + 1}`, label: `${module.discipline}: ${module.title}`, minutes: index === 0 ? 25 : 20, done: false, moduleId: module.id })),
+        title: "Ciclo semanal de preparação",
+        dailyMinutes,
+        tasks: [
+          { id: "week-1", label: `Dia 1 · Aprender: ${first.discipline} — ${first.title}`, minutes: Math.round(dailyMinutes * 0.6), done: false, moduleId: first.id },
+          { id: "week-2", label: "Dia 2 · Desafio inicial: consolidar fundamentos", minutes: Math.max(15, Math.round(dailyMinutes * 0.45)), done: false, moduleId: first.id },
+          { id: "week-3", label: `Dia 3 · Aplicar: ${second.discipline} — ${second.title}`, minutes: Math.round(dailyMinutes * 0.6), done: false, moduleId: second.id },
+          { id: "week-4", label: "Dia 4 · Recuperar erros e refazer questões", minutes: Math.max(15, Math.round(dailyMinutes * 0.45)), done: false, moduleId: first.id },
+          { id: "week-5", label: `Dia 5 · Consolidar: ${third.discipline} — ${third.title}`, minutes: Math.round(dailyMinutes * 0.6), done: false, moduleId: third.id },
+          { id: "week-6", label: "Fecho semanal · Quiz rápido ou simulado curto", minutes: Math.max(20, Math.round(dailyMinutes * 0.7)), done: false },
+        ],
       };
     }),
     save: protectedProcedure.input(z.object({ title: z.string().min(3).max(120), dailyMinutes: z.number().int().min(10).max(360), tasks: z.array(z.object({ id: z.string().min(1), label: z.string().min(1).max(180), minutes: z.number().int().min(5).max(360), done: z.boolean(), moduleId: z.string().optional() })).min(1).max(21) })).mutation(async ({ ctx, input }) => {
@@ -172,6 +188,37 @@ export const learningRouter = router({
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
     const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.isCorrect, false))).orderBy(desc(questionAttempts.createdAt));
     return attempts.map((attempt) => ({ attempt, question: getQuestion(attempt.questionId) ? withoutAnswers(getQuestion(attempt.questionId)!) : null })).filter((item) => item.question);
+  }),
+
+  challenges: router({
+    today: protectedProcedure.query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+      const [profileRows, progressRows, attempts] = await Promise.all([
+        db.select().from(studentProfiles).where(eq(studentProfiles.userId, ctx.user.id)).limit(1),
+        db.select().from(moduleProgress).where(eq(moduleProgress.userId, ctx.user.id)),
+        db.select().from(questionAttempts).where(eq(questionAttempts.userId, ctx.user.id)),
+      ]);
+      const levels = (["Inicial", "Intermédio", "Avançado"] as const).map((difficulty) => ({
+        difficulty,
+        title: difficulty === "Inicial" ? "Fundamentos firmes" : difficulty === "Intermédio" ? "Aplicação consciente" : "Raciocínio de exame",
+        description: difficulty === "Inicial" ? "Reforce definições, métodos e confiança antes de aumentar o ritmo." : difficulty === "Intermédio" ? "Combine conceitos e escolha o método certo em problemas novos." : "Trabalhe questões que exigem mais etapas, verificação e tempo controlado.",
+        available: TRAINING_QUESTIONS.filter((question) => question.difficulty === difficulty).length,
+      }));
+      const mastery = CURRICULUM.map((module) => ({ module, value: progressRows.find((item) => item.moduleId === module.id)?.mastery ?? 0 }));
+      const weak = mastery.sort((a, b) => a.value - b.value)[0];
+      const wrong = attempts.filter((attempt) => !attempt.isCorrect);
+      const recoveryModule = wrong.length ? wrong[0]?.moduleId : weak?.module.id;
+      return {
+        weeklyTarget: Math.max(3, profileRows[0]?.studyDays?.length ?? 5),
+        levels,
+        recovery: {
+          moduleId: recoveryModule,
+          title: wrong.length ? "Recupere um erro recente" : `Construa base em ${weak?.module.title ?? "um módulo"}`,
+          description: wrong.length ? "Uma sessão curta com questões do módulo em que houve erro recente reforça a memória e reduz a repetição do mesmo padrão." : "O plano identificou um módulo com domínio baixo. Comece por ele, faça a aula e avance para uma prática curta.",
+        },
+      };
+    }),
   }),
 
   simulation: router({
