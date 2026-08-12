@@ -139,3 +139,15 @@
 - [x] Adicionar perguntas de compreensão com resposta explicada em cada aula.
 - [x] Exibir na interface uma sequência pedagógica clara: conceito → definição → exemplo → pergunta → exercício.
 - [x] Validar conteúdo, tipagem, testes e visualização de aulas das três disciplinas.
+
+## Preparatório de Engenharia Informática
+
+- [x] Analisar integralmente o PDF exactas.pdf e mapear cada disciplina, tema e subtema do programa oficial.
+- [x] Atualizar títulos, mensagens públicas e navegação para Preparatório de Engenharia Informática.
+- [x] Exibir a autoria: Delvis de Morais, projeto Morásio Digital, contacto 973 929 712 e o caráter gratuito da plataforma.
+- [x] Criar as aulas e os módulos ausentes identificados no PDF, preservando e aprofundando os conteúdos existentes.
+- [x] Acrescentar definições, conceitos, exemplos, perguntas de compreensão e questões de treino a cada tópico novo ou revisto.
+- [ ] Validar todo o currículo contra o PDF, executar testes e publicar a versão final funcional.
+- [x] Validar módulo a módulo o exactas.pdf contra server/content.ts, registando explicitamente cada tema e subtema coberto.
+- [x] Desdobrar os módulos agregados em aulas e tópicos específicos sempre que necessário para representar os subtemas do PDF.
+- [x] Garantir definições, exemplos, perguntas de compreensão e questões de treino para cada tópico oficial novo, e não apenas por módulo agregado.

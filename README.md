@@ -1,6 +1,6 @@
 # LUANDA PREP
 
-Plataforma web de preparação para o exame de admissão em **Informática de Gestão**. O projecto organiza o programa por disciplinas, módulos, aulas, exercícios de treino, revisão, simulados e tutor contextual.
+Plataforma web de preparação para o exame de acesso em **Engenharia Informática**. O LUANDA PREP é um **preparatório gratuito**, elaborado e criado por **Delvis de Morais** como projecto da **Morásio Digital**. A plataforma organiza o programa oficial por disciplinas, módulos, aulas, conceitos, definições, exercícios de treino, revisão, simulados e tutor contextual.
 
 ![Página principal do LUANDA PREP](./docs/luanda-prep-inicio.png)
 
@@ -11,13 +11,13 @@ Plataforma web de preparação para o exame de admissão em **Informática de Ge
 | Informação | Dados |
 | --- | --- |
 | Responsável | Delvis de Morais |
-| Marca | MD Recargas / Morásio Digital |
+| Projeto | Morásio Digital |
 | E-mail oficial | [recargas@morasio.shop](mailto:recargas@morasio.shop) |
-| WhatsApp | [+244 973 929 712](https://wa.me/244973929712) |
+| Contacto / WhatsApp | [973 929 712](https://wa.me/244973929712) |
 
 ## Funcionalidades
 
-O LUANDA PREP dispõe de acesso local por nome, e-mail e palavra-passe, progresso persistente, módulos de Matemática, Língua Portuguesa e Cultura Geral, questões de treino, quizzes, revisão, simulados, Modo Exame, plano de estudo e LUANDA AI. As questões complementares são identificadas como materiais de treino, não como provas oficiais.
+O LUANDA PREP dispõe de acesso local por nome, e-mail e palavra-passe, progresso persistente, módulos de Matemática, Física, Química, Desenho e Geometria Descritiva e Língua Portuguesa, questões de treino, quizzes, revisão, simulados, Modo Exame, plano de estudo e LUANDA AI. As questões complementares são identificadas como materiais de treino, não como provas oficiais.
 
 ## Execução local
 

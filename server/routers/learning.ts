@@ -61,7 +61,7 @@ export const learningRouter = router({
       return { module, mastery: saved?.mastery ?? 0, status: saved?.status ?? "not_started", completionPercent: saved?.completionPercent ?? 0 };
     });
     const next = masteryRows.sort((a, b) => a.mastery - b.mastery)[0];
-    const byDiscipline = ["matematica", "portugues", "cultura"].map((disciplineId) => {
+    const byDiscipline = ["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"].map((disciplineId) => {
       const entries = masteryRows.filter((item) => item.module.disciplineId === disciplineId);
       const average = entries.length ? Math.round(entries.reduce((sum, item) => sum + item.mastery, 0) / entries.length) : 0;
       return { id: disciplineId, label: entries[0]?.module.discipline ?? disciplineId, mastery: average };
@@ -175,7 +175,7 @@ export const learningRouter = router({
   }),
 
   questions: router({
-    list: protectedProcedure.input(z.object({ questionId: z.string().optional(), disciplineId: z.enum(["matematica", "portugues", "cultura"]).optional(), moduleId: z.string().optional(), difficulty: difficultySchema.optional(), onlyIncorrect: z.boolean().optional(), onlyUnanswered: z.boolean().optional(), favoritesOnly: z.boolean().optional() }).optional()).query(async ({ ctx, input }) => {
+    list: protectedProcedure.input(z.object({ questionId: z.string().optional(), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional(), moduleId: z.string().optional(), difficulty: difficultySchema.optional(), onlyIncorrect: z.boolean().optional(), onlyUnanswered: z.boolean().optional(), favoritesOnly: z.boolean().optional() }).optional()).query(async ({ ctx, input }) => {
       const filters = input ?? {};
       let questions = TRAINING_QUESTIONS.filter((question) => (!filters.questionId || question.id === filters.questionId) && (!filters.disciplineId || question.disciplineId === filters.disciplineId) && (!filters.moduleId || question.moduleId === filters.moduleId) && (!filters.difficulty || question.difficulty === filters.difficulty));
       const db = await getDb();
@@ -209,7 +209,7 @@ export const learningRouter = router({
   }),
 
   challenges: router({
-    today: protectedProcedure.input(z.object({ disciplineId: z.enum(["matematica", "portugues", "cultura"]).optional() }).optional()).query(async ({ ctx, input }) => {
+    today: protectedProcedure.input(z.object({ disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional() }).optional()).query(async ({ ctx, input }) => {
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
       const [profileRows, progressRows, attempts, planRows] = await Promise.all([
@@ -260,7 +260,7 @@ export const learningRouter = router({
   }),
 
   simulation: router({
-    start: protectedProcedure.input(z.object({ count: z.number().int().min(3).max(20), disciplineId: z.enum(["matematica", "portugues", "cultura"]).optional() })).query(({ input }) => {
+    start: protectedProcedure.input(z.object({ count: z.number().int().min(3).max(20), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional() })).query(({ input }) => {
       const candidates = input.disciplineId ? TRAINING_QUESTIONS.filter((question) => question.disciplineId === input.disciplineId) : TRAINING_QUESTIONS;
       return sortQuestions(candidates.map((question) => question.id), Math.min(input.count, candidates.length)).map(withoutAnswers);
     }),
@@ -275,7 +275,7 @@ export const learningRouter = router({
       await Promise.all(results.map((result) => db.insert(questionAttempts).values({ userId: ctx.user.id, questionId: result.question.id, moduleId: result.question.moduleId, topic: result.question.topic, selectedOption: result.selectedOption, isCorrect: result.isCorrect, durationSeconds: Math.round(input.durationSeconds / Math.max(results.length, 1)) })));
       const correct = results.filter((result) => result.isCorrect).length;
       await db.insert(simulationAttempts).values({ userId: ctx.user.id, mode: input.mode, totalQuestions: results.length, correctAnswers: correct, durationSeconds: input.durationSeconds, answers: input.answers, completedAt: new Date() });
-      const byDiscipline = ["matematica", "portugues", "cultura"].map((disciplineId) => {
+      const byDiscipline = ["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"].map((disciplineId) => {
         const entries = results.filter((result) => result.question.disciplineId === disciplineId);
         return { id: disciplineId, label: CURRICULUM.find((item) => item.disciplineId === disciplineId)?.discipline ?? disciplineId, total: entries.length, correct: entries.filter((entry) => entry.isCorrect).length };
       }).filter((item) => item.total);

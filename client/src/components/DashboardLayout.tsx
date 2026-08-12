@@ -41,7 +41,7 @@ const markUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Visão geral", path: "/app" },
-  { icon: BookOpen, label: "Estudar", path: "/app/estudar" },
+  { icon: BookOpen, label: "Programa oficial", path: "/app/estudar" },
   { icon: BookOpen, label: "TIC em Angola", path: "/app/tic-angola" },
   { icon: PenLine, label: "Praticar", path: "/app/praticar" },
   { icon: ClipboardCheck, label: "Quiz rápido", path: "/app/quiz" },
@@ -99,7 +99,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
         </SidebarHeader>
 
         <SidebarContent className="px-2 py-4">
-          <p className="px-3 pb-2 text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-slate-400 group-data-[collapsible=icon]:hidden">Preparação</p>
+          <p className="px-3 pb-2 text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-slate-400 group-data-[collapsible=icon]:hidden">Engenharia Informática</p>
           <SidebarMenu>
             {menuItems.map((item) => {
               const isActive = item.path === "/app/estudar" ? location === item.path || location.startsWith("/app/aula/") : location === item.path;
@@ -115,7 +115,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
           </SidebarMenu>
           <div className="mx-3 mt-6 rounded-2xl bg-[#0D1C4D] p-3 text-white group-data-[collapsible=icon]:hidden">
             <div className="flex items-center gap-2 text-xs font-bold"><GraduationCap className="h-4 w-4 text-[#FFCC5C]" /> Modo de preparação</div>
-            <p className="mt-2 text-xs leading-5 text-blue-100">Treine com questões de treino e acompanhe os seus padrões.</p>
+            <p className="mt-2 text-xs leading-5 text-blue-100">Preparatório gratuito com aulas, definições, prática e revisão.</p>
           </div>
         </SidebarContent>
 
