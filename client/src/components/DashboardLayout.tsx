@@ -43,6 +43,7 @@ const markUrl = "/manus-storage/luanda-prep-symbol_63c805d7.png";
 const menuItems = [
   { icon: LayoutDashboard, label: "Visão geral", path: "/app" },
   { icon: BookOpen, label: "Estudar", path: "/app/estudar" },
+  { icon: BookOpen, label: "TIC em Angola", path: "/app/tic-angola" },
   { icon: PenLine, label: "Praticar", path: "/app/praticar" },
   { icon: ClipboardCheck, label: "Quiz rápido", path: "/app/quiz" },
   { icon: ClipboardCheck, label: "Revisão", path: "/app/revisao" },

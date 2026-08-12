@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import QuizPage from "@/pages/QuizPage";
+import TicTimelinePage from "@/pages/TicTimelinePage";
 import {
   AiPage,
   ExamSessionPage,
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/app/aula/:moduleId" component={LessonPage} />
       <Route path="/app/praticar" component={PracticePage} />
       <Route path="/app/quiz" component={QuizPage} />
+      <Route path="/app/tic-angola" component={TicTimelinePage} />
       <Route path="/app/revisao" component={ReviewPage} />
       <Route path="/app/simulados" component={SimulationsPage} />
       <Route path="/app/simulado" component={ExamSessionPage} />

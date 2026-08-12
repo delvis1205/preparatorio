@@ -55,3 +55,11 @@
 - [x] Disponibilizar a estrutura de contagem por módulo e resumo por tópico no backend, pronta para os próximos painéis visuais.
 - [ ] Adicionar estados explícitos de carregamento, vazio e erro na experiência de Quiz Rápido.
 - [ ] Validar no browser o fluxo completo do quiz, da configuração ao resultado persistido.
+
+## Ampliação: TIC em Angola e Luanda
+
+- [x] Pesquisar fontes oficiais e institucionais sobre TIC, inovação e eventos tecnológicos em Angola e Luanda.
+- [x] Criar conteúdo factual e uma linha do tempo complementar para Cultura Geral → TIC em Angola.
+- [x] Adicionar questões de treino verificadas sobre iniciativas, instituições, eventos e contexto de TI em Angola.
+- [x] Ligar os novos conteúdos e exercícios ao módulo “TIC em Angola” na experiência de estudo e prática.
+- [x] Validar o novo conteúdo no browser, na tipagem e no build de produção.
