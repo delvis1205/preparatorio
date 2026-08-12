@@ -15,6 +15,13 @@
       "when": 1786548133756,
       "tag": "0001_robust_preak",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1786554770832,
+      "tag": "0002_brave_gamora",
+      "breakpoints": true
     }
   ]
 }

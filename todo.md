@@ -112,15 +112,16 @@
 - [x] Diagnosticar o bloqueio “JWT_SECRET não está configurado com segurança” no primeiro acesso.
 - [x] Corrigir a sessão local para usar de forma segura o segredo exclusivo gerenciado pela Manus.
 - [x] Validar no site publicado a exibição do primeiro acesso sem erro de segredo.
-- [ ] Validar no site publicado a criação automática do perfil com nome, e-mail e palavra-passe e confirmar o redirecionamento e a sessão.
-- [ ] Validar no site publicado o logout e o login repetido com a mesma conta, confirmando persistência e ausência de erros.
+- [x] Validar no site publicado a criação automática do perfil com nome, e-mail e palavra-passe e confirmar o redirecionamento e a sessão.
+- [ ] Validar no site publicado o logout e o novo login com a mesma conta, confirmando limpeza do cookie, retorno à tela de entrada e restauração da sessão sem erros.
 
 ## Expansão pedagógica
 
-- [ ] Migrar ou regenerar planos persistidos para garantir o novo ciclo semanal também aos estudantes com plano antigo.
-- [ ] Ampliar as aulas com exemplos adicionais, erros frequentes e verificação rápida de aprendizagem.
-- [ ] Implementar desafios por disciplina além dos níveis globais, com seleção clara de Matemática, Língua Portuguesa e Cultura Geral.
+- [x] Migrar ou regenerar planos persistidos para garantir o novo ciclo semanal também aos estudantes com plano antigo.
+- [x] Ampliar as aulas com exemplos adicionais, erros frequentes e verificação rápida de aprendizagem.
+- [x] Implementar desafios por disciplina além dos níveis globais, com seleção clara de Matemática, Língua Portuguesa e Cultura Geral.
 - [x] Criar desafios de recuperação a partir de erros e tópicos com domínio baixo.
 - [x] Exibir recomendações de próximo passo e acesso aos desafios no plano de estudo.
-- [ ] Adicionar lógica persistente de desafio diário, com rotação por data e conclusão visível ao estudante.
-- [ ] Validar visualmente e por testes o novo ciclo de estudo, desafio e revisão.
+- [x] Adicionar lógica persistente de desafio diário, com rotação por data e conclusão visível ao estudante.
+- [x] Validar visualmente e por testes o novo ciclo de estudo, desafio e revisão.
+- [ ] Após publicar a versão pedagógica mais recente, validar no domínio publicado os filtros por disciplina, o desafio diário concluído e a aula com exemplo guiado/verificação rápida.

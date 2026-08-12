@@ -97,6 +97,9 @@ export const studyPlans = mysqlTable("study_plans", {
   title: varchar("title", { length: 120 }).notNull(),
   dailyMinutes: int("dailyMinutes").notNull(),
   tasks: json("tasks").$type<{ id: string; label: string; minutes: number; done: boolean; moduleId?: string }[]>().notNull(),
+  lastChallengeDate: varchar("lastChallengeDate", { length: 10 }),
+  lastChallengeQuestionId: varchar("lastChallengeQuestionId", { length: 120 }),
+  lastChallengeCompletedAt: timestamp("lastChallengeCompletedAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 }, (table) => [uniqueIndex("study_plans_user_unique").on(table.userId)]);
