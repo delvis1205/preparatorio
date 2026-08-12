@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { CURRICULUM, TRAINING_QUESTIONS } from "./content";
+import { CURRICULUM, OFFICIAL_PDF_COVERAGE, TRAINING_QUESTIONS } from "./content";
+import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
 
 describe("currículo pedagógico", () => {
   it("oferece um exemplo guiado e uma verificação rápida em cada aula", () => {
@@ -19,9 +20,7 @@ describe("currículo pedagógico", () => {
   });
 
   it("cria uma sessão de estudo para cada tópico oficial de todos os módulos expandidos", () => {
-    const expandedModules = CURRICULUM.filter((item) => item.lesson.topicSessions?.length);
-    expect(expandedModules.length).toBeGreaterThan(0);
-    for (const module of expandedModules) {
+    for (const module of CURRICULUM) {
       expect(module.lesson.topicSessions?.length, `${module.id} deve ter sessões por tópico`).toBe(module.officialTopics.length);
       for (const session of module.lesson.topicSessions ?? []) {
         expect(session.definition).toBeTruthy();
@@ -39,6 +38,24 @@ describe("currículo pedagógico", () => {
       for (const topic of module.officialTopics) {
         expect(coveredTopics.has(`${module.id}:${topic}`), `${module.id} deve ter treino para ${topic}`).toBe(true);
       }
+    }
+  });
+
+  it("mantém um registo canónico 1:1 que cobre cada subtema do PDF com sessão e treino", () => {
+    expect(OFFICIAL_PDF_COVERAGE).toHaveLength(OFFICIAL_PDF_SUBTOPICS.length);
+    expect(new Set(OFFICIAL_PDF_COVERAGE.map((entry) => entry.sourceId))).toEqual(new Set(OFFICIAL_PDF_SUBTOPICS.map((entry) => entry.sourceId)));
+    for (const entry of OFFICIAL_PDF_COVERAGE) {
+      const module = CURRICULUM.find((item) => item.id === entry.moduleId);
+      const session = module?.lesson.topicSessions?.find((item) => item.topic === entry.topic);
+      const source = OFFICIAL_PDF_SUBTOPICS.find((item) => item.sourceId === entry.sourceId);
+      expect(source?.sourceText).toBe(entry.sourceText);
+      expect(source?.sourceReference).toBe(entry.sourceReference);
+      expect(source?.moduleId).toBe(entry.moduleId);
+      expect(source?.disciplineId).toBe(entry.disciplineId);
+      expect(module?.lesson.id).toBe(entry.lessonId);
+      expect(session?.definition, `${entry.topic} deve ter definição`).toBeTruthy();
+      expect(session?.example, `${entry.topic} deve ter exemplo`).toBeTruthy();
+      expect(TRAINING_QUESTIONS.some((question) => question.id === entry.questionId && question.moduleId === entry.moduleId && question.topic === entry.sourceText), `${entry.sourceId} deve ter treino exacto`).toBe(true);
     }
   });
 

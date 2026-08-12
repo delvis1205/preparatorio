@@ -1,3 +1,5 @@
+import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
+
 export type Lesson = {
   id: string;
   title: string;
@@ -262,6 +264,17 @@ const OFFICIAL_ENGINEERING_MODULES: CurriculumModule[] = [
 
 CURRICULUM.push(...OFFICIAL_ENGINEERING_MODULES);
 
+for (const subtopic of OFFICIAL_PDF_SUBTOPICS) {
+  const module = CURRICULUM.find((item) => item.id === subtopic.moduleId);
+  if (!module || module.disciplineId !== subtopic.disciplineId) {
+    throw new Error(`Subtema oficial sem módulo compatível: ${subtopic.sourceId}`);
+  }
+  if (!module.officialTopics.includes(subtopic.sourceText)) {
+    module.officialTopics.push(subtopic.sourceText);
+  }
+  module.lesson.officialTopics = module.officialTopics;
+}
+
 const LESSON_EXTENSIONS: Record<string, Pick<Lesson, "examples" | "quickCheck">> = {
   "aula-polinomios": { examples: [{ title: "Exemplo guiado", prompt: "Simplifique (2x² + 3x − 4) + (x² − x + 1).", walkthrough: "Agrupe termos semelhantes: 2x² + x² = 3x²; 3x − x = 2x; −4 + 1 = −3. Resultado: 3x² + 2x − 3." }], quickCheck: { prompt: "Em 4x² + 2x − x², quais termos são semelhantes?", answer: "4x² e −x² são semelhantes, pois têm a mesma variável e o mesmo expoente." } },
   "aula-logica": { examples: [{ title: "Exemplo guiado", prompt: "Negue a expressão P ∧ Q.", walkthrough: "Pela lei de De Morgan, a negação de uma conjunção troca “e” por “ou”: ¬(P ∧ Q) equivale a ¬P ∨ ¬Q." }], quickCheck: { prompt: "Se P é verdadeiro e Q é falso, P ∧ Q é verdadeiro ou falso?", answer: "É falso, porque uma conjunção só é verdadeira quando as duas proposições são verdadeiras." } },
@@ -448,6 +461,18 @@ for (const module of CURRICULUM) {
       })),
     ];
   }
+
+  const existingSessions = new Map((module.lesson.topicSessions ?? []).map((session) => [session.topic, session]));
+  module.lesson.topicSessions = module.officialTopics.map((topic, index) => existingSessions.get(topic) ?? ({
+    topic,
+    focus: `Sessão ${index + 1}: ${topic}`,
+    definition: topicDefinition(topic, module.disciplineId),
+    explanation: `${topic} integra o módulo ${module.title}. Relacione a definição com o objetivo da aula e identifique as condições ou propriedades que uma questão pode fornecer.`,
+    example: topicExample(topic, module.title, module.lesson.concepts?.[0]?.term ?? module.title),
+    checkpoint: `Qual conceito, regra ou relação deve ser identificado primeiro numa questão sobre ${topic}?`,
+    answer: `Comece pela definição de ${topic}, recolha os dados do enunciado e confirme quais condições permitem aplicar o procedimento do módulo ${module.title}.`,
+    practiceAction: `Resolva uma questão de treino de ${module.title}, indicando em que passo utilizou ${topic}.`,
+  }));
 }
 
 export const TRAINING_QUESTIONS: TrainingQuestion[] = [
@@ -546,6 +571,39 @@ TRAINING_QUESTIONS.push(...CURRICULUM.flatMap((module) => module.officialTopics.
   errorHint: `Volte à sessão “${topic}”, identifique a ideia central e só depois escolha uma regra, fórmula ou procedimento.`,
   recommendedSeconds: 50,
 }))));
+
+export type OfficialPdfCoverage = {
+  sourceId: string;
+  sourceReference: string;
+  sourceText: string;
+  disciplineId: DisciplineId;
+  discipline: string;
+  moduleId: string;
+  moduleTitle: string;
+  topic: string;
+  lessonId: string;
+  questionId: string;
+};
+
+// Matriz canónica 1:1: cada linha do PDF possui identificador estável, módulo,
+// sessão temática e questão de treino associados de forma exacta.
+export const OFFICIAL_PDF_COVERAGE: OfficialPdfCoverage[] = OFFICIAL_PDF_SUBTOPICS.map((subtopic) => {
+  const module = CURRICULUM.find((item) => item.id === subtopic.moduleId);
+  const question = TRAINING_QUESTIONS.find((item) => item.moduleId === subtopic.moduleId && item.topic === subtopic.sourceText);
+  if (!module || !question) throw new Error(`Cobertura canónica incompleta: ${subtopic.sourceId}`);
+  return {
+    sourceId: subtopic.sourceId,
+    sourceReference: subtopic.sourceReference,
+    sourceText: subtopic.sourceText,
+    disciplineId: module.disciplineId,
+    discipline: module.discipline,
+    moduleId: module.id,
+    moduleTitle: module.title,
+    topic: subtopic.sourceText,
+    lessonId: module.lesson.id,
+    questionId: question.id,
+  };
+});
 
 export function getModule(moduleId: string) {
   return CURRICULUM.find((module) => module.id === moduleId);

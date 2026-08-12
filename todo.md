@@ -114,7 +114,7 @@
 - [x] Corrigir a sessão local para usar de forma segura o segredo exclusivo gerenciado pela Manus.
 - [x] Validar no site publicado a exibição do primeiro acesso sem erro de segredo.
 - [x] Validar no site publicado a criação automática do perfil com nome, e-mail e palavra-passe e confirmar o redirecionamento e a sessão.
-- [ ] Validar no site publicado o logout e o novo login com a mesma conta, confirmando limpeza do cookie, retorno à tela de entrada e restauração da sessão sem erros.
+- [x] Validar no site publicado o logout e o novo login com a mesma conta, confirmando limpeza do cookie, retorno à tela de entrada e restauração da sessão sem erros.
 
 ## Expansão pedagógica
 
@@ -151,3 +151,6 @@
 - [x] Validar módulo a módulo o exactas.pdf contra server/content.ts, registando explicitamente cada tema e subtema coberto.
 - [x] Desdobrar os módulos agregados em aulas e tópicos específicos sempre que necessário para representar os subtemas do PDF.
 - [x] Garantir definições, exemplos, perguntas de compreensão e questões de treino para cada tópico oficial novo, e não apenas por módulo agregado.
+- [x] Validar tema a tema e subtema a subtema o exactas.pdf contra server/content.ts, registando cobertura explícita de cada item do programa oficial.
+- [x] Atualizar docs/cobertura_exactas.md com uma matriz exaustiva por subtema oficial, não apenas por blocos agregados.
+- [x] Adicionar asserções que comprovem cobertura curricular completa por subtema oficial, além de build e publicação.
