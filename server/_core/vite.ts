@@ -48,10 +48,12 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath =
-    process.env.NODE_ENV === "development"
-      ? path.resolve(import.meta.dirname, "../..", "dist", "public")
-      : path.resolve(import.meta.dirname, "public");
+  const generatedClientPath = path.resolve(process.cwd(), "dist", "public");
+  const bundledClientPath = path.resolve(import.meta.dirname, "public");
+  // A publicação executa o bundle em dist/, mas algumas runtimes preservam uma
+  // árvore antiga junto ao código. Damos prioridade ao artefacto Vite criado no
+  // build atual para que HTML, JS e servidor pertençam sempre à mesma versão.
+  const distPath = fs.existsSync(generatedClientPath) ? generatedClientPath : bundledClientPath;
   if (!fs.existsSync(distPath)) {
     console.error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`
