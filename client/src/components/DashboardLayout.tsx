@@ -38,7 +38,7 @@ import {
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from "./DashboardLayoutSkeleton";
 
-const markUrl = "/manus-storage/luanda-prep-symbol_63c805d7.png";
+const markUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%230A36A8' d='M32 4C18 4 7 15 7 29c0 15 12 27 25 31 13-4 25-16 25-31C57 15 46 4 32 4Z'/%3E%3Cpath fill='%23FFCC5C' d='M32 13c-8 0-15 7-15 16h6c0-5 4-9 9-9s9 4 9 9h6c0-9-7-16-15-16Z'/%3E%3Cpath fill='white' d='M20 35h24v6H20zm5 9h14v6H25z'/%3E%3C/svg%3E";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Visão geral", path: "/app" },

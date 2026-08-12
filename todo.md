@@ -63,3 +63,11 @@
 - [x] Adicionar questões de treino verificadas sobre iniciativas, instituições, eventos e contexto de TI em Angola.
 - [x] Ligar os novos conteúdos e exercícios ao módulo “TIC em Angola” na experiência de estudo e prática.
 - [x] Validar o novo conteúdo no browser, na tipagem e no build de produção.
+
+## Distribuição: GitHub e Render
+
+- [ ] Avaliar a configuração actual de servidor, autenticação e persistência para execução fora da Manus.
+- [ ] Criar ficheiros de configuração do Render e um modelo seguro de variáveis de ambiente.
+- [ ] Documentar o provisionamento de base de dados externa, migrações e os limites de compatibilidade da base Manus.
+- [ ] Actualizar a autenticação e CORS para a origem pública configurada no Render.
+- [ ] Executar build de produção no modo de deploy e sincronizar o código preparado com delvis1205/preparatorio.
