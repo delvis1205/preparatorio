@@ -15,7 +15,8 @@
 
 ## Aprendizagem
 
-- [ ] Expor a contagem de exercícios por módulo e disciplina directamente na listagem de estudo.
+- [x] Expor a contagem de exercícios por módulo directamente na listagem de estudo.
+- [x] Exibir na listagem de estudo a contagem agregada de questões por disciplina e validá-la no browser.
 - [ ] Criar aula didáctica com conceito, explicação, exemplos, fórmulas, erros comuns, dicas e mini quiz.
 - [x] Renderizar equações matemáticas e mostrar resoluções passo a passo.
 
@@ -124,7 +125,7 @@
 - [x] Exibir recomendações de próximo passo e acesso aos desafios no plano de estudo.
 - [x] Adicionar lógica persistente de desafio diário, com rotação por data e conclusão visível ao estudante.
 - [x] Validar visualmente e por testes o novo ciclo de estudo, desafio e revisão.
-- [ ] Validar no domínio publicado uma aula enriquecida e confirmar visualmente o exemplo guiado e a verificação rápida; os desafios por disciplina e o desafio diário já foram confirmados.
+- [x] Validar no domínio publicado uma aula enriquecida e confirmar visualmente o exemplo guiado e a verificação rápida; os desafios por disciplina e o desafio diário já foram confirmados.
 
 ## Domínio personalizado
 
