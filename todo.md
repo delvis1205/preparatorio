@@ -4,20 +4,22 @@
 
 - [x] Reestruturar a arquitectura do produto para uma plataforma de estudo full-stack, não uma landing page institucional.
 - [x] Usar o nome LUANDA PREP e o subtítulo oficial do plano em toda a experiência principal.
-- [ ] Organizar a estrutura curricular oficial do PDF em disciplina → módulo → tópico → aula → exemplos → exercícios → quiz → revisão.
+- [x] Organizar a estrutura curricular oficial do PDF em disciplina → módulo → tópico → aula → exemplos → exercícios → quiz → revisão.
 - [x] Manter separado e identificado qualquer conteúdo complementar que não venha do PDF.
 
 ## Conta e progresso
 
-- [ ] Adicionar autenticação simples com nome, email e palavra-passe.
+- [x] Adicionar autenticação simples com nome, email e palavra-passe.
 - [x] Persistir progresso, módulos, respostas, pontuações, favoritos, anotações, tempo e histórico de simulados.
 - [ ] Construir dashboard com progresso geral, acerto, sequência, pontos fortes, pontos fracos e próxima acção.
+- [ ] Adicionar ao dashboard uma métrica explícita de sequência de estudo e destaques visíveis de pontos fortes e pontos fracos.
+- [ ] Validar no browser o dashboard com sequência, pontos fortes, pontos fracos e próxima acção visíveis ao estudante.
 
 ## Aprendizagem
 
 - [x] Expor a contagem de exercícios por módulo directamente na listagem de estudo.
 - [x] Exibir na listagem de estudo a contagem agregada de questões por disciplina e validá-la no browser.
-- [ ] Criar aula didáctica com conceito, explicação, exemplos, fórmulas, erros comuns, dicas e mini quiz.
+- [x] Criar aula didáctica com conceito, explicação, exemplos, fórmulas, erros comuns, dicas e mini quiz.
 - [x] Renderizar equações matemáticas e mostrar resoluções passo a passo.
 
 ## Prática e avaliação
@@ -147,10 +149,18 @@
 - [x] Exibir a autoria: Delvis de Morais, projeto Morásio Digital, contacto 973 929 712 e o caráter gratuito da plataforma.
 - [x] Criar as aulas e os módulos ausentes identificados no PDF, preservando e aprofundando os conteúdos existentes.
 - [x] Acrescentar definições, conceitos, exemplos, perguntas de compreensão e questões de treino a cada tópico novo ou revisto.
-- [ ] Validar todo o currículo contra o PDF, executar testes e publicar a versão final funcional.
+- [x] Validar todo o currículo contra o PDF, executar testes e publicar a versão final funcional.
 - [x] Validar módulo a módulo o exactas.pdf contra server/content.ts, registando explicitamente cada tema e subtema coberto.
 - [x] Desdobrar os módulos agregados em aulas e tópicos específicos sempre que necessário para representar os subtemas do PDF.
 - [x] Garantir definições, exemplos, perguntas de compreensão e questões de treino para cada tópico oficial novo, e não apenas por módulo agregado.
 - [x] Validar tema a tema e subtema a subtema o exactas.pdf contra server/content.ts, registando cobertura explícita de cada item do programa oficial.
 - [x] Atualizar docs/cobertura_exactas.md com uma matriz exaustiva por subtema oficial, não apenas por blocos agregados.
 - [x] Adicionar asserções que comprovem cobertura curricular completa por subtema oficial, além de build e publicação.
+
+## Melhoria de navegação mobile
+
+- [x] Tornar o botão do menu lateral mobile claramente visível com contraste, rótulo e área de toque adequados.
+- [x] Garantir que o painel lateral móvel apresenta fundo opaco, título de navegação e nomes completos das disciplinas e secções.
+- [ ] Validar o menu mobile em smartphone e o layout de navegação em desktop após a correcção.
+- [ ] Publicar a correcção mobile e sincronizar a versão actualizada no repositório.
+- [ ] Rever sugestões de evolução da experiência e priorizar melhorias futuras sem inventar dados de utilizadores.

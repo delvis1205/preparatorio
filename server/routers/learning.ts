@@ -31,6 +31,37 @@ function buildWeeklyTasks(dailyMinutes: number, progressRows: { moduleId: string
   ];
 }
 
+export function calculateStudyStreak(activityDates: Array<Date | null | undefined>, now = new Date()): number {
+  const activeDays = new Set(activityDates.filter((value): value is Date => value instanceof Date).map((value) => value.toISOString().slice(0, 10)));
+  const cursor = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  if (!activeDays.has(cursor.toISOString().slice(0, 10))) cursor.setUTCDate(cursor.getUTCDate() - 1);
+  let streak = 0;
+  while (activeDays.has(cursor.toISOString().slice(0, 10))) {
+    streak += 1;
+    cursor.setUTCDate(cursor.getUTCDate() - 1);
+  }
+  return streak;
+}
+
+export function buildSpacedReviewSchedule(attempts: Array<{ questionId: string; moduleId: string; topic: string; isCorrect: boolean; createdAt: Date }>, now = new Date()) {
+  const latestByTopic = new Map<string, { questionId: string; moduleId: string; topic: string; isCorrect: boolean; createdAt: Date }>();
+  for (const attempt of [...attempts].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())) {
+    if (!latestByTopic.has(attempt.topic)) latestByTopic.set(attempt.topic, attempt);
+  }
+  return Array.from(latestByTopic.values()).map((attempt) => {
+    const intervalDays = attempt.isCorrect ? 3 : 1;
+    const dueAt = new Date(attempt.createdAt);
+    dueAt.setUTCDate(dueAt.getUTCDate() + intervalDays);
+    return {
+      ...attempt,
+      intervalDays,
+      dueAt,
+      due: dueAt.getTime() <= now.getTime(),
+      priority: attempt.isCorrect ? "consolidar" : "recuperar",
+    };
+  }).sort((a, b) => Number(b.due) - Number(a.due) || a.dueAt.getTime() - b.dueAt.getTime());
+}
+
 export const learningRouter = router({
   catalog: protectedProcedure.query(() => ({
     disciplines: ["Matemática", "Língua Portuguesa", "Cultura Geral"],
@@ -66,12 +97,21 @@ export const learningRouter = router({
       const average = entries.length ? Math.round(entries.reduce((sum, item) => sum + item.mastery, 0) / entries.length) : 0;
       return { id: disciplineId, label: entries[0]?.module.discipline ?? disciplineId, mastery: average };
     });
+    const rankedDisciplines = [...byDiscipline].sort((a, b) => b.mastery - a.mastery);
+    const activityDates = [
+      ...attemptRows.map((item) => item.createdAt),
+      ...progressRows.map((item) => item.lastAccessedAt),
+      ...simulationRows.map((item) => item.completedAt),
+    ];
+    const streak = calculateStudyStreak(activityDates);
     const preparationIndex = masteryRows.length ? Math.round(masteryRows.reduce((sum, item) => sum + item.mastery, 0) / masteryRows.length) : 0;
     return {
       profile: profileRows[0] ?? null,
-      stats: { completed, totalModules: CURRICULUM.length, answered: attemptRows.length, accuracy, simulations: simulationRows.length, preparationIndex },
+      stats: { completed, totalModules: CURRICULUM.length, answered: attemptRows.length, accuracy, simulations: simulationRows.length, preparationIndex, streak },
       next: next ? { moduleId: next.module.id, title: next.module.title, discipline: next.module.discipline, mastery: next.mastery, reason: next.mastery === 0 ? "Comece por este módulo para activar a sua preparação." : "Este é o ponto com maior potencial de melhoria agora." } : null,
       byDiscipline,
+      strengths: rankedDisciplines[0] ?? null,
+      improvements: rankedDisciplines[rankedDisciplines.length - 1] ?? null,
       recentSimulation: simulationRows[0] ?? null,
       moduleProgress: masteryRows,
     };
@@ -175,24 +215,29 @@ export const learningRouter = router({
   }),
 
   questions: router({
-    list: protectedProcedure.input(z.object({ questionId: z.string().optional(), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional(), moduleId: z.string().optional(), difficulty: difficultySchema.optional(), onlyIncorrect: z.boolean().optional(), onlyUnanswered: z.boolean().optional(), favoritesOnly: z.boolean().optional() }).optional()).query(async ({ ctx, input }) => {
+    list: protectedProcedure.input(z.object({ questionId: z.string().optional(), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional(), moduleId: z.string().optional(), topic: z.string().optional(), difficulty: difficultySchema.optional(), onlyIncorrect: z.boolean().optional(), onlyUnanswered: z.boolean().optional(), favoritesOnly: z.boolean().optional() }).optional()).query(async ({ ctx, input }) => {
       const filters = input ?? {};
-      let questions = TRAINING_QUESTIONS.filter((question) => (!filters.questionId || question.id === filters.questionId) && (!filters.disciplineId || question.disciplineId === filters.disciplineId) && (!filters.moduleId || question.moduleId === filters.moduleId) && (!filters.difficulty || question.difficulty === filters.difficulty));
+      let questions = TRAINING_QUESTIONS.filter((question) => (!filters.questionId || question.id === filters.questionId) && (!filters.disciplineId || question.disciplineId === filters.disciplineId) && (!filters.moduleId || question.moduleId === filters.moduleId) && (!filters.topic || question.topic === filters.topic) && (!filters.difficulty || question.difficulty === filters.difficulty));
       const db = await getDb();
       if (db && (filters.onlyIncorrect || filters.onlyUnanswered || filters.favoritesOnly)) {
         const attempts = await db.select().from(questionAttempts).where(eq(questionAttempts.userId, ctx.user.id));
+        const savedFavorites = filters.favoritesOnly ? await db.select().from(favorites).where(and(eq(favorites.userId, ctx.user.id), eq(favorites.resourceType, "question"))) : [];
         if (filters.onlyIncorrect) questions = questions.filter((question) => attempts.some((attempt) => attempt.questionId === question.id && !attempt.isCorrect));
         if (filters.onlyUnanswered) questions = questions.filter((question) => !attempts.some((attempt) => attempt.questionId === question.id));
+        if (filters.favoritesOnly) questions = questions.filter((question) => savedFavorites.some((favorite) => favorite.resourceId === question.id));
       }
       return questions.map(withoutAnswers);
     }),
-    submit: protectedProcedure.input(z.object({ questionId: z.string(), selectedOption: z.number().int().min(0), durationSeconds: z.number().int().min(0).max(3600).default(0) })).mutation(async ({ ctx, input }) => {
+    submit: protectedProcedure.input(z.object({ questionId: z.string(), selectedOption: z.number().int().min(0).optional(), answer: z.string().trim().min(1).max(300).optional(), durationSeconds: z.number().int().min(0).max(3600).default(0) }).refine((value) => value.selectedOption !== undefined || Boolean(value.answer), { message: "Seleccione ou escreva uma resposta." })).mutation(async ({ ctx, input }) => {
       const question = getQuestion(input.questionId);
       if (!question) throw new TRPCError({ code: "NOT_FOUND", message: "Questão de treino não encontrada." });
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Não foi possível guardar a sua resposta. Tente novamente." });
-      const isCorrect = input.selectedOption === question.correctOption;
-      await db.insert(questionAttempts).values({ userId: ctx.user.id, questionId: question.id, moduleId: question.moduleId, topic: question.topic, selectedOption: input.selectedOption, isCorrect, durationSeconds: input.durationSeconds });
+      const freeResponse = question.type === "numeric" || question.type === "short_answer";
+      const normalizeAnswer = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+      const isCorrect = freeResponse ? Boolean(question.correctAnswer && input.answer && normalizeAnswer(input.answer) === normalizeAnswer(question.correctAnswer)) : input.selectedOption === question.correctOption;
+      const selectedOption = input.selectedOption ?? (isCorrect ? question.correctOption : -1);
+      await db.insert(questionAttempts).values({ userId: ctx.user.id, questionId: question.id, moduleId: question.moduleId, topic: question.topic, selectedOption, isCorrect, durationSeconds: input.durationSeconds });
       const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.moduleId, question.moduleId)));
       const current = (await db.select().from(moduleProgress).where(and(eq(moduleProgress.userId, ctx.user.id), eq(moduleProgress.moduleId, question.moduleId))).limit(1))[0];
       const mastery = calculateMastery({ attempts: attempts.length, correct: attempts.filter((attempt) => attempt.isCorrect).length, completionPercent: current?.completionPercent ?? 0, daysSinceLastStudy: 0 });
@@ -206,6 +251,16 @@ export const learningRouter = router({
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
     const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.isCorrect, false))).orderBy(desc(questionAttempts.createdAt));
     return attempts.map((attempt) => ({ attempt, question: getQuestion(attempt.questionId) ? withoutAnswers(getQuestion(attempt.questionId)!) : null })).filter((item) => item.question);
+  }),
+
+  reviewSchedule: protectedProcedure.query(async ({ ctx }) => {
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+    const attempts = await db.select().from(questionAttempts).where(eq(questionAttempts.userId, ctx.user.id));
+    return buildSpacedReviewSchedule(attempts).map((entry) => ({
+      ...entry,
+      question: getQuestion(entry.questionId) ? withoutAnswers(getQuestion(entry.questionId)!) : null,
+    })).filter((entry) => entry.question);
   }),
 
   challenges: router({
@@ -261,7 +316,7 @@ export const learningRouter = router({
 
   simulation: router({
     start: protectedProcedure.input(z.object({ count: z.number().int().min(3).max(20), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional() })).query(({ input }) => {
-      const candidates = input.disciplineId ? TRAINING_QUESTIONS.filter((question) => question.disciplineId === input.disciplineId) : TRAINING_QUESTIONS;
+      const candidates = (input.disciplineId ? TRAINING_QUESTIONS.filter((question) => question.disciplineId === input.disciplineId) : TRAINING_QUESTIONS).filter((question) => question.type === "multiple_choice" || question.type === "true_false");
       return sortQuestions(candidates.map((question) => question.id), Math.min(input.count, candidates.length)).map(withoutAnswers);
     }),
     submit: protectedProcedure.input(z.object({ answers: z.array(z.object({ questionId: z.string(), selectedOption: z.number().int().min(0) })), durationSeconds: z.number().int().min(0).max(14400), mode: z.enum(["practice", "exam"]) })).mutation(async ({ ctx, input }) => {

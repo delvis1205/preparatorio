@@ -26,6 +26,7 @@ import {
   CalendarDays,
   ChartNoAxesCombined,
   ChevronRight,
+  Menu,
   ClipboardCheck,
   GraduationCap,
   LayoutDashboard,
@@ -98,7 +99,11 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
           </button>
         </SidebarHeader>
 
-        <SidebarContent className="px-2 py-4">
+        <SidebarContent className="bg-white px-2 py-4">
+          <div className="mb-4 rounded-2xl border border-[#D8E2FF] bg-[#F4F7FF] px-4 py-3 md:hidden">
+            <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#0A36A8]">Menu de estudo</p>
+            <p className="mt-1 text-sm font-bold text-slate-900">Engenharia Informática</p>
+          </div>
           <p className="px-3 pb-2 text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-slate-400 group-data-[collapsible=icon]:hidden">Engenharia Informática</p>
           <SidebarMenu>
             {menuItems.map((item) => {
@@ -139,7 +144,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
       <SidebarInset className="min-h-screen bg-[#F6F7FB]">
         {isMobile && (
           <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-slate-200/70 bg-white/95 px-4 backdrop-blur">
-            <div className="flex items-center gap-3"><SidebarTrigger className="rounded-xl" /><div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#0A36A8]">LUANDA PREP</p><p className="text-sm font-bold text-slate-800">{active?.label ?? "Preparação"}</p></div></div>
+            <div className="flex items-center gap-3"><SidebarTrigger aria-label="Abrir menu de estudo" title="Abrir menu de estudo" className="h-10 min-w-[88px] gap-2 rounded-xl bg-[#0A36A8] px-3 text-white shadow-sm hover:bg-[#092E90] hover:text-white focus-visible:ring-2 focus-visible:ring-[#FFCC5C]"><Menu className="h-5 w-5" /><span className="text-sm font-bold">Menu</span></SidebarTrigger><div><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#0A36A8]">LUANDA PREP</p><p className="text-sm font-bold text-slate-800">{active?.label ?? "Preparação"}</p></div></div>
             <button onClick={() => setLocation("/app/ia")} className="grid h-9 w-9 place-items-center rounded-xl bg-[#E7EDFF] text-[#0A36A8]" aria-label="Abrir LUANDA AI"><BrainCircuit className="h-4 w-4" /></button>
           </header>
         )}

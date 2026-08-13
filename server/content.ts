@@ -37,11 +37,12 @@ export type TrainingQuestion = {
   disciplineId: CurriculumModule["disciplineId"];
   moduleId: string;
   topic: string;
-  type: "multiple_choice" | "true_false" | "numeric";
+  type: "multiple_choice" | "true_false" | "numeric" | "short_answer";
   difficulty: "Inicial" | "Intermédio" | "Avançado";
   prompt: string;
   options: string[];
   correctOption: number;
+  correctAnswer?: string;
   explanation: string;
   errorHint: string;
   recommendedSeconds: number;
@@ -480,7 +481,7 @@ export const TRAINING_QUESTIONS: TrainingQuestion[] = [
   { id: "q-log-1", disciplineId: "matematica", moduleId: "mat-logica", topic: "Leis de De Morgan", type: "multiple_choice", difficulty: "Intermédio", prompt: "Qual expressão é equivalente a ¬(P ∧ Q)?", options: ["¬P ∧ ¬Q", "¬P ∨ ¬Q", "P ∨ Q", "P ∧ ¬Q"], correctOption: 1, explanation: "Pela lei de De Morgan, a negação de uma conjunção é a disjunção das negações.", errorHint: "Ao negar 'e', o conectivo transforma-se em 'ou'.", recommendedSeconds: 60 },
   { id: "q-geo-1", disciplineId: "matematica", moduleId: "mat-geometria", topic: "Distância entre dois pontos", type: "multiple_choice", difficulty: "Intermédio", prompt: "Qual é a distância entre A(1, 2) e B(4, 6)?", options: ["3", "4", "5", "7"], correctOption: 2, explanation: "d = √[(4−1)² + (6−2)²] = √(9 + 16) = 5.", errorHint: "Calcule primeiro as diferenças em x e y, depois aplique a raiz quadrada.", recommendedSeconds: 90 },
   { id: "q-trig-1", disciplineId: "matematica", moduleId: "mat-trigonometria", topic: "Razões trigonométricas", type: "multiple_choice", difficulty: "Inicial", prompt: "Num triângulo rectângulo, se o cateto oposto mede 3 e a hipotenusa mede 5, qual é o seno do ângulo de referência?", options: ["3/5", "5/3", "3/2", "2/5"], correctOption: 0, explanation: "O seno é o cateto oposto dividido pela hipotenusa: 3/5.", errorHint: "Lembre-se: seno = oposto / hipotenusa.", recommendedSeconds: 60 },
-  { id: "q-pa-1", disciplineId: "matematica", moduleId: "mat-sucessoes", topic: "Termo geral de uma PA", type: "numeric", difficulty: "Intermédio", prompt: "Numa PA com a₁ = 4 e razão r = 3, qual é o 5.º termo?", options: ["13", "16", "19", "20"], correctOption: 1, explanation: "a₅ = 4 + (5−1)×3 = 4 + 12 = 16.", errorHint: "Use n − 1 na fórmula do termo geral da PA.", recommendedSeconds: 75 },
+  { id: "q-pa-1", disciplineId: "matematica", moduleId: "mat-sucessoes", topic: "Termo geral de uma PA", type: "numeric", difficulty: "Intermédio", prompt: "Numa PA com a₁ = 4 e razão r = 3, qual é o 5.º termo? Escreva apenas o número.", options: [], correctOption: 0, correctAnswer: "16", explanation: "a₅ = 4 + (5−1)×3 = 4 + 12 = 16.", errorHint: "Use n − 1 na fórmula do termo geral da PA.", recommendedSeconds: 75 },
   { id: "q-func-1", disciplineId: "matematica", moduleId: "mat-funcoes", topic: "Domínio", type: "multiple_choice", difficulty: "Intermédio", prompt: "Qual valor deve ser excluído do domínio de f(x) = 1/(x − 2)?", options: ["0", "1", "2", "−2"], correctOption: 2, explanation: "O denominador não pode ser zero. Logo, x − 2 ≠ 0 e x ≠ 2.", errorHint: "Procure o valor que anula o denominador.", recommendedSeconds: 60 },
   { id: "q-lim-1", disciplineId: "matematica", moduleId: "mat-limites", topic: "Indeterminações", type: "true_false", difficulty: "Inicial", prompt: "Verdadeiro ou falso: obter 0/0 numa substituição directa significa que o limite é igual a zero.", options: ["Verdadeiro", "Falso"], correctOption: 1, explanation: "0/0 é uma indeterminação; é preciso transformar a expressão ou aplicar outra técnica antes de concluir.", errorHint: "Uma indeterminação não é um resultado final.", recommendedSeconds: 45 },
   { id: "q-der-1", disciplineId: "matematica", moduleId: "mat-derivadas", topic: "Regras de derivação", type: "multiple_choice", difficulty: "Intermédio", prompt: "Qual é a derivada de f(x) = 3x²?", options: ["3x", "6x", "6x²", "x³"], correctOption: 1, explanation: "Pela regra da potência, 3×2×x^(2−1) = 6x.", errorHint: "Multiplique o coeficiente pelo expoente e diminua o expoente em uma unidade.", recommendedSeconds: 45 },
@@ -510,6 +511,8 @@ export const TRAINING_QUESTIONS: TrainingQuestion[] = [
   { id: "q-gram-2", disciplineId: "portugues", moduleId: "pt-gramatica", topic: "Tempos verbais", type: "multiple_choice", difficulty: "Intermédio", prompt: "Na frase “Amanhã estudarei matemática”, o verbo indica principalmente:", options: ["Acção passada", "Acção presente", "Acção futura", "Uma ordem"], correctOption: 2, explanation: "“Estudarei” está no futuro do presente e aponta para uma acção que ainda ocorrerá.", errorHint: "Observe a terminação verbal e o marcador temporal “amanhã”.", recommendedSeconds: 45 },
   { id: "q-frase-2", disciplineId: "portugues", moduleId: "pt-frases", topic: "Coordenação e subordinação", type: "multiple_choice", difficulty: "Avançado", prompt: "Em “Estudei porque queria melhorar”, a oração introduzida por “porque” expressa:", options: ["Causa", "Oposição", "Conclusão", "Condição"], correctOption: 0, explanation: "O conector “porque” apresenta a razão ou causa de ter estudado.", errorHint: "Relacione a segunda oração à pergunta “por que estudei?”.", recommendedSeconds: 55 },
   { id: "q-tic-10", disciplineId: "cultura", moduleId: "cg-tic-angola", topic: "Instituições e regulação", type: "multiple_choice", difficulty: "Avançado", prompt: "Qual associação está correcta no contexto das TIC em Angola?", options: ["MINTTICS — formula e conduz políticas sectoriais; INACOM — regula o sector", "ANGOTIC — regula operadoras; INACOM — organiza satélites", "ANGOSAT-2 — é um fórum de TIC", "Cidadão Digital — é o regulador postal"], correctOption: 0, explanation: "O MINTTICS conduz políticas do sector e o INACOM regula, supervisiona e fiscaliza comunicações electrónicas e serviços postais.", errorHint: "Diferencie quem formula política de quem regula o mercado.", recommendedSeconds: 70 },
+  { id: "q-mat-numerica-1", disciplineId: "matematica", moduleId: "mat-geometria", topic: "Distância entre dois pontos", type: "numeric", difficulty: "Intermédio", prompt: "Calcule a distância entre os pontos A(1, 2) e B(4, 6). Escreva apenas o número.", options: [], correctOption: 0, correctAnswer: "5", explanation: "As diferenças são 3 e 4; pelo teorema de Pitágoras, d = √(3² + 4²) = 5.", errorHint: "Subtraia primeiro as coordenadas x e y e aplique a fórmula da distância.", recommendedSeconds: 75 },
+  { id: "q-pt-curta-1", disciplineId: "portugues", moduleId: "pt-frases", topic: "Coordenação e subordinação", type: "short_answer", difficulty: "Intermédio", prompt: "Na frase “Estudei porque queria melhorar”, escreva o tipo de relação da segunda oração: coordenação ou subordinação?", options: [], correctOption: 0, correctAnswer: "subordinação", explanation: "A oração introduzida por “porque” depende sintaticamente da oração principal e expressa uma causa; por isso, há subordinação.", errorHint: "Observe se a segunda oração depende da primeira para completar a relação de sentido.", recommendedSeconds: 60 },
 ];
 
 TRAINING_QUESTIONS.push(...OFFICIAL_ENGINEERING_MODULES.flatMap((module) => {
@@ -614,6 +617,6 @@ export function getQuestion(questionId: string) {
 }
 
 export function withoutAnswers(question: TrainingQuestion) {
-  const { correctOption: _correctOption, explanation: _explanation, errorHint: _errorHint, ...publicQuestion } = question;
+  const { correctOption: _correctOption, correctAnswer: _correctAnswer, explanation: _explanation, errorHint: _errorHint, ...publicQuestion } = question;
   return publicQuestion;
 }

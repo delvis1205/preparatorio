@@ -41,6 +41,15 @@ describe("currículo pedagógico", () => {
     }
   });
 
+  it("oferece formatos de treino de alternativa, verdadeiro/falso, numérico e resposta curta", () => {
+    const formats = new Set(TRAINING_QUESTIONS.map((question) => question.type));
+    expect(formats).toEqual(new Set(["multiple_choice", "true_false", "numeric", "short_answer"]));
+    for (const question of TRAINING_QUESTIONS.filter((item) => item.type === "numeric" || item.type === "short_answer")) {
+      expect(question.correctAnswer, `${question.id} deve ter resposta de referência`).toBeTruthy();
+      expect(question.options).toHaveLength(0);
+    }
+  });
+
   it("mantém um registo canónico 1:1 que cobre cada subtema do PDF com sessão e treino", () => {
     expect(OFFICIAL_PDF_COVERAGE).toHaveLength(OFFICIAL_PDF_SUBTOPICS.length);
     expect(new Set(OFFICIAL_PDF_COVERAGE.map((entry) => entry.sourceId))).toEqual(new Set(OFFICIAL_PDF_SUBTOPICS.map((entry) => entry.sourceId)));
