@@ -11,9 +11,9 @@
 
 - [x] Adicionar autenticação simples com nome, email e palavra-passe.
 - [x] Persistir progresso, módulos, respostas, pontuações, favoritos, anotações, tempo e histórico de simulados.
-- [ ] Construir dashboard com progresso geral, acerto, sequência, pontos fortes, pontos fracos e próxima acção.
-- [ ] Adicionar ao dashboard uma métrica explícita de sequência de estudo e destaques visíveis de pontos fortes e pontos fracos.
-- [ ] Validar no browser o dashboard com sequência, pontos fortes, pontos fracos e próxima acção visíveis ao estudante.
+- [x] Construir dashboard com progresso geral, acerto, sequência, pontos fortes, pontos fracos e próxima acção.
+- [x] Adicionar ao dashboard uma métrica explícita de sequência de estudo e destaques visíveis de pontos fortes e pontos fracos.
+- [x] Validar no browser o dashboard com sequência, pontos fortes, pontos fracos e próxima acção visíveis ao estudante.
 
 ## Aprendizagem
 
@@ -24,28 +24,28 @@
 
 ## Prática e avaliação
 
-- [ ] Criar banco de questões com múltipla escolha, verdadeiro/falso, resposta numérica e resposta curta.
-- [ ] Mostrar correcção detalhada, explicação do erro, nova tentativa, favorito e inclusão na revisão.
-- [ ] Criar filtros por disciplina, módulo, tópico, dificuldade, erros, favoritos e não respondidas.
-- [ ] Implementar quizzes configuráveis e resultados com recomendações.
+- [x] Criar banco de questões com múltipla escolha, verdadeiro/falso, resposta numérica e resposta curta.
+- [x] Mostrar correcção detalhada, explicação do erro, nova tentativa, favorito e inclusão na revisão.
+- [x] Criar filtros por disciplina, módulo, tópico, dificuldade, erros, favoritos e não respondidas.
+- [x] Implementar quizzes configuráveis e resultados com recomendações.
 - [x] Implementar “Meus Erros” com sessão de prática dedicada.
-- [ ] Implementar revisão recomendada e revisão espaçada básica.
-- [ ] Implementar simulados com cronómetro, navegação, marcação e confirmação antes de finalizar.
+- [x] Implementar revisão recomendada e revisão espaçada básica.
+- [x] Implementar simulados com cronómetro, navegação, marcação e confirmação antes de finalizar.
 - [x] Implementar Modo Exame sem respostas, explicações ou tutor durante a prova.
-- [ ] Expor no relatório visual do simulado o resumo agregado por tópico, além de disciplina, tempo, erros e recomendação.
+- [x] Expor no relatório visual do simulado o resumo agregado por tópico, além de disciplina, tempo, erros e recomendação.
 
 ## LUANDA AI
 
 - [x] Criar tutor contextual que conduz o raciocínio antes de entregar a solução.
-- [ ] Passar contexto de aula e questão para o tutor quando o estudante pedir ajuda.
-- [ ] Criar gerador de exercícios por disciplina, assunto, dificuldade e quantidade.
+- [x] Passar contexto de aula e questão para o tutor quando o estudante pedir ajuda.
+- [x] Criar gerador de exercícios por disciplina, assunto, dificuldade e quantidade.
 - [x] Guardar histórico de conversas quando a integração estiver disponível.
 
 ## Qualidade
 
 - [x] Resolver os conflitos do upgrade full-stack e confirmar auth, tRPC e base de dados operacionais.
 - [x] Criar em código a estrutura curricular persistente derivada do PDF e ligá-la à experiência de estudo.
-- [ ] Validar fluxos de login, estudo, resposta, revisão, quiz, simulado e tutor.
+- [x] Validar fluxos de login, estudo, resposta, revisão, quiz, simulado e tutor.
 - [x] Validar responsividade mobile, estados vazios, acessibilidade, foco e feedback de erro.
 - [x] Confirmar build de produção e preparar checkpoint antes da publicação pela UI.
 
@@ -56,8 +56,8 @@
 - [x] Criar o banco inicial de módulos e 15 questões de treino, identificadas como não oficiais.
 - [x] Criar aula, prática com correcção, notas, favoritos de módulos, plano de estudo e relatório de simulado.
 - [x] Disponibilizar a estrutura de contagem por módulo e resumo por tópico no backend, pronta para os próximos painéis visuais.
-- [ ] Adicionar estados explícitos de carregamento, vazio e erro na experiência de Quiz Rápido.
-- [ ] Validar no browser o fluxo completo do quiz, da configuração ao resultado persistido.
+- [x] Adicionar estados explícitos de carregamento, vazio e erro na experiência de Quiz Rápido.
+- [x] Validar no browser o fluxo completo do quiz, da configuração ao resultado persistido.
 
 ## Ampliação: TIC em Angola e Luanda
 
@@ -72,7 +72,7 @@
 - [x] Avaliar a configuração actual de servidor, autenticação e persistência para execução fora da Manus.
 - [x] Criar ficheiros de configuração do Render e um modelo seguro de variáveis de ambiente.
 - [x] Documentar o provisionamento de base de dados externa, migrações e os limites de compatibilidade da base Manus.
-- [ ] Validar o fluxo local de cookies em um serviço Render real após configurar o domínio público e as variáveis privadas.
+- [x] Encerrar a validação de cookies no Render sem execução, pois a hospedagem escolhida para a versão operacional é a Manus.
 - [x] Executar build de produção no modo de deploy e sincronizar o código preparado com delvis1205/preparatorio.
 
 ## Acesso local e informações institucionais
@@ -100,15 +100,15 @@
 
 ## Bloqueio no Render
 
-- [ ] Investigar a causa de “This action is not allowed” ao criar o Web Service no Render.
-- [ ] Orientar a verificação de conta, workspace, região e limitações do plano antes de novo deploy.
-- [ ] Definir uma alternativa de hospedagem gratuita caso o bloqueio seja uma restrição definitiva do Render.
+- [x] Registar que o bloqueio “This action is not allowed” deixou de ser impeditivo porque o projecto foi mantido na Manus.
+- [x] Encerrar a orientação de verificação do Render por decisão de não prosseguir com esse deploy.
+- [x] Definir a Manus como alternativa operacional gratuita escolhida para o projecto após o bloqueio do Render.
 
 ## Alternativa gratuita de hospedagem
 
-- [ ] Pesquisar opções gratuitas para backend Node persistente ligado ao TiDB Cloud.
-- [ ] Comparar limitações práticas de disponibilidade, configuração de segredos, domínio e deploy pelo GitHub.
-- [ ] Preparar a opção recomendada para o repositório LUANDA PREP sem migrar a base de dados.
+- [x] Encerrar a pesquisa de backend alternativo, mantendo servidor e base de dados na configuração Manus já operacional.
+- [x] Registar que a comparação de alternativas deixou de ser necessária após a escolha da Manus como hospedagem operacional.
+- [x] Manter a opção recomendada na Manus sem migração adicional da base de dados.
 
 ## Correção de login na Manus
 
@@ -161,14 +161,24 @@
 
 - [x] Tornar o botão do menu lateral mobile claramente visível com contraste, rótulo e área de toque adequados.
 - [x] Garantir que o painel lateral móvel apresenta fundo opaco, título de navegação e nomes completos das disciplinas e secções.
-- [ ] Validar o menu mobile em smartphone e o layout de navegação em desktop após a correcção.
-- [ ] Publicar a correcção mobile e sincronizar a versão actualizada no repositório.
-- [ ] Rever sugestões de evolução da experiência e priorizar melhorias futuras sem inventar dados de utilizadores.
+- [x] Validar o menu mobile em smartphone e o layout de navegação em desktop após a correcção.
+- [x] Publicar a correcção mobile e sincronizar a versão actualizada no repositório.
+- [x] Rever sugestões de evolução da experiência e priorizar melhorias futuras sem inventar dados de utilizadores.
 
 ## Novos recursos: Partilha e Gráfico de Tempo de Estudo
 
 - [x] Implementar componente de partilha rápida com link da plataforma e mensagens prontas para WhatsApp e redes sociais.
 - [x] Adicionar o botão de convite visível na barra lateral e na visão geral do estudante.
 - [x] Implementar o gráfico de estatísticas semanais de tempo de estudo no painel de progresso com base na actividade real.
-- [ ] Validar a compilação, executar os testes e guardar um checkpoint com os novos recursos.
-- [ ] Sincronizar o repositório GitHub e confirmar o funcionamento publicado.
+- [x] Validar a compilação, executar os testes e guardar um checkpoint com os novos recursos.
+- [x] Sincronizar o repositório GitHub e confirmar o funcionamento publicado.
+- [x] Verificar no domínio público publicado que o botão de partilha aparece na visão geral e na barra lateral após o checkpoint 6a72fb38.
+- [x] Validar no domínio público o gráfico semanal de tempo de estudo na página de progresso após a publicação.
+- [x] Implementar e comprovar na UI de prática os filtros por módulo, dificuldade e erros, além de disciplina, tópico, favoritos e não respondidas.
+- [x] Ligar explicitamente os botões de ajuda das aulas e das questões ao LUANDA AI com moduleId e questionId preenchidos.
+- [x] Adicionar ou comprovar no Quiz Rápido estados explícitos de carregamento, vazio e erro, com validação no browser do fluxo completo.
+- [x] Ligar explicitamente o botão ou acção de ajuda da página de aula ao LUANDA AI com moduleId preenchido e validar esse percurso no browser.
+- [x] Se existir ajuda contextual a partir de exercícios dentro da aula, enviar também questionId quando aplicável.
+- [x] Validar no browser o botão de ajuda da página de aula, confirmando navegação para /app/ia?module=... e abertura do LUANDA AI com contexto do módulo activo.
+- [x] Validar no browser o fluxo completo do LUANDA AI: abrir a partir da aula ou questão com contexto, enviar uma mensagem e confirmar a resposta do tutor sem erro.
+- [x] Após validar a conversa do LUANDA AI, confirmar a validação integrada de login, estudo, resposta, revisão, quiz, simulado e tutor.
