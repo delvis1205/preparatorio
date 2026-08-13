@@ -182,3 +182,11 @@
 - [x] Validar no browser o botão de ajuda da página de aula, confirmando navegação para /app/ia?module=... e abertura do LUANDA AI com contexto do módulo activo.
 - [x] Validar no browser o fluxo completo do LUANDA AI: abrir a partir da aula ou questão com contexto, enviar uma mensagem e confirmar a resposta do tutor sem erro.
 - [x] Após validar a conversa do LUANDA AI, confirmar a validação integrada de login, estudo, resposta, revisão, quiz, simulado e tutor.
+
+## Guia de estudo em PDF (Exportação por módulo/aula/tema)
+
+- [x] Criar gerador de PDF no servidor para guias de estudo com sumário, teoria, exercícios e espaço para resolução manual.
+- [x] Incluir marca d’água institucional e identificação do autor (LUANDA PREP, Delvis de Morais, Morásio Digital, +244 973 929 712).
+- [x] Suportar cadernos de exercícios limpos (sem respostas para resolver manualmente) e guias completos com respostas e explicações.
+- [x] Adicionar botão e modal de exportação na página de estudo e na visão geral, permitindo escolher o módulo e o formato.
+- [x] Validar a geração do PDF, compilação, testes unitários, salvamento de checkpoint e sincronização com o GitHub.
