@@ -36,6 +36,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { useLocation } from "wouter";
+import { ShareInviteButton } from "./ShareInviteButton";
 import { DashboardLayoutSkeleton } from "./DashboardLayoutSkeleton";
 
 const markUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%230A36A8' d='M32 4C18 4 7 15 7 29c0 15 12 27 25 31 13-4 25-16 25-31C57 15 46 4 32 4Z'/%3E%3Cpath fill='%23FFCC5C' d='M32 13c-8 0-15 7-15 16h6c0-5 4-9 9-9s9 4 9 9h6c0-9-7-16-15-16Z'/%3E%3Cpath fill='white' d='M20 35h24v6H20zm5 9h14v6H25z'/%3E%3C/svg%3E";
@@ -122,6 +123,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
             <div className="flex items-center gap-2 text-xs font-bold"><GraduationCap className="h-4 w-4 text-[#FFCC5C]" /> Modo de preparação</div>
             <p className="mt-2 text-xs leading-5 text-blue-100">Preparatório gratuito com aulas, definições, prática e revisão.</p>
           </div>
+          <div className="mx-3 mt-3 group-data-[collapsible=icon]:hidden"><ShareInviteButton compact className="w-full justify-center bg-[#E7EDFF] text-[#0A36A8] hover:bg-[#D8E2FF] hover:text-[#0A36A8]" /></div>
         </SidebarContent>
 
         <SidebarFooter className="border-t border-slate-100 p-3">

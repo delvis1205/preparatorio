@@ -164,3 +164,11 @@
 - [ ] Validar o menu mobile em smartphone e o layout de navegação em desktop após a correcção.
 - [ ] Publicar a correcção mobile e sincronizar a versão actualizada no repositório.
 - [ ] Rever sugestões de evolução da experiência e priorizar melhorias futuras sem inventar dados de utilizadores.
+
+## Novos recursos: Partilha e Gráfico de Tempo de Estudo
+
+- [x] Implementar componente de partilha rápida com link da plataforma e mensagens prontas para WhatsApp e redes sociais.
+- [x] Adicionar o botão de convite visível na barra lateral e na visão geral do estudante.
+- [x] Implementar o gráfico de estatísticas semanais de tempo de estudo no painel de progresso com base na actividade real.
+- [ ] Validar a compilação, executar os testes e guardar um checkpoint com os novos recursos.
+- [ ] Sincronizar o repositório GitHub e confirmar o funcionamento publicado.

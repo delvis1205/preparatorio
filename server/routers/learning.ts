@@ -62,6 +62,28 @@ export function buildSpacedReviewSchedule(attempts: Array<{ questionId: string; 
   }).sort((a, b) => Number(b.due) - Number(a.due) || a.dueAt.getTime() - b.dueAt.getTime());
 }
 
+export type WeeklyStudyStat = { date: string; seconds: number; minutes: number; sessions: number };
+
+export function buildWeeklyStudyStats(attempts: Array<{ durationSeconds: number; createdAt: Date }>, now = new Date()): WeeklyStudyStat[] {
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const buckets = new Map<string, WeeklyStudyStat>();
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const date = new Date(today);
+    date.setUTCDate(today.getUTCDate() - offset);
+    const key = date.toISOString().slice(0, 10);
+    buckets.set(key, { date: key, seconds: 0, minutes: 0, sessions: 0 });
+  }
+  for (const attempt of attempts) {
+    const key = attempt.createdAt.toISOString().slice(0, 10);
+    const bucket = buckets.get(key);
+    if (!bucket) continue;
+    bucket.seconds += Math.max(0, attempt.durationSeconds || 0);
+    bucket.sessions += 1;
+    bucket.minutes = Math.round(bucket.seconds / 60);
+  }
+  return Array.from(buckets.values());
+}
+
 export const learningRouter = router({
   catalog: protectedProcedure.query(() => ({
     disciplines: ["Matemática", "Língua Portuguesa", "Cultura Geral"],
@@ -202,6 +224,12 @@ export const learningRouter = router({
   }),
 
   progress: router({
+    weeklyActivity: protectedProcedure.query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+      const attempts = await db.select({ durationSeconds: questionAttempts.durationSeconds, createdAt: questionAttempts.createdAt }).from(questionAttempts).where(eq(questionAttempts.userId, ctx.user.id));
+      return buildWeeklyStudyStats(attempts);
+    }),
     update: protectedProcedure.input(z.object({ moduleId: z.string(), status: statusSchema, completionPercent: z.number().min(0).max(100), currentLessonId: z.string().optional() })).mutation(async ({ ctx, input }) => {
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
