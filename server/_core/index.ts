@@ -8,7 +8,10 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { getLocalSessionUser } from "./localAuth";
-import { generateModuleStudyGuidePdf } from "../pdfExport";
+import { generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
+import { getDb } from "../db";
+import { questionAttempts } from "../../drizzle/schema";
+import { eq } from "drizzle-orm";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -43,12 +46,39 @@ async function startServer() {
         res.status(401).json({ error: "Por favor faça login para descarregar os guias de estudo." });
         return;
       }
+      const exportType = typeof req.query.type === "string" ? req.query.type : "guide";
       const moduleId = typeof req.query.moduleId === "string" ? req.query.moduleId : undefined;
       const discipline = typeof req.query.discipline === "string" ? req.query.discipline : undefined;
       const includeAnswers = req.query.answers !== "false";
+      const title = typeof req.query.title === "string" ? req.query.title : undefined;
 
-      const doc = generateModuleStudyGuidePdf({ moduleId, discipline, includeAnswers });
-      const filename = moduleId ? `luanda-prep-modulo-${moduleId}.pdf` : discipline ? `luanda-prep-disciplina-${discipline}.pdf` : "luanda-prep-guia-geral.pdf";
+      let doc: PDFKit.PDFDocument;
+      let filename = "luanda-prep-documento.pdf";
+
+      if (exportType === "exam") {
+        const rawIds = typeof req.query.questionIds === "string" ? req.query.questionIds : "";
+        const questionIds = rawIds ? rawIds.split(",") : undefined;
+        doc = generateSimulatedExamPdf({ questionIds, includeAnswers, title });
+        filename = "luanda-prep-simulado-prova.pdf";
+      } else if (exportType === "errors") {
+        const db = await getDb();
+        let errorQuestionIds: string[] = [];
+        if (db) {
+          const attempts = await db.select({ questionId: questionAttempts.questionId, isCorrect: questionAttempts.isCorrect }).from(questionAttempts).where(eq(questionAttempts.userId, user.id));
+          const incorrectMap = new Set<string>();
+          for (const a of attempts) {
+            if (!a.isCorrect) {
+              incorrectMap.add(a.questionId);
+            }
+          }
+          errorQuestionIds = Array.from(incorrectMap);
+        }
+        doc = generateErrorSheetPdf({ questionIds: errorQuestionIds.length ? errorQuestionIds : ["q-mat-1"], includeAnswers: true });
+        filename = "luanda-prep-ficha-erros.pdf";
+      } else {
+        doc = generateModuleStudyGuidePdf({ moduleId, discipline, includeAnswers });
+        filename = moduleId ? `luanda-prep-modulo-${moduleId}.pdf` : discipline ? `luanda-prep-disciplina-${discipline}.pdf` : "luanda-prep-guia-geral.pdf";
+      }
 
       res.setHeader("Content-Type", "application/pdf");
       res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);

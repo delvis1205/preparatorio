@@ -190,3 +190,12 @@
 - [x] Suportar cadernos de exercícios limpos (sem respostas para resolver manualmente) e guias completos com respostas e explicações.
 - [x] Adicionar botão e modal de exportação na página de estudo e na visão geral, permitindo escolher o módulo e o formato.
 - [x] Validar a geração do PDF, compilação, testes unitários, salvamento de checkpoint e sincronização com o GitHub.
+
+## Simulados em PDF e Ficha de Erros personalizada
+
+- [x] Auditar dados de simulados e tentativas incorretas na base de dados.
+- [x] Implementar em `server/pdfExport.ts` os geradores `generateSimulatedExamPdf` e `generateErrorSheetPdf`.
+- [x] Atualizar o endpoint `/api/export/pdf` em `server/_core/index.ts` para suportar `type=exam` e `type=errors`.
+- [x] Adicionar opções de exportação na página de Simulados, na página de Revisão e no Modal de PDF.
+- [x] Elaborar a secção de instruções claras no site para que qualquer estudante saiba como exportar seus guias, exames e fichas de erros.
+- [x] Validar compilação, testes, checkpoint e publicação no domínio público.
