@@ -308,3 +308,9 @@
 - [x] Reestruturar prioritariamente Matemática e Língua Portuguesa com conteúdo disciplinar correto
 - [x] Completar os demais módulos com conceitos, exemplos resolvidos, prática e critérios de resposta
 - [x] Cobrir a revisão curricular com testes de consistência, validar a experiência de estudo e publicar a atualização
+
+## Auditoria final de produção
+- [ ] Verificar o deployment Vercel, o domínio personalizado e a saúde da API em produção
+- [ ] Analisar erros de build e de execução relacionados à versão curricular publicada
+- [ ] Corrigir, publicar e retestar qualquer falha identificada
+- [x] Corrigir a tipagem da entrada serverless `api/index.ts` reportada pelo build Vercel
