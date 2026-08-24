@@ -47,8 +47,13 @@ export const aiRouter = router({
     ];
     await db.insert(aiMessages).values({ conversationId, role: "user", content: input.message });
     const response = await invokeLLM({ model: "gpt-5-mini", messages, maxTokens: 1100 });
-    const content = response.choices[0]?.message?.content;
-    if (!content || typeof content !== "string") throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "O LUANDA AI não conseguiu responder agora. Tente novamente." });
+    const rawContent = response.choices[0]?.message?.content;
+    const content = typeof rawContent === "string"
+      ? rawContent.trim()
+      : Array.isArray(rawContent)
+        ? rawContent.filter((part): part is { type: "text"; text: string } => part.type === "text").map((part) => part.text).join("\n").trim()
+        : "";
+    if (!content) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "O LUANDA AI não conseguiu responder agora. Tente novamente." });
     await db.insert(aiMessages).values({ conversationId, role: "assistant", content });
     await db.update(aiConversations).set({ updatedAt: new Date() }).where(eq(aiConversations.id, conversationId));
     return { conversationId, message: { role: "assistant" as const, content } };

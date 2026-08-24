@@ -1,4 +1,5 @@
 import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
+import { MODULE_TEACHING_MATERIAL, buildModuleCheckpointQuestion, buildSpecificTopicSession, buildTopicTrainingQuestion } from "./moduleMaterials";
 
 export type Lesson = {
   id: string;
@@ -450,6 +451,21 @@ const CONCEPTUAL_EXTENSIONS: Record<string, Pick<Lesson, "concepts" | "conceptQu
 for (const module of CURRICULUM) {
   Object.assign(module.lesson, LESSON_EXTENSIONS[module.lesson.id]);
   Object.assign(module.lesson, CONCEPTUAL_EXTENSIONS[module.lesson.id]);
+  const teachingMaterial = MODULE_TEACHING_MATERIAL[module.id];
+  if (teachingMaterial) {
+    Object.assign(module.lesson, {
+      title: `Estudar ${module.title} com método`,
+      objective: teachingMaterial.objective,
+      explanation: teachingMaterial.explanation,
+      steps: teachingMaterial.steps,
+      commonError: teachingMaterial.commonError,
+      examTip: teachingMaterial.examTip,
+      formula: teachingMaterial.formula ?? module.lesson.formula,
+      formulaLatex: teachingMaterial.formulaLatex ?? module.lesson.formulaLatex,
+      examples: [{ title: "Exemplo guiado", prompt: `Como aplicar ${module.title} numa questão?`, walkthrough: teachingMaterial.example }],
+      quickCheck: { prompt: teachingMaterial.checkpoint, answer: teachingMaterial.answer },
+    });
+  }
   const concepts = module.lesson.concepts ?? [];
   const questions = module.lesson.conceptQuestions ?? [];
   if (questions.length) {
@@ -463,16 +479,14 @@ for (const module of CURRICULUM) {
     ];
   }
 
-  const existingSessions = new Map((module.lesson.topicSessions ?? []).map((session) => [session.topic, session]));
-  module.lesson.topicSessions = module.officialTopics.map((topic, index) => existingSessions.get(topic) ?? ({
+  module.lesson.topicSessions = module.officialTopics.map((topic, index) => buildSpecificTopicSession({
+    moduleId: module.id,
+    moduleTitle: module.title,
+    disciplineId: module.disciplineId,
     topic,
-    focus: `Sessão ${index + 1}: ${topic}`,
-    definition: topicDefinition(topic, module.disciplineId),
-    explanation: `${topic} integra o módulo ${module.title}. Relacione a definição com o objetivo da aula e identifique as condições ou propriedades que uma questão pode fornecer.`,
-    example: topicExample(topic, module.title, module.lesson.concepts?.[0]?.term ?? module.title),
-    checkpoint: `Qual conceito, regra ou relação deve ser identificado primeiro numa questão sobre ${topic}?`,
-    answer: `Comece pela definição de ${topic}, recolha os dados do enunciado e confirme quais condições permitem aplicar o procedimento do módulo ${module.title}.`,
-    practiceAction: `Resolva uma questão de treino de ${module.title}, indicando em que passo utilizou ${topic}.`,
+    index,
+    baseDefinition: topicDefinition(topic, module.disciplineId),
+    baseExplanation: module.lesson.explanation,
   }));
 }
 
@@ -518,6 +532,7 @@ export const TRAINING_QUESTIONS: TrainingQuestion[] = [
 TRAINING_QUESTIONS.push(...OFFICIAL_ENGINEERING_MODULES.flatMap((module) => {
   const primaryTopic = module.officialTopics[0] ?? module.title;
   const secondaryTopic = module.officialTopics[1] ?? primaryTopic;
+  const checkpoint = buildModuleCheckpointQuestion({ moduleId: module.id, moduleTitle: module.title, primaryTopic, secondaryTopic });
   return [
     {
       id: `q-${module.id}-fundamentos`,
@@ -526,16 +541,11 @@ TRAINING_QUESTIONS.push(...OFFICIAL_ENGINEERING_MODULES.flatMap((module) => {
       topic: primaryTopic,
       type: "multiple_choice" as const,
       difficulty: module.difficulty,
-      prompt: `Ao iniciar uma questão sobre ${module.title}, qual é a atitude mais adequada?`,
-      options: [
-        `Identificar o conceito principal e relacionar os dados com ${primaryTopic}.`,
-        "Aplicar a primeira fórmula lembrada, sem ler as condições.",
-        "Ignorar unidades, relações e termos técnicos do enunciado.",
-        "Escolher uma resposta apenas pela extensão do texto.",
-      ],
-      correctOption: 0,
-      explanation: `O estudo de ${module.title} deve começar pela identificação do conceito e dos dados relevantes, com atenção especial a ${primaryTopic}.`,
-      errorHint: `Reveja a definição principal e organize os dados antes de aplicar uma regra de ${module.title}.`,
+      prompt: checkpoint.prompt,
+      options: checkpoint.options,
+      correctOption: checkpoint.correctOption,
+      explanation: checkpoint.explanation,
+      errorHint: checkpoint.errorHint,
       recommendedSeconds: 55,
     },
     {
@@ -545,35 +555,34 @@ TRAINING_QUESTIONS.push(...OFFICIAL_ENGINEERING_MODULES.flatMap((module) => {
       topic: secondaryTopic,
       type: "true_false" as const,
       difficulty: "Inicial" as const,
-      prompt: `Verdadeiro ou falso: rever ${primaryTopic} antes de aplicar ${secondaryTopic} ajuda a organizar a resolução de uma questão de ${module.title}.`,
+      prompt: checkpoint.reviewPrompt,
       options: ["Verdadeiro", "Falso"],
       correctOption: 0,
-      explanation: `Verdadeiro. A revisão de conceitos e tópicos relacionados permite selecionar métodos e dados com mais segurança.`,
-      errorHint: `Use a sequência conceito → dados → método → verificação ao resolver questões deste módulo.`,
+      explanation: checkpoint.reviewExplanation,
+      errorHint: checkpoint.errorHint,
       recommendedSeconds: 40,
     },
   ];
 }));
 
-TRAINING_QUESTIONS.push(...CURRICULUM.flatMap((module) => module.officialTopics.map((topic, index): TrainingQuestion => ({
-  id: `q-${module.id}-topico-${index + 1}`,
-  disciplineId: module.disciplineId,
-  moduleId: module.id,
-  topic,
-  type: "multiple_choice",
-  difficulty: index % 3 === 0 ? "Inicial" : index % 3 === 1 ? "Intermédio" : "Avançado",
-  prompt: `Ao estudar o tópico “${topic}” no módulo ${module.title}, qual procedimento mostra uma preparação mais adequada?`,
-  options: [
-    `Definir o conceito, identificar os dados ou propriedades relevantes e justificar o método escolhido.`,
-    "Memorizar uma fórmula isolada sem verificar quando ela se aplica.",
-    "Ignorar as condições do enunciado e escolher uma resposta por aproximação.",
-    "Repetir uma regra sem relacioná-la ao tópico apresentado.",
-  ],
-  correctOption: 0,
-  explanation: `A preparação para ${topic} exige compreender o conceito, ler as condições e selecionar um método compatível com os dados da questão.`,
-  errorHint: `Volte à sessão “${topic}”, identifique a ideia central e só depois escolha uma regra, fórmula ou procedimento.`,
-  recommendedSeconds: 50,
-}))));
+TRAINING_QUESTIONS.push(...CURRICULUM.flatMap((module) => module.officialTopics.map((topic, index): TrainingQuestion => {
+  const session = module.lesson.topicSessions?.find((item) => item.topic === topic) ?? buildSpecificTopicSession({ moduleId: module.id, moduleTitle: module.title, disciplineId: module.disciplineId, topic, index, baseDefinition: topicDefinition(topic, module.disciplineId), baseExplanation: module.lesson.explanation });
+  const question = buildTopicTrainingQuestion({ moduleTitle: module.title, topic, definition: session.definition, checkpoint: session.checkpoint, answer: session.answer, practiceAction: session.practiceAction });
+  return {
+    id: `q-${module.id}-topico-${index + 1}`,
+    disciplineId: module.disciplineId,
+    moduleId: module.id,
+    topic,
+    type: "multiple_choice",
+    difficulty: index % 3 === 0 ? "Inicial" : index % 3 === 1 ? "Intermédio" : "Avançado",
+    prompt: question.prompt,
+    options: question.options,
+    correctOption: question.correctOption,
+    explanation: question.explanation,
+    errorHint: question.errorHint,
+    recommendedSeconds: 60,
+  };
+})));
 
 export type OfficialPdfCoverage = {
   sourceId: string;

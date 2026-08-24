@@ -6,6 +6,8 @@ import LoginPage from "@/pages/LoginPage";
 import QuizPage from "@/pages/QuizPage";
 import ChallengesPage from "@/pages/ChallengesPage";
 import TicTimelinePage from "@/pages/TicTimelinePage";
+import SimulationsExplorer from "@/pages/SimulationsExplorer";
+import StudentDashboardPlus from "@/pages/StudentDashboardPlus";
 import {
   AiPage,
   ExamSessionPage,
@@ -30,7 +32,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/sobre" component={AboutPage} />
       <Route path="/entrar" component={LoginPage} />
-      <Route path="/app" component={StudentDashboard} />
+      <Route path="/app" component={StudentDashboardPlus} />
       <Route path="/app/estudar" component={StudyPage} />
       <Route path="/app/aula/:moduleId" component={LessonPage} />
       <Route path="/app/praticar" component={PracticePage} />
@@ -38,7 +40,7 @@ function Router() {
       <Route path="/app/desafios" component={ChallengesPage} />
       <Route path="/app/tic-angola" component={TicTimelinePage} />
       <Route path="/app/revisao" component={ReviewPage} />
-      <Route path="/app/simulados" component={SimulationsPage} />
+      <Route path="/app/simulados" component={SimulationsExplorer} />
       <Route path="/app/simulado" component={ExamSessionPage} />
       <Route path="/app/ia" component={AiPage} />
       <Route path="/app/plano" component={PlanPage} />

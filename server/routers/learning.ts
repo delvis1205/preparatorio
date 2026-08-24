@@ -11,9 +11,9 @@ import { protectedProcedure, router } from "../_core/trpc";
 const statusSchema = z.enum(["not_started", "in_progress", "completed", "review"]);
 const difficultySchema = z.enum(["Inicial", "Intermédio", "Avançado"]);
 
-function sortQuestions(questionIds: string[], count: number) {
-  const seed = questionIds.join("").split("").reduce((total, character) => total + character.charCodeAt(0), 0);
-  return [...TRAINING_QUESTIONS].sort((a, b) => ((a.id.charCodeAt(2) + seed) % 7) - ((b.id.charCodeAt(2) + seed) % 7)).slice(0, Math.max(1, Math.min(count, TRAINING_QUESTIONS.length)));
+function sortQuestions(questions: TrainingQuestion[], count: number) {
+  const seed = questions.map((question) => question.id).join("").split("").reduce((total, character) => total + character.charCodeAt(0), 0);
+  return [...questions].sort((a, b) => ((a.id.charCodeAt(2) + seed) % 7) - ((b.id.charCodeAt(2) + seed) % 7)).slice(0, Math.max(1, Math.min(count, questions.length)));
 }
 
 function buildWeeklyTasks(dailyMinutes: number, progressRows: { moduleId: string; mastery: number }[]): StudyPlanTask[] {
@@ -84,6 +84,35 @@ export function buildWeeklyStudyStats(attempts: Array<{ durationSeconds: number;
   return Array.from(buckets.values());
 }
 
+export type DailyStudyStats = {
+  date: string;
+  questions: number;
+  correct: number;
+  accuracy: number;
+  seconds: number;
+  minutes: number;
+  targetMinutes: number;
+  targetPercent: number;
+};
+
+export function buildDailyStudyStats(attempts: Array<{ durationSeconds: number; isCorrect: boolean; createdAt: Date }>, targetMinutes: number, now = new Date()): DailyStudyStats {
+  const date = now.toISOString().slice(0, 10);
+  const today = attempts.filter((attempt) => attempt.createdAt.toISOString().slice(0, 10) === date);
+  const seconds = today.reduce((total, attempt) => total + Math.max(0, attempt.durationSeconds || 0), 0);
+  const correct = today.filter((attempt) => attempt.isCorrect).length;
+  const minutes = Math.round(seconds / 60);
+  return {
+    date,
+    questions: today.length,
+    correct,
+    accuracy: today.length ? Math.round((correct / today.length) * 100) : 0,
+    seconds,
+    minutes,
+    targetMinutes,
+    targetPercent: targetMinutes ? Math.min(100, Math.round((minutes / targetMinutes) * 100)) : 0,
+  };
+}
+
 export const learningRouter = router({
   catalog: protectedProcedure.query(() => ({
     disciplines: ["Matemática", "Língua Portuguesa", "Cultura Geral"],
@@ -100,11 +129,12 @@ export const learningRouter = router({
   dashboard: protectedProcedure.query(async ({ ctx }) => {
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível. Tente novamente." });
-    const [profileRows, progressRows, attemptRows, simulationRows] = await Promise.all([
+    const [profileRows, progressRows, attemptRows, simulationRows, planRows] = await Promise.all([
       db.select().from(studentProfiles).where(eq(studentProfiles.userId, ctx.user.id)).limit(1),
       db.select().from(moduleProgress).where(eq(moduleProgress.userId, ctx.user.id)),
       db.select().from(questionAttempts).where(eq(questionAttempts.userId, ctx.user.id)),
       db.select().from(simulationAttempts).where(eq(simulationAttempts.userId, ctx.user.id)).orderBy(desc(simulationAttempts.completedAt)),
+      db.select().from(studyPlans).where(eq(studyPlans.userId, ctx.user.id)).limit(1),
     ]);
     const completed = progressRows.filter((item) => item.status === "completed").length;
     const correct = attemptRows.filter((item) => item.isCorrect).length;
@@ -127,9 +157,11 @@ export const learningRouter = router({
     ];
     const streak = calculateStudyStreak(activityDates);
     const preparationIndex = masteryRows.length ? Math.round(masteryRows.reduce((sum, item) => sum + item.mastery, 0) / masteryRows.length) : 0;
+    const dailyMinutes = profileRows[0]?.dailyMinutes ?? planRows[0]?.dailyMinutes ?? 45;
     return {
       profile: profileRows[0] ?? null,
       stats: { completed, totalModules: CURRICULUM.length, answered: attemptRows.length, accuracy, simulations: simulationRows.length, preparationIndex, streak },
+      daily: buildDailyStudyStats(attemptRows, dailyMinutes),
       next: next ? { moduleId: next.module.id, title: next.module.title, discipline: next.module.discipline, mastery: next.mastery, reason: next.mastery === 0 ? "Comece por este módulo para activar a sua preparação." : "Este é o ponto com maior potencial de melhoria agora." } : null,
       byDiscipline,
       strengths: rankedDisciplines[0] ?? null,
@@ -343,9 +375,39 @@ export const learningRouter = router({
   }),
 
   simulation: router({
-    start: protectedProcedure.input(z.object({ count: z.number().int().min(3).max(20), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional() })).query(({ input }) => {
-      const candidates = (input.disciplineId ? TRAINING_QUESTIONS.filter((question) => question.disciplineId === input.disciplineId) : TRAINING_QUESTIONS).filter((question) => question.type === "multiple_choice" || question.type === "true_false");
-      return sortQuestions(candidates.map((question) => question.id), Math.min(input.count, candidates.length)).map(withoutAnswers);
+    history: protectedProcedure.query(async ({ ctx }) => {
+      const db = await getDb();
+      if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+      const attempts = await db.select().from(simulationAttempts).where(eq(simulationAttempts.userId, ctx.user.id)).orderBy(desc(simulationAttempts.completedAt));
+      return attempts.map((attempt) => {
+        const questions = attempt.answers.map((answer) => getQuestion(answer.questionId)).filter((question): question is TrainingQuestion => Boolean(question));
+        const correct = attempt.correctAnswers;
+        return {
+          id: attempt.id,
+          mode: attempt.mode,
+          completedAt: attempt.completedAt,
+          totalQuestions: attempt.totalQuestions,
+          correctAnswers: correct,
+          percent: attempt.totalQuestions ? Math.round((correct / attempt.totalQuestions) * 100) : 0,
+          durationSeconds: attempt.durationSeconds,
+          questions: questions.map(withoutAnswers),
+          disciplines: Array.from(new Set(questions.map((question) => question.disciplineId))),
+          moduleIds: Array.from(new Set(questions.map((question) => question.moduleId))),
+          topics: Array.from(new Set(questions.map((question) => question.topic))),
+        };
+      });
+    }),
+    start: protectedProcedure.input(z.object({ count: z.number().int().min(3).max(20), disciplineId: z.enum(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]).optional(), moduleId: z.string().optional(), topic: z.string().optional(), difficulty: difficultySchema.optional(), query: z.string().trim().max(120).optional() })).query(({ input }) => {
+      const normalizedQuery = input.query?.toLocaleLowerCase("pt-PT") ?? "";
+      const candidates = TRAINING_QUESTIONS.filter((question) =>
+        (!input.disciplineId || question.disciplineId === input.disciplineId) &&
+        (!input.moduleId || question.moduleId === input.moduleId) &&
+        (!input.topic || question.topic === input.topic) &&
+        (!input.difficulty || question.difficulty === input.difficulty) &&
+        (!normalizedQuery || `${question.prompt} ${question.topic}`.toLocaleLowerCase("pt-PT").includes(normalizedQuery)) &&
+        (question.type === "multiple_choice" || question.type === "true_false")
+      );
+      return sortQuestions(candidates, Math.min(input.count, candidates.length)).map(withoutAnswers);
     }),
     submit: protectedProcedure.input(z.object({ answers: z.array(z.object({ questionId: z.string(), selectedOption: z.number().int().min(0) })), durationSeconds: z.number().int().min(0).max(14400), mode: z.enum(["practice", "exam"]) })).mutation(async ({ ctx, input }) => {
       const db = await getDb();

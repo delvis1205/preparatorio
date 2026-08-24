@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CURRICULUM, OFFICIAL_PDF_COVERAGE, TRAINING_QUESTIONS } from "./content";
 import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
+import { MODULE_TEACHING_MATERIAL } from "./moduleMaterials";
 
 describe("currículo pedagógico", () => {
   it("oferece um exemplo guiado e uma verificação rápida em cada aula", () => {
@@ -70,5 +71,15 @@ describe("currículo pedagógico", () => {
 
   it("mantém o currículo distribuído pelas áreas do preparatório de Engenharia Informática", () => {
     expect(new Set(CURRICULUM.map((module) => module.disciplineId))).toEqual(new Set(["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"]));
+  });
+
+  it("substitui os materiais genéricos dos módulos enriquecidos por explicações e respostas específicas", () => {
+    for (const [moduleId, material] of Object.entries(MODULE_TEACHING_MATERIAL)) {
+      const module = CURRICULUM.find((item) => item.id === moduleId);
+      expect(module, `${moduleId} deve existir no currículo`).toBeTruthy();
+      expect(module?.lesson.explanation, `${moduleId} deve usar explicação específica`).toBe(material.explanation);
+      expect(module?.lesson.quickCheck?.answer, `${moduleId} deve usar resposta específica`).toBe(material.answer);
+      expect(module?.lesson.examples?.some((example) => example.walkthrough.includes(material.example)), `${moduleId} deve ter exemplo próprio`).toBe(true);
+    }
   });
 });

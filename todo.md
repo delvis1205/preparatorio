@@ -212,11 +212,21 @@
 - [x] Executar migrações no banco gerido da Manus
 - [x] Executar validação de tipos, testes automatizados e build de produção
 - [x] Verificar rotas públicas e autenticadas no preview
-- [ ] Salvar checkpoint final antes da publicação
-- [ ] Orientar a publicação da versão validada
+- [x] Salvar checkpoint final antes da publicação
+- [x] Orientar a publicação da versão validada
 
 ## Pendências identificadas antes do checkpoint
 - [x] Validar no preview autenticado as rotas de aulas, prática filtrável, revisão, simulados e modo exame
 - [x] Validar o LUANDA AI autenticado a partir de uma aula e de uma questão, confirmando contexto e resposta
 - [x] Alinhar o histórico de migrações Drizzle com o schema aplicado no banco Manus
 - [x] Reexecutar a verificação manual das rotas protegidas após login Manus
+
+## Evolução de simulados, IA e conteúdo pedagógico
+- [x] Auditar todos os módulos e identificar aulas, exemplos, respostas e materiais ainda genéricos
+- [x] Implementar busca textual e filtros por disciplina, módulo, tópico, dificuldade e estado na área de simulados
+- [x] Persistir e apresentar histórico de conversas do LUANDA AI por estudante
+- [x] Adicionar efeito de digitação acessível e cancelável às respostas do LUANDA AI
+- [x] Criar painel de estatísticas diárias na página inicial autenticada, baseado na atividade real do estudante
+- [x] Substituir conteúdos genéricos por materiais específicos, explicações, respostas e exercícios em todos os módulos
+- [ ] Cobrir as novas regras e rotas com testes, validar a interface e salvar checkpoint final
+- [ ] Orientar a publicação da atualização validada

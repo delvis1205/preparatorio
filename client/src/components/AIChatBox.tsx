@@ -2,7 +2,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Loader2, Send, Sparkles, User } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type Message = {
   role: "system" | "user" | "assistant";
@@ -20,6 +20,33 @@ export type AIChatBoxProps = {
   suggestedPrompts?: string[];
 };
 
+function TypingAssistantMessage({ content, animate }: { content: string; animate: boolean }) {
+  const [visible, setVisible] = useState(animate ? "" : content);
+  const [complete, setComplete] = useState(!animate);
+
+  useEffect(() => {
+    if (!animate) {
+      setVisible(content);
+      setComplete(true);
+      return;
+    }
+    setVisible("");
+    setComplete(false);
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += Math.max(1, Math.ceil(content.length / 120));
+      setVisible(content.slice(0, index));
+      if (index >= content.length) {
+        window.clearInterval(timer);
+        setComplete(true);
+      }
+    }, 18);
+    return () => window.clearInterval(timer);
+  }, [animate, content]);
+
+  return <div aria-live="polite"><span>{visible}</span>{!complete ? <><span aria-hidden="true" className="ml-0.5 inline-block h-4 w-0.5 animate-pulse bg-current align-text-bottom" /><button type="button" onClick={() => { setVisible(content); setComplete(true); }} className="ml-3 text-xs font-bold text-primary underline underline-offset-2">Mostrar tudo</button></> : null}</div>;
+}
+
 export function AIChatBox({
   messages,
   onSendMessage,
@@ -31,6 +58,7 @@ export function AIChatBox({
   suggestedPrompts,
 }: AIChatBoxProps) {
   const [input, setInput] = useState("");
+  const scrollRef = useRef<HTMLDivElement>(null);
   const visibleMessages = messages.filter((message) => message.role !== "system");
   const send = (content: string) => {
     const normalized = content.trim();
@@ -40,14 +68,19 @@ export function AIChatBox({
   };
   const submit = (event: React.FormEvent) => { event.preventDefault(); send(input); };
 
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (container) container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+  }, [messages, isLoading]);
+
   return (
     <div className={cn("flex flex-col bg-card text-card-foreground", className)} style={{ height }}>
-      <div className="flex-1 space-y-4 overflow-y-auto p-5">
+      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-5">
         {visibleMessages.length ? visibleMessages.map((message, index) => (
           <div key={`${message.role}-${index}`} className={cn("flex gap-3", message.role === "user" ? "justify-end" : "justify-start")}>
             {message.role === "assistant" && <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-primary/10 text-primary"><Sparkles className="h-3.5 w-3.5" /></span>}
             <div className={cn("max-w-[82%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6", message.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted text-foreground")}>
-              {message.content}
+              {message.role === "assistant" ? <TypingAssistantMessage content={message.content} animate={index === visibleMessages.length - 1} /> : message.content}
             </div>
             {message.role === "user" && <span className="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-secondary text-secondary-foreground"><User className="h-3.5 w-3.5" /></span>}
           </div>
