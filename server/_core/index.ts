@@ -8,6 +8,11 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { sdk } from "./sdk";
+import { generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
+import { getDb } from "../db";
+import { questionAttempts } from "../../drizzle/schema";
+import { eq } from "drizzle-orm";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -30,7 +35,63 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 
 async function startServer() {
   const app = express();
+  app.set("trust proxy", 1);
   const server = createServer(app);
+  app.get("/api/health", (_req, res) => res.status(200).json({ ok: true, service: "luanda-prep" }));
+
+  // PDF Export Endpoint
+  app.get("/api/export/pdf", async (req, res) => {
+    try {
+      const user = await sdk.authenticateRequest(req);
+      if (!user) {
+        res.status(401).json({ error: "Por favor faça login para descarregar os guias de estudo." });
+        return;
+      }
+      const exportType = typeof req.query.type === "string" ? req.query.type : "guide";
+      const moduleId = typeof req.query.moduleId === "string" ? req.query.moduleId : undefined;
+      const discipline = typeof req.query.discipline === "string" ? req.query.discipline : undefined;
+      const includeAnswers = req.query.answers !== "false";
+      const title = typeof req.query.title === "string" ? req.query.title : undefined;
+
+      let doc: PDFKit.PDFDocument;
+      let filename = "luanda-prep-documento.pdf";
+
+      if (exportType === "exam") {
+        const rawIds = typeof req.query.questionIds === "string" ? req.query.questionIds : "";
+        const questionIds = rawIds ? rawIds.split(",") : undefined;
+        doc = generateSimulatedExamPdf({ questionIds, includeAnswers, title });
+        filename = "luanda-prep-simulado-prova.pdf";
+      } else if (exportType === "errors") {
+        const db = await getDb();
+        let errorQuestionIds: string[] = [];
+        if (db) {
+          const attempts = await db.select({ questionId: questionAttempts.questionId, isCorrect: questionAttempts.isCorrect }).from(questionAttempts).where(eq(questionAttempts.userId, user.id));
+          const incorrectMap = new Set<string>();
+          for (const a of attempts) {
+            if (!a.isCorrect) {
+              incorrectMap.add(a.questionId);
+            }
+          }
+          errorQuestionIds = Array.from(incorrectMap);
+        }
+        doc = generateErrorSheetPdf({ questionIds: errorQuestionIds.length ? errorQuestionIds : ["q-mat-1"], includeAnswers: true });
+        filename = "luanda-prep-ficha-erros.pdf";
+      } else {
+        doc = generateModuleStudyGuidePdf({ moduleId, discipline, includeAnswers });
+        filename = moduleId ? `luanda-prep-modulo-${moduleId}.pdf` : discipline ? `luanda-prep-disciplina-${discipline}.pdf` : "luanda-prep-guia-geral.pdf";
+      }
+
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      doc.pipe(res);
+      doc.end();
+    } catch (error: any) {
+      console.error("[PDF Export Error]", error);
+      if (!res.headersSent) {
+        res.status(500).json({ error: "Erro ao gerar o documento PDF. Tente novamente." });
+      }
+    }
+  });
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -58,7 +119,7 @@ async function startServer() {
     console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
   }
 
-  server.listen(port, () => {
+  server.listen(port, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${port}/`);
   });
 }

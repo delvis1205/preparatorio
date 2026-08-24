@@ -48,20 +48,32 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath =
-    process.env.NODE_ENV === "development"
-      ? path.resolve(import.meta.dirname, "../..", "dist", "public")
-      : path.resolve(import.meta.dirname, "public");
+  // Funciona tanto quando este módulo é executado a partir de server/_core/
+  // como quando é incorporado pelo esbuild em dist/: ambos os caminhos levam
+  // ao mesmo artefacto Vite gerado em <raiz-do-projeto>/dist/public.
+  const generatedClientPath = path.resolve(import.meta.dirname, "..", "..", "dist", "public");
+  const bundledClientPath = path.resolve(import.meta.dirname, "public");
+  // A publicação executa o bundle em dist/, mas algumas runtimes preservam uma
+  // árvore antiga junto ao código. Damos prioridade ao artefacto Vite criado no
+  // build atual para que HTML, JS e servidor pertençam sempre à mesma versão.
+  const distPath = fs.existsSync(generatedClientPath) ? generatedClientPath : bundledClientPath;
   if (!fs.existsSync(distPath)) {
     console.error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`
     );
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, {
+    setHeaders: (res, filePath) => {
+      if (path.basename(filePath) === "index.html") {
+        res.setHeader("Cache-Control", "no-store, max-age=0");
+      }
+    },
+  }));
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
+    res.setHeader("Cache-Control", "no-store, max-age=0");
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

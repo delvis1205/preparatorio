@@ -1,0 +1,2347 @@
+[
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.1",
+    "sourceText": "Introdução.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-001"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.2",
+    "sourceText": "Problemas geométricos e estratégias de resolução.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-002"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.3",
+    "sourceText": "Polígonos regulares. Poliedros regulares.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-003"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.4",
+    "sourceText": "Representação de sólidos.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-004"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.5",
+    "sourceText": "Interpretação de um desenho.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-005"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.6",
+    "sourceText": "Rectas e planos no espaço.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-006"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.7",
+    "sourceText": "Projecção ortogonal de um ponto sobre uma recta e sobre um plano.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-007"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.8",
+    "sourceText": "Plano mediador.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-008"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.9",
+    "sourceText": "Posições relativas de rectas no espaço.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-009"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.10",
+    "sourceText": "Posições relativas de rectas e planos no espaço.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-010"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "1.11",
+    "sourceText": "Posições relativas de dois planos.",
+    "moduleId": "mat-geometria-espacial",
+    "sourceId": "matematica-011"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.1",
+    "sourceText": "Referências no plano.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-012"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.2",
+    "sourceText": "As condições como expressões matemáticas.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-013"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.3",
+    "sourceText": "Proposições elementares. Operações lógicas.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-014"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.4",
+    "sourceText": "Propriedades das operações lógicas.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-015"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.5",
+    "sourceText": "Operações com condições e com conjuntos.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-016"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.6",
+    "sourceText": "Conjunção de condições e intersecção de conjuntos.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-017"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.7",
+    "sourceText": "Disjunção de condições e reunião de conjuntos.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-018"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.8",
+    "sourceText": "Negação e complementação.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-019"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.9",
+    "sourceText": "Condições incompatíveis e conjuntos disjuntos.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-020"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.10",
+    "sourceText": "Leis de Morgan.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-021"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.11",
+    "sourceText": "Conjuntos numéricos.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-022"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.12",
+    "sourceText": "Conjuntos e condições no plano.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-023"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "2.13",
+    "sourceText": "Disjunção e conjunção de condições em R2.",
+    "moduleId": "mat-conjuntos-condicoes",
+    "sourceId": "matematica-024"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.1",
+    "sourceText": "Sistema de coordenadas no espaço.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-025"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.2",
+    "sourceText": "Coordenadas dos pontos dos eixos coordenados.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-026"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.3",
+    "sourceText": "Planos perpendiculares aos eixos.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-027"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.4",
+    "sourceText": "Coordenadas de um ponto no espaço.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-028"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.5",
+    "sourceText": "Conjunto R3.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-029"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "3.6",
+    "sourceText": "Condições no espaço.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-030"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "4.1",
+    "sourceText": "Distância entre dois pontos do plano.",
+    "moduleId": "mat-lugares-geometricos",
+    "sourceId": "matematica-031"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "4.2",
+    "sourceText": "Mediatriz de um segmento de recta.",
+    "moduleId": "mat-lugares-geometricos",
+    "sourceId": "matematica-032"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "4.3",
+    "sourceText": "Circunferência e círculo.",
+    "moduleId": "mat-lugares-geometricos",
+    "sourceId": "matematica-033"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "4.4",
+    "sourceText": "Elipse.",
+    "moduleId": "mat-lugares-geometricos",
+    "sourceId": "matematica-034"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "4.5",
+    "sourceText": "Distância entre dois pontos no espaço. Plano mediador. Superfície esférica e esfera.",
+    "moduleId": "mat-lugares-geometricos",
+    "sourceId": "matematica-035"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "5.1",
+    "sourceText": "Vectores no plano e no espaço.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-036"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "5.2",
+    "sourceText": "Equações vectoriais",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-037"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "6.1",
+    "sourceText": "Revisão e sistematização da potenciação de expoente inteiro.",
+    "moduleId": "mat-potencias-radicais",
+    "sourceId": "matematica-038"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "6.2",
+    "sourceText": "Potenciação com expoente racional.",
+    "moduleId": "mat-potencias-radicais",
+    "sourceId": "matematica-039"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "6.3",
+    "sourceText": "Cálculo com radicais.",
+    "moduleId": "mat-potencias-radicais",
+    "sourceId": "matematica-040"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.1",
+    "sourceText": "Revisão da noção da função como correspondência unívoca.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-041"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.2",
+    "sourceText": "Gráficos das funções afim, linear e constante.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-042"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.3",
+    "sourceText": "Estudo das características de uma função por observação do gráfico.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-043"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.4",
+    "sourceText": "Definições.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-044"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.5",
+    "sourceText": "Extremos de uma função.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-045"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "7.6",
+    "sourceText": "Transformações de funções.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-046"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.1",
+    "sourceText": "Introdução da função quadrática.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-047"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.2",
+    "sourceText": "Gráfico de uma função quadrática.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-048"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.3",
+    "sourceText": "Eixo de simetria e vértice do gráfico.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-049"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.4",
+    "sourceText": "Zeros da função quadrática. Equações do 2º grau.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-050"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.5",
+    "sourceText": "Sinal da função quadrática.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-051"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.6",
+    "sourceText": "Inequações do 2º grau.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-052"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "8.7",
+    "sourceText": "Parábola.",
+    "moduleId": "mat-graficos-quadratica",
+    "sourceId": "matematica-053"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "9.1",
+    "sourceText": "Revisão das operações com polinómios.",
+    "moduleId": "mat-polinomios",
+    "sourceId": "matematica-054"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "9.2",
+    "sourceText": "Regra de Ruffini.",
+    "moduleId": "mat-polinomios",
+    "sourceId": "matematica-055"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "9.3",
+    "sourceText": "Teorema do resto. Zeros de um polinómio.",
+    "moduleId": "mat-polinomios",
+    "sourceId": "matematica-056"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "9.4",
+    "sourceText": "Decomposição de polinómios em factores. Determinação das raízes de um polinómio.",
+    "moduleId": "mat-polinomios",
+    "sourceId": "matematica-057"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "10.1",
+    "sourceText": "Medidas de um ângulo. Generalização de um ângulo. As razões trigonométricas.",
+    "moduleId": "mat-trigonometria",
+    "sourceId": "matematica-058"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "10.2",
+    "sourceText": "As funções trigonométricas y = sen α, y = cos en α, y = tg α para quaisquer ângulos. Equações trigonométricas. Redução ao 1º quadrante.",
+    "moduleId": "mat-trigonometria",
+    "sourceId": "matematica-059"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "10.3",
+    "sourceText": "Equações trigonométricas sen α = a, cos en α = a, tg α = a, redução ao 1º quadrante.",
+    "moduleId": "mat-trigonometria",
+    "sourceId": "matematica-060"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "11.1",
+    "sourceText": "Produto escalar.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-061"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "11.2",
+    "sourceText": "Perpendicularidade de vectores e rectas. Conjuntos definidos por condições.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-062"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "11.3",
+    "sourceText": "Planos. Intersecção de planos e rectas no espaço.",
+    "moduleId": "mat-coordenadas-vetores-espaco",
+    "sourceId": "matematica-063"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "12.1",
+    "sourceText": "Sucessões. Sucessões monótonas e sucessões limitadas.",
+    "moduleId": "mat-sucessoes",
+    "sourceId": "matematica-064"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "12.2",
+    "sourceText": "Progressões aritméticas e progressões geométricas.",
+    "moduleId": "mat-sucessoes",
+    "sourceId": "matematica-065"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "12.3",
+    "sourceText": "Progressão geométrica. Definições.",
+    "moduleId": "mat-sucessoes",
+    "sourceId": "matematica-066"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "13.1",
+    "sourceText": "Limite de uma sucessão.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-067"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "13.2",
+    "sourceText": "Cálculo de limite de sucessões. Número de Neper.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-068"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "13.3",
+    "sourceText": "Indução matemática.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-069"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "14.1",
+    "sourceText": "O objecto da estatística. Conceitos básicos.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-070"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "14.2",
+    "sourceText": "Organização e apresentação dos dados.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-071"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "14.3",
+    "sourceText": "Medidas de localização.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-072"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "14.4",
+    "sourceText": "Medidas de dispersão.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-073"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "14.5",
+    "sourceText": "Distribuições binominais.",
+    "moduleId": "mat-estatistica-inducao",
+    "sourceId": "matematica-074"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "15.1",
+    "sourceText": "Funções racionais.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-075"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "15.2",
+    "sourceText": "Funções irracionais.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-076"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "15.3",
+    "sourceText": "Operações com funções. Resolução de problemas envolvendo funções.",
+    "moduleId": "mat-funcoes",
+    "sourceId": "matematica-077"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "16.1",
+    "sourceText": "Funções exponenciais e funções logarítmicas.",
+    "moduleId": "mat-exp-log-trig",
+    "sourceId": "matematica-078"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "16.2",
+    "sourceText": "Funções logarítmicas.",
+    "moduleId": "mat-exp-log-trig",
+    "sourceId": "matematica-079"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "17.1",
+    "sourceText": "Revisão de algumas noções trigonométricas já estudadas.",
+    "moduleId": "mat-exp-log-trig",
+    "sourceId": "matematica-080"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "17.2",
+    "sourceText": "Funções trigonométricas. Equações trigonométricas.",
+    "moduleId": "mat-exp-log-trig",
+    "sourceId": "matematica-081"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "17.3",
+    "sourceText": "Transformações de expressões trigonométricas.",
+    "moduleId": "mat-exp-log-trig",
+    "sourceId": "matematica-082"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "18.1",
+    "sourceText": "Limite de funções.",
+    "moduleId": "mat-limites",
+    "sourceId": "matematica-083"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "18.2",
+    "sourceText": "Continuidade de uma função.",
+    "moduleId": "mat-limites",
+    "sourceId": "matematica-084"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "19.1",
+    "sourceText": "Introdução ao conceito de derivada.",
+    "moduleId": "mat-derivadas",
+    "sourceId": "matematica-085"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "19.2",
+    "sourceText": "Aplicações das derivadas.",
+    "moduleId": "mat-derivadas",
+    "sourceId": "matematica-086"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "20.1",
+    "sourceText": "Noção de integral.",
+    "moduleId": "mat-integrais",
+    "sourceId": "matematica-087"
+  },
+  {
+    "disciplineId": "matematica",
+    "sourceReference": "20.2",
+    "sourceText": "Primitivas de uma função.",
+    "moduleId": "mat-integrais",
+    "sourceId": "matematica-088"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.1",
+    "sourceText": "Conceito de trabalho mecânico.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-089"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.2",
+    "sourceText": "Trabalho de uma força e de uma resultante de forças. Unidades de trabalho.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-090"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.3",
+    "sourceText": "Potência. Unidades de potência.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-091"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.4",
+    "sourceText": "Energia cinética de um corpo em movimento de translação.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-092"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.5",
+    "sourceText": "Energia potencial gravítica e energia potencial elástica.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-093"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "1.6",
+    "sourceText": "Relação entre o trabalho e energias cinética, potencial gravítica e potencial elástica.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-094"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "2.1",
+    "sourceText": "Energia mecânica.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-095"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "2.2",
+    "sourceText": "Lei da conservação da energia mecânica.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-096"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "2.3",
+    "sourceText": "Forças conservativas e não conservativas.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-097"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "2.4",
+    "sourceText": "Lei da conservação da energia mecânica.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-098"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "2.5",
+    "sourceText": "Choques elásticos e inelásticos.",
+    "moduleId": "fis-energia-trabalho",
+    "sourceId": "fisica-099"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.1",
+    "sourceText": "Conceito de gás ideal.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-100"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.2",
+    "sourceText": "Equação da pressão na Teoria cinética de gás ideal.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-101"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.3",
+    "sourceText": "Conceito da temperatura segundo a Teoria cinética.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-102"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.4",
+    "sourceText": "Escala absoluta de temperatura. Escalas termométricas.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-103"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.5",
+    "sourceText": "Relação da temperatura com a velocidade das moléculas.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-104"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.6",
+    "sourceText": "Leis dos gases (leis de Boyle-Mariotte, de Charles e de Gay-Lussac).",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-105"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.7",
+    "sourceText": "Equação de Clapeyron.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-106"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.8",
+    "sourceText": "Aplicação da equação de estado de gás ideal aos isoprocessos.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-107"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "3.9",
+    "sourceText": "Representação e transformação gráfica dos processos: p-V, V-T e p- T.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-108"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "4.1",
+    "sourceText": "Conceito de Termodinâmica.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-109"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "4.2",
+    "sourceText": "Trabalho na Termodinâmica. Trabalho nos isoprocessos.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-110"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "4.3",
+    "sourceText": "Quantidade de calor. Equivalência entre trabalho e quantidade de calor.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-111"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "4.4",
+    "sourceText": "Energia interna.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-112"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.1",
+    "sourceText": "Processo adiabático.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-113"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.2",
+    "sourceText": "Primeira (1ª) lei da Termodinâmica.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-114"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.3",
+    "sourceText": "Aplicação da 1ª lei da Termodinâmica aos isoprocessos.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-115"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.4",
+    "sourceText": "Processos reversíveis e irreversíveis . Segunda (2ª) lei da Termodinâmica, segundo Thompson.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-116"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.5",
+    "sourceText": "Motor térmico e refrigerador. Eficiência térmica.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-117"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.6",
+    "sourceText": "Ciclo de Carnot.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-118"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.7",
+    "sourceText": "Entropia.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-119"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "5.8",
+    "sourceText": "Lei Zero da Termodinâmica.",
+    "moduleId": "fis-gases-termodinamica",
+    "sourceId": "fisica-120"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "6.1",
+    "sourceText": "Conceito da corrente eléctrica.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-121"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "6.2",
+    "sourceText": "Intensidade da corrente eléctrica.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-122"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "6.3",
+    "sourceText": "Resistência de um condutor. Resistividade de uma substância. Tensão nos seus extremos.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-123"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "6.4",
+    "sourceText": "Lei de Ohm para um circuito completo.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-124"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "6.5",
+    "sourceText": "Potência dissipada.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-125"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "7.1",
+    "sourceText": "Associação de resistências.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-126"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "7.2",
+    "sourceText": "Leis de circuitos derivados.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-127"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "7.3",
+    "sourceText": "Leis de Kirchhoff (lei dos nodos e lei das malhas).",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-128"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "7.4",
+    "sourceText": "Aplicação das leis de Kirchhoff nas redes eléctricas.",
+    "moduleId": "fis-corrente-redes",
+    "sourceId": "fisica-129"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.1",
+    "sourceText": "Generalidades sobre o movimento mecânico.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-130"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.2",
+    "sourceText": "Movimento rectilíneo uniformemente variado.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-131"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.3",
+    "sourceText": "Movimento circular uniforme.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-132"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.4",
+    "sourceText": "Velocidade linear e angular. Relação entre as velocidades linear e angular.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-133"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.5",
+    "sourceText": "Aceleração centrípeta. Componentes tangencial e normal da aceleração centrípeta.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-134"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.6",
+    "sourceText": "Período e frequência no movimento circular uniforme.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-135"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.7",
+    "sourceText": "Movimento de queda livre. Aceleração de gravidade.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-136"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.8",
+    "sourceText": "Movimento ascensional de um grave.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-137"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "8.9",
+    "sourceText": "Movimento circular uniformemente variado.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-138"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.1",
+    "sourceText": "Lei da inércia (1ª lei de Newton). Sistemas inerciais.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-139"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.2",
+    "sourceText": "Quantidade de movimento de translação (momento linear).",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-140"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.3",
+    "sourceText": "Variação do momento linear. Conceito de força. Impulso de uma força. Unidades.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-141"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.4",
+    "sourceText": "Lei fundamental da dinâmica (2ª lei de Newton).",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-142"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.5",
+    "sourceText": "Lei da acção e reacção (3ª lei de Newton).",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-143"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "9.6",
+    "sourceText": "Lei da conservação do momento linear.",
+    "moduleId": "fis-cinematica-newton",
+    "sourceId": "fisica-144"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.1",
+    "sourceText": "Conceito do movimento oscilatório.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-145"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.2",
+    "sourceText": "Movimento harmónico simples. As suas características.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-146"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.3",
+    "sourceText": "Oscilações livres e oscilações amortecidas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-147"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.4",
+    "sourceText": "Oscilações forçadas. Ressonância.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-148"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.5",
+    "sourceText": "Pêndulo simples. Sistema corpo-mola.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-149"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "10.6",
+    "sourceText": "Energia de um oscilador harmónico simples.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-150"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.1",
+    "sourceText": "Noção de onda. Características do movimento ondulatório.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-151"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.2",
+    "sourceText": "Classificação das ondas. Equação de onda progressiva.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-152"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.3",
+    "sourceText": "Relação entre os parâmetros fundamentais na propagação das ondas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-153"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.4",
+    "sourceText": "Reflexão e refracção das ondas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-154"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.5",
+    "sourceText": "Sobreposição de ondas. Interferência das ondas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-155"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.6",
+    "sourceText": "Difracção das ondas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-156"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "11.7",
+    "sourceText": "Ondas estacionárias.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-157"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.1",
+    "sourceText": "Natureza da luz. Características do movimento ondulatório.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-158"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.2",
+    "sourceText": "Reflexão e refracção da luz. Leis da reflexão e índice de refracção.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-159"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.3",
+    "sourceText": "Reflexão total. Fibras ópticas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-160"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.4",
+    "sourceText": "Dispersão da luz. Absorção e difusão.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-161"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.5",
+    "sourceText": "Lentes e as suas aplicações.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-162"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.6",
+    "sourceText": "Interferência da luz. Interferência nas lâminas finas.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-163"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.7",
+    "sourceText": "Difracção. Redes de difracção.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-164"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.8",
+    "sourceText": "Efeito Doppler.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-165"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "12.9",
+    "sourceText": "Polarização da luz. Caracter electromagnético da luz.",
+    "moduleId": "fis-oscilacoes-ondas-luz",
+    "sourceId": "fisica-166"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "13.1",
+    "sourceText": "Movimento curvilíneo de uma partícula actuada por uma força constante.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-167"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "13.2",
+    "sourceText": "Movimento de um projéctil.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-168"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "13.3",
+    "sourceText": "Componentes normal e tangencial do vector aceleração.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-169"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "13.4",
+    "sourceText": "Movimento relativo. Princípio de relatividade de Galileu.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-170"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "13.5",
+    "sourceText": "Movimento de uma partícula material sujeita a forças de atrito.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-171"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.1",
+    "sourceText": "Centro de massa de um sistema de partículas. O seu movimento.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-172"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.2",
+    "sourceText": "Lei fundamental de Newton para um sistema de partículas.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-173"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.3",
+    "sourceText": "Conservação do momento linear de um sistema de partículas. Aplicações.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-174"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.4",
+    "sourceText": "Momento angular de um sistema de partículas.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-175"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.5",
+    "sourceText": "Variação do momento angular. Momento de uma força.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-176"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.6",
+    "sourceText": "Momento angular de um corpo rígido móvel em torno de um eixo fixo em relação a um referencial inercial.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-177"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "14.6",
+    "sourceText": "Lei da conservação do momento angular.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-178"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "15.1",
+    "sourceText": "Pressão nos fluidos. Lei fundamental da Hidrostática.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-179"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "15.2",
+    "sourceText": "Lei de Arquimedes. Equilíbrio de corpos flutuantes.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-180"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "15.3",
+    "sourceText": "Equação de Bernoulli.",
+    "moduleId": "fis-dinamica-fluidos",
+    "sourceId": "fisica-181"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.1",
+    "sourceText": "Vector de campo magnético B.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-182"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.2",
+    "sourceText": "Espetros de campos magnéticos (íman, dipolo, condutor de corrente, bobina e solenoide).",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-183"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.3",
+    "sourceText": "Regras para a determinação do sentido do campo magnético.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-184"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.4",
+    "sourceText": "Acção de um campo magnético sobre um elemento de corrente estacionária e sobre uma carga eléctrica em movimento.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-185"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.5",
+    "sourceText": "Movimento de cargas eléctricas num campo magnético.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-186"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.6",
+    "sourceText": "Movimento de cargas eléctricas sob acção simultânea de um campo eléctrico e de um campo magnético.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-187"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.7",
+    "sourceText": "Campo magnético de uma corrente rectilínea.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-188"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "16.8",
+    "sourceText": "Interacção entre correntes eléctricas paralelas.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-189"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "17.1",
+    "sourceText": "Fluxo magnético. Lei de indução electromagnética. Sentido da corrente induzida. Lei de Lenz.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-190"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "17.2",
+    "sourceText": "Autoindução. Indução mútua.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-191"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "17.3",
+    "sourceText": "Correntes de Foucault. Bobina de indução.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-192"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "17.4",
+    "sourceText": "Transformadores estáticos. Geradores e motores.",
+    "moduleId": "fis-magnetismo-inducao",
+    "sourceId": "fisica-193"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.1",
+    "sourceText": "Produção da corrente alternada sinusoidal.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-194"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.2",
+    "sourceText": "Efeitos da corrente alternada de baixa frequência.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-195"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.3",
+    "sourceText": "Intensidade e diferença de potencial eficaz.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-196"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.4",
+    "sourceText": "Circuitos em corrente alternada.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-197"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.5",
+    "sourceText": "Diferença de fase entre a intensidade da corrente e a diferença de potencial em circuitos de corrente alternada.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-198"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "18.6",
+    "sourceText": "Impedância. Lei de Ohm em corrente alternada (RL, RC, RLC).",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-199"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.1",
+    "sourceText": "Transformação de energia num circuito oscilante fechado.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-200"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.2",
+    "sourceText": "Frequência de oscilações próprias.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-201"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.3",
+    "sourceText": "Oscilações electromagnéticas amortecidas.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-202"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.4",
+    "sourceText": "Ressonância eléctrica.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-203"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.5",
+    "sourceText": "Obtenção de oscilações não-amortecidas com o auxílio de gerador de válvula.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-204"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.6",
+    "sourceText": "Correntes de altas frequências e a sua aplicação.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-205"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "19.7",
+    "sourceText": "Circuito oscilante aberto. Radiação.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-206"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.1",
+    "sourceText": "Propagação de ondas electromagnéticas.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-207"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.2",
+    "sourceText": "Campos eléctricos e magnéticos associados à onda electromagnética.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-208"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.3",
+    "sourceText": "Micro-ondas.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-209"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.4",
+    "sourceText": "Hipótese de Maxwell.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-210"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.5",
+    "sourceText": "Experiência de Hertz. Comunicação radiofónica.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-211"
+  },
+  {
+    "disciplineId": "fisica",
+    "sourceReference": "20.6",
+    "sourceText": "Espectro electromagnético. Espectro óptico.",
+    "moduleId": "fis-ca-ondas-em",
+    "sourceId": "fisica-212"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "1.1",
+    "sourceText": "Significado de equação química.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-213"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "1.2",
+    "sourceText": "Apresentação das equações químicas.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-214"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "1.3",
+    "sourceText": "Reacções completas e reacções incompletas.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-215"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "1.4",
+    "sourceText": "Cálculos baseados nas equações químicas.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-216"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "1.5",
+    "sourceText": "A análise química.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-217"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "2.1",
+    "sourceText": "Avaliação da rapidez de uma reacção química.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-218"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "2.2",
+    "sourceText": "Efeito da concentração dos reagentes.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-219"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "2.3",
+    "sourceText": "Reacções químicas a nível molecular.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-220"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "2.4",
+    "sourceText": "Outros factores que influenciam a velocidade de uma reacção.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-221"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.1",
+    "sourceText": "Introdução.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-222"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.2",
+    "sourceText": "Reversibilidade das transformações e químicas.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-223"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.3",
+    "sourceText": "Noção de sistema.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-224"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.4",
+    "sourceText": "Equilíbrio em sistemas homogêneos.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-225"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.5",
+    "sourceText": "Factores que afectam o estado de equilíbrio de um sistema.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-226"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.6",
+    "sourceText": "Aplicações práticas do princípio de le Chantilier.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-227"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "3.7",
+    "sourceText": "Equilíbrio em sistemas heterogéneos.",
+    "moduleId": "qui-equacoes-cinetica-equilibrio",
+    "sourceId": "quimica-228"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "4.1",
+    "sourceText": "Ácidos em solução aquosa.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-229"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "4.2",
+    "sourceText": "pH de uma solução. Relação com a concentração do ião H+.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-230"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "4.3",
+    "sourceText": "Dissociação completa e incompleta.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-231"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "4.4",
+    "sourceText": "Caracterização qualitativa do equilíbrio.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-232"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "5.1",
+    "sourceText": "Ácidos polipróticos e os seus sais.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-233"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "5.2",
+    "sourceText": "Comportamento ácido ou básico de soluções de alguns sais.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-234"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "5.3",
+    "sourceText": "Os hidróxidos solúveis.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-235"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "5.4",
+    "sourceText": "Reacções de neutralização.",
+    "moduleId": "qui-acidos-bases",
+    "sourceId": "quimica-236"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.1",
+    "sourceText": "O modelo atómico do Bohr.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-237"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.2",
+    "sourceText": "A Mecânica Quântica e a estrutura electrónica dos átomos.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-238"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.3",
+    "sourceText": "Átomos polielectrónicos.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-239"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.4",
+    "sourceText": "Espetro de emissão de hidrogénio.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-240"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.5",
+    "sourceText": "Energia de ionização.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-241"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.6",
+    "sourceText": "Distribuição electrónica de alguns átomos e dos respectivos iões.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-242"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "6.7",
+    "sourceText": "Energia de ionização e tabela periódica.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-243"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "7.1",
+    "sourceText": "Ligações químicas em moléculas diatómicas.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-244"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "7.2",
+    "sourceText": "Ligações químicas em moléculas poliatómicas.",
+    "moduleId": "qui-atomo-ligacoes",
+    "sourceId": "quimica-245"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "8.1",
+    "sourceText": "O que é uma reacção de oxidação e redução.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-246"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "8.2",
+    "sourceText": "Acerto de equação redox.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-247"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "8.3",
+    "sourceText": "Pilhas electroquímicas.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-248"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "8.4",
+    "sourceText": "A electrólise.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-249"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.1",
+    "sourceText": "Compostos e iões complexos. Importância. Definição. Diferença entre sais e compostos.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-250"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.2",
+    "sourceText": "Teoria de coordenação de Werner.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-251"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.3",
+    "sourceText": "Definição de ião central, ligante, esfera interna e externa, nº de coordenação, carga de ião complexo.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-252"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.4",
+    "sourceText": "Nomenclatura dos compostos de coordenação.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-253"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.5",
+    "sourceText": "Geometria dos iões complexos, de coordenação 2, 4 e 6.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-254"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.6",
+    "sourceText": "Dissociação electrolítica. Constante de formação ou de estabilidade dos iões complexos.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-255"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "9.7",
+    "sourceText": "Importância e aplicação dos compostos de coordenação.",
+    "moduleId": "qui-eletroquimica-coordenacao",
+    "sourceId": "quimica-256"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "10.1",
+    "sourceText": "Características gerais dos elementos do grupo.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-257"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "10.2",
+    "sourceText": "O carbono.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-258"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "10.3",
+    "sourceText": "O silício.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-259"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "10.4",
+    "sourceText": "Indústria do vidro e do cimento.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-260"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "11.1",
+    "sourceText": "Introdução.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-261"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "11.2",
+    "sourceText": "Os hidrocarbonetos.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-262"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "11.3",
+    "sourceText": "Outros compostos orgânicos.",
+    "moduleId": "qui-carbono-organica",
+    "sourceId": "quimica-263"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.1",
+    "sourceText": "Os álcoois.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-264"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.2",
+    "sourceText": "Aldeídos e cetonas.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-265"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.3",
+    "sourceText": "Ácidos carboxílicos.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-266"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.4",
+    "sourceText": "Éteres.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-267"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.5",
+    "sourceText": "Ésteres.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-268"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.6",
+    "sourceText": "As aminas.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-269"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "12.7",
+    "sourceText": "Amidas.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-270"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.1",
+    "sourceText": "Introdução.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-271"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.2",
+    "sourceText": "Oxidação.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-272"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.3",
+    "sourceText": "Reacções de substituição, mecanismo.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-273"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.4",
+    "sourceText": "Adição a compostos insaturados, mecanismo.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-274"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.5",
+    "sourceText": "Esterificação.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-275"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.6",
+    "sourceText": "Hidrólise.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-276"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.7",
+    "sourceText": "Polímeros.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-277"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "14.1",
+    "sourceText": "As biomoléculas.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-278"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "14.2",
+    "sourceText": "Os aminoácidos.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-279"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "14.3",
+    "sourceText": "As proteínas.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-280"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "14.4",
+    "sourceText": "Os glícidos.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-281"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "13.5",
+    "sourceText": "Os lípidos.",
+    "moduleId": "qui-funcoes-reacoes-organicas",
+    "sourceId": "quimica-282"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "15.1",
+    "sourceText": "As forças intermoleculares.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-283"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "15.2",
+    "sourceText": "Tipos de forças intermoleculares.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-284"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "15.3",
+    "sourceText": "Moléculas no estado gasoso.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-285"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "15.4",
+    "sourceText": "O equilíbrio líquido-vapor.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-286"
+  },
+  {
+    "disciplineId": "quimica",
+    "sourceReference": "15.5",
+    "sourceText": "Propriedades coligativas de soluções.",
+    "moduleId": "qui-biomoleculas-solucoes",
+    "sourceId": "quimica-287"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "1.1",
+    "sourceText": "Geometria descritiva.",
+    "moduleId": "geo-projecoes",
+    "sourceId": "geometria-288"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "1.2",
+    "sourceText": "Variações num sistema de projecções.",
+    "moduleId": "geo-projecoes",
+    "sourceId": "geometria-289"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "1.3",
+    "sourceText": "Sistema de múltipla projecção ortogonal.",
+    "moduleId": "geo-projecoes",
+    "sourceId": "geometria-290"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "1.4",
+    "sourceText": "Sistemas de projecções axonométricas.",
+    "moduleId": "geo-projecoes",
+    "sourceId": "geometria-291"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.1",
+    "sourceText": "Organização do espaço.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-292"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.2",
+    "sourceText": "Representação do ponto.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-293"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.3",
+    "sourceText": "Representação da recta.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-294"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.4",
+    "sourceText": "Visibilidade e invisibilidade da recta.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-295"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.5",
+    "sourceText": "Posição relativa de duas rectas.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-296"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.6",
+    "sourceText": "Representação do plano.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-297"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.7",
+    "sourceText": "Intersecções de rectas com planos.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-298"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.8",
+    "sourceText": "Representação de figuras planas situadas nos planos de projecções ou em planos paralelos a este.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-299"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.9",
+    "sourceText": "Representação de poliedros rectos ou oblíquos (paralelepípedos, prismas e pirâmides) com bases situadas nos planos de projecção ou em planos paralelos a estes.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-300"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.10",
+    "sourceText": "Representação de cones e cilindros de revolução com base(s) situada(s) nos planos de projecção ou em planos paralelos a estes.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-301"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "2.11",
+    "sourceText": "Representação de cones e cilindros oblíquos com base(s) situada(s) nos planos de projecção ou em planos paralelos a estes.",
+    "moduleId": "geo-dupla-projecao",
+    "sourceId": "geometria-302"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "3.1",
+    "sourceText": "Generalidades.",
+    "moduleId": "geo-metodos-metricos",
+    "sourceId": "geometria-303"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "3.2",
+    "sourceText": "Estrutura comparada dos métodos auxiliares.",
+    "moduleId": "geo-metodos-metricos",
+    "sourceId": "geometria-304"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "3.3",
+    "sourceText": "Métodos de mudança dos planos de projecção.",
+    "moduleId": "geo-metodos-metricos",
+    "sourceId": "geometria-305"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "3.4",
+    "sourceText": "Métodos de rotação.",
+    "moduleId": "geo-metodos-metricos",
+    "sourceId": "geometria-306"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "3.5",
+    "sourceText": "Métodos de rebatimentos.",
+    "moduleId": "geo-metodos-metricos",
+    "sourceId": "geometria-307"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.1",
+    "sourceText": "Representação de figuras geométricas planas situadas em planos não paralelos aos planos de projecção.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-308"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.1.1",
+    "sourceText": "Métodos de rebatimento.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-309"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.1.2",
+    "sourceText": "Método de mudança dos planos de projecção.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-310"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.1.3",
+    "sourceText": "Circunferências existentes em planos verticais.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-311"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.2",
+    "sourceText": "Representação de sólidos rectos com base nos planos paralelos aos planos de posição.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-312"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.2.1",
+    "sourceText": "Poliedros assentes em planos de topo e verticais.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-313"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.2.2",
+    "sourceText": "Sólidos com bases assentes em planos de topo.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-314"
+  },
+  {
+    "disciplineId": "geometria",
+    "sourceReference": "4.2.3",
+    "sourceText": "Sólidos com bases assentes em planos de perfil.",
+    "moduleId": "geo-formas-solidos",
+    "sourceId": "geometria-315"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.1",
+    "sourceText": "Constituintes da frase.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-316"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.2",
+    "sourceText": "Tempos e modos verbais.",
+    "moduleId": "pt-gramatica",
+    "sourceId": "portugues-317"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.3",
+    "sourceText": "Pronominalização.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-318"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.4",
+    "sourceText": "Frase.",
+    "moduleId": "pt-frases",
+    "sourceId": "portugues-319"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.5",
+    "sourceText": "Regência nominal e verbal.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-320"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.6",
+    "sourceText": "Relações lexicais: sinonímia, antonímia, homofonia, homografia e paronímia.",
+    "moduleId": "pt-palavras",
+    "sourceId": "portugues-321"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.7",
+    "sourceText": "Pontuação.",
+    "moduleId": "pt-gramatica",
+    "sourceId": "portugues-322"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.8",
+    "sourceText": "Acentuação.",
+    "moduleId": "pt-gramatica",
+    "sourceId": "portugues-323"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.9",
+    "sourceText": "Classificação das orações.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-324"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.10",
+    "sourceText": "Concordância.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-325"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.11",
+    "sourceText": "Vozes activas e passiva.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-326"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.12",
+    "sourceText": "Tipos de discurso.",
+    "moduleId": "pt-sintaxe-regencia-discurso",
+    "sourceId": "portugues-327"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.13",
+    "sourceText": "Funções da linguagem.",
+    "moduleId": "pt-comunicacao",
+    "sourceId": "portugues-328"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.14",
+    "sourceText": "Figuras de estilo.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-329"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.15",
+    "sourceText": "Agostinho Neto.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-330"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.16",
+    "sourceText": "António Jacinto.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-331"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.17",
+    "sourceText": "Manuel Rui Monteiro.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-332"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.18",
+    "sourceText": "Menas Abrantes.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-333"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.19",
+    "sourceText": "Óscar Ribas.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-334"
+  },
+  {
+    "disciplineId": "portugues",
+    "sourceReference": "PT.20",
+    "sourceText": "Pepetela.",
+    "moduleId": "pt-literatura-angolana",
+    "sourceId": "portugues-335"
+  }
+]

@@ -1,0 +1,598 @@
+     UNIVERSIDADE AGOSTINHO NETO
+   SUBCOMISSÃO DE CIÊNCIAS EXACTAS
+
+
+
+
+TÓPICOS PARA O EXAME DE ACESSO
+           2026/2027
+
+
+  FACULDADE DE CIÊNCIAS NATURAIS
+
+    FACULDADE DE ENGENHARIA
+
+
+
+
+       UAN- Ensino. Investigação. Produção
+                      UNIVERSIDADE AGOSTINHO NETO
+
+               TÓPICOS PARA O EXAME DE ACESSO 2026/2027
+
+
+
+MATEMÁTICA
+
+1 – Problemas geométricos no plano e no espaço. (10ª classe)
+      1.1. Introdução.
+      1.2. Problemas geométricos e estratégias de resolução.
+      1.3. Polígonos regulares. Poliedros regulares.
+      1.4. Representação de sólidos.
+      1.5. Interpretação de um desenho.
+      1.6. Rectas e planos no espaço.
+      1.7. Projecção ortogonal de um ponto sobre uma recta e sobre um plano.
+      1.8. Plano mediador.
+      1.9. Posições relativas de rectas no espaço.
+      1.10. Posições relativas de rectas e planos no espaço.
+      1.11. Posições relativas de dois planos.
+
+2 – Referências no plano. Conjunto de pontos e condições. (10ª classe)
+     2.1. Referências no plano.
+     2.2. As condições como expressões matemáticas. 2.3. Proposições elementares.
+           Operações lógicas.
+     2.4. Propriedades das operações lógicas.
+     2.5. Operações com condições e com conjuntos.
+     2.6. Conjunção de condições e intersecção de conjuntos.
+     2.7. Disjunção de condições e reunião de conjuntos.
+     2.8. Negação e complementação.
+     2.9. Condições incompatíveis e conjuntos disjuntos.
+     2.10. Leis de Morgan.
+     2.11. Conjuntos numéricos.
+     2.12. Conjuntos e condições no plano.
+     2.13. Disjunção e conjunção de condições em R2.
+
+3 – Coordenadas no espaço. Condições no espaço. (10ª classe)
+     3.1. Sistema de coordenadas no espaço.
+     3.2. Coordenadas dos pontos dos eixos coordenados.
+     3.3. Planos perpendiculares aos eixos.
+     3.4. Coordenadas de um ponto no espaço.
+     3.5. Conjunto R3.
+     3.6. Condições no espaço.
+
+
+
+
+                                    Página 1 de 14
+4 – Distância entre dois pontos. Circunferência e elipse. Superfície esférica. (10ª
+   classe)
+        4.1. Distância entre dois pontos do plano.
+        4.2. Mediatriz de um segmento de recta.
+        4.3. Circunferência e círculo.
+        4.4. Elipse.
+        3.5. Distância entre dois pontos no espaço. Plano mediador. Superfície esférica e
+esfera.
+
+5 – Vectores no plano e no espaço. Operações com vectores. Equação vectorial da
+  recta no plano e no espaço. (10ª classe)
+
+       5.1. Vectores no plano e no espaço.
+       5.2. Equações vectoriais
+
+6 – Potências an e radicais. (10ª classe)
+
+      6.1. Revisão e sistematização da potenciação de expoente inteiro.
+      6.2. Potenciação com expoente racional.
+      6.3. Cálculo com radicais.
+7 – Funções e gráficos. Função módulo. (10ª classe)
+
+       7.1.   Revisão da noção da função como correspondência unívoca.
+       7.2.   Gráficos das funções afim, linear e constante.
+       7.3.   Estudo das características de uma função por observação do gráfico.
+       7.4.   Definições.
+       7.5.   Extremos de uma função.
+       7.6.   Transformações de funções.
+
+8 – Função quadrática. Parábola. (10ª classe)
+
+     8.1. Introdução da função quadrática.
+     8.2. Gráfico de uma função quadrática.
+     8.3. Eixo de simetria e vértice do gráfico.
+     8.4. Zeros da função quadrática. Equações do 2º grau.
+     8.5. Sinal da função quadrática.
+     8.6. Inequações do 2º grau.
+     8.7. Parábola.
+9 – Operações com polinómios. Decomposição de polinómios em factores. (10ª classe)
+
+       9.1. Revisão das operações com polinómios.
+       9.2. Regra de Ruffini.
+       9.3. Teorema do resto. Zeros de um polinómio.
+
+
+
+                                       Página 2 de 14
+       9.4. Decomposição de polinómios em factores. Determinação das raízes de um
+            polinómio.
+10 – Trigonometria. (11ª classe)
+
+      10.1. Medidas de um ângulo. Generalização de um ângulo. As razões
+            trigonométricas.
+      10.2. As funções trigonométricas y = sen α, y = cos en α, y = tg α para quaisquer
+            ângulos. Equações trigonométricas. Redução ao 1º quadrante.
+      10.3. Equações trigonométricas sen α = a, cos en α = a, tg α = a, redução ao 1º
+            quadrante.
+
+
+
+11 – Produto escalar de dois vectores no plano e no espaço. Perpendiculares de
+   vectores e rectas. Intersecção de planos e rectas no espaço. (11ª classe)
+
+      11.1. Produto escalar.
+      11.2. Perpendicularidade de vectores e rectas. Conjuntos definidos por condições.
+      11.3. Planos. Intersecção de planos e rectas no espaço. 12 – Sucessões. (11ª classe)
+
+       12.1. Sucessões. Sucessões monótonas e sucessões limitadas.
+       12.2. Progressões aritméticas e progressões geométricas.
+       12.3. Progressão geométrica. Definições.
+13 – Limite de uma sucessão. Cálculo de limite de sucessões. Número de Neper.
+   Indução matemática. (11ª classe)
+
+             13.1. Limite de uma sucessão.
+             13.2. Cálculo de limite de sucessões. Número de Neper.
+             13.3. Indução matemática. 14 – Estatística. (11ª classe)
+
+             14.1.   O objecto da estatística. Conceitos básicos.
+             14.2.   Organização e apresentação dos dados.
+             14.3.   Medidas de localização.
+             14.4.   Medidas de dispersão.
+             14.5.   Distribuições binominais. 15 – Funções. (12ª classe)
+
+              15.1. Funções racionais.
+              15.2. Funções irracionais.
+              15.3. Operações com funções. Resolução de problemas envolvendo
+      funções. 16 – Funções II: funções exponenciais e funções logarítmicas. (12ª
+      classe)
+
+       16.1. Funções exponenciais e funções logarítmicas.
+       16.2. Funções logarítmicas.
+17 – Funções trigonométricas. Equações trigonométricas. (12ª classe)
+
+             17.1. Revisão de algumas noções trigonométricas já estudadas.
+
+
+                                     Página 3 de 14
+              17.2. Funções trigonométricas. Equações trigonométricas.
+              17.3. Transformações de expressões trigonométricas.
+18 – Limites de funções e continuidade de funções. (12ª classe)
+
+              18.1. Limite de funções.
+              18.2. Continuidade de uma função. 19 – Derivadas. (12ª classe)
+
+       19.1. Introdução ao conceito de derivada.
+       19.2. Aplicações das derivadas.
+
+20 – Funções e integrais. (12ª classe)
+
+       20.1. Noção de integral.
+       20.2. Primitivas de uma função.
+
+FÍSICA
+
+1.1.1.1.1
+1 – Trabalho e energia. Trabalho como medida de energia transferida entre sistemas.
+    (10ª classe)
+
+              1.1. Conceito de trabalho mecânico.
+              1.2. Trabalho de uma força e de uma resultante de forças. Unidades de
+       trabalho.
+              1.3. Potência. Unidades de potência.
+              1.4. Energia cinética de um corpo em movimento de translação.
+              1.5. Energia potencial gravítica e energia potencial elástica.
+              1.6. Relação entre o trabalho e energias cinética, potencial gravítica e
+       potencial elástica.
+2 – Lei de conservação da energia mecânica. (10ª classe)
+
+              2.1. Energia mecânica.
+              2.2. Lei da conservação da energia mecânica.
+              2.3. Forças conservativas e não conservativas.
+              2.4. Lei da conservação da energia mecânica.
+              2.5. Choques elásticos e inelásticos.
+3 – Teoria cinética de gás ideal. (10ª classe)
+
+              3.1.   Conceito de gás ideal.
+              3.2.   Equação da pressão na Teoria cinética de gás ideal.
+              3.3.   Conceito da temperatura segundo a Teoria cinética.
+              3.4.   Escala absoluta de temperatura. Escalas termométricas.
+              3.5.   Relação da temperatura com a velocidade das moléculas.
+              3.6.   Leis dos gases (leis de Boyle-Mariotte, de Charles e de Gay-Lussac).
+
+
+
+                                         Página 4 de 14
+              3.7. Equação de Clapeyron.
+              3.8. Aplicação da equação de estado de gás ideal aos isoprocessos.
+              3.9. Representação e transformação gráfica dos processos: p-V, V-T e p-
+       T. 4 – Termodinâmica. (10ª classe)
+
+       4.1. Conceito de Termodinâmica.
+       4.2. Trabalho na Termodinâmica. Trabalho nos isoprocessos.
+       4.3. Quantidade de calor. Equivalência entre trabalho e quantidade de calor.
+       4.4. Energia interna.
+
+5 – Leis da Termodinâmica. (10ª classe)
+
+      5.1. Processo adiabático.
+      5.2. Primeira (1ª) lei da Termodinâmica.
+      5.3. Aplicação da 1ª lei da Termodinâmica aos isoprocessos.
+      5.4. Processos reversíveis e irreversíveis . Segunda (2ª) lei da Termodinâmica,
+           segundo Thompson.
+      5.5. Motor térmico e refrigerador. Eficiência térmica.
+      5.6. Ciclo de Carnot.
+      5.7. Entropia.
+      5.8. Lei Zero da Termodinâmica.
+6 – Corrente eléctrica em regime estacionário. (10ª classe)
+
+      6.1. Conceito da corrente eléctrica.
+      6.2. Intensidade da corrente eléctrica.
+      6.3. Resistência de um condutor. Resistividade de uma substância. Tensão nos seus
+            extremos.
+      6.4. Lei de Ohm para um circuito completo.
+      6.5. Potência dissipada.
+7 – Redes eléctricas. (10ª classe)
+
+       7.1. Associação de resistências.
+       7.2. Leis de circuitos derivados.
+       7.3. Leis de Kirchhoff (lei dos nodos e lei das malhas).
+       7.4. Aplicação das leis de Kirchhoff nas redes eléctricas. 8 – Forças e movimentos.
+            Movimento mecânico. (11ª classe)
+
+              8.1. Generalidades sobre o movimento mecânico.
+              8.2. Movimento rectilíneo uniformemente variado.
+              8.3. Movimento circular uniforme.
+              8.4. Velocidade linear e angular. Relação entre as velocidades linear e
+       angular.
+              8.5. Aceleração centrípeta. Componentes tangencial e normal da
+       aceleração centrípeta.
+
+
+                                      Página 5 de 14
+              8.6. Período e frequência no movimento circular uniforme.
+              8.7. Movimento de queda livre. Aceleração de gravidade.
+              8.8. Movimento ascensional de um grave.
+              8.9. Movimento circular uniformemente variado. 9 – Interacções entre
+       corpos. (11ª classe)
+
+      9.1. Lei da inércia (1ª lei de Newton). Sistemas inerciais.
+      9.2. Quantidade de movimento de translação (momento linear).
+      9.3. Variação do momento linear. Conceito de força. Impulso de uma força.
+Unidades.
+      9.4. Lei fundamental da dinâmica (2ª lei de Newton).
+      9.5. Lei da acção e reacção (3ª lei de Newton).
+      9.6. Lei da conservação do momento linear.
+
+10 – Movimento oscilatório mecânico. (11ª classe)
+
+              10.1. Conceito do movimento oscilatório.
+              10.2. Movimento harmónico simples. As suas características.
+              10.3. Oscilações livres e oscilações amortecidas.
+              10.4. Oscilações forçadas. Ressonância.
+              10.5. Pêndulo simples. Sistema corpo-mola.
+              10.6. Energia de um oscilador harmónico simples.
+11 – Ondas e luz. Ondas e suas propriedades. (11ª classe)
+
+            11.1. Noção de onda. Características do movimento ondulatório.
+            11.2. Classificação das ondas. Equação de onda progressiva.
+            11.3. Relação entre os parâmetros fundamentais na propagação das ondas.
+            11.4. Reflexão e refracção das ondas.
+            11.5. Sobreposição de ondas. Interferência das ondas.
+            11.6. Difracção das ondas.
+            11.7. Ondas estacionárias.
+12 – Fenómenos luminosos. (11ª classe)
+
+              12.1. Natureza da luz. Características do movimento ondulatório.
+              12.2. Reflexão e refracção da luz. Leis da reflexão e índice de refracção.
+              12.3. Reflexão total. Fibras ópticas.
+              12.4. Dispersão da luz. Absorção e difusão.
+              12.5. Lentes e as suas aplicações.
+              12.6. Interferência da luz. Interferência nas lâminas finas.
+              12.7. Difracção. Redes de difracção.
+              12.8. Efeito Doppler.
+              12.9. Polarização da luz. Caracter electromagnético da luz.
+13 – Forças e movimentos. Dinâmica de uma partícula em movimento (12ª classe)
+
+
+
+                                      Página 6 de 14
+              13.1. Movimento curvilíneo de uma partícula actuada por uma força
+       constante.
+              13.2. Movimento de um projéctil.
+              13.3. Componentes normal e tangencial do vector aceleração.
+              13.4. Movimento relativo. Princípio de relatividade de Galileu.
+              13.5. Movimento de uma partícula material sujeita a forças de atrito. 14 –
+       Dinâmica de um sistema de partículas materiais. (12ª classe)
+
+       14.1. Centro de massa de um sistema de partículas. O seu movimento.
+       14.2. Lei fundamental de Newton para um sistema de partículas.
+       14.3. Conservação do momento linear de um sistema de partículas. Aplicações.
+       14.4. Momento angular de um sistema de partículas.
+       14.5. Variação do momento angular. Momento de uma força.
+       14.6. Momento angular de um corpo rígido móvel em torno de um eixo fixo em
+             relação a um referencial inercial.
+       14.6. Lei da conservação do momento angular.
+
+15 – Mecânica dos fluidos. (12ª classe)
+
+      15.1. Pressão nos fluidos. Lei fundamental da Hidrostática.
+      15.2. Lei de Arquimedes. Equilíbrio de corpos flutuantes.
+      15.3. Equação de Bernoulli.
+16 – Campo magnético da corrente eléctrica em regime estacionário. (12ª classe)
+
+       16.1. Vector de campo magnético B.
+       16.2. Espetros de campos magnéticos (íman, dipolo, condutor de corrente, bobina e
+             solenoide).
+       16.3. Regras para a determinação do sentido do campo magnético.
+       16.4. Acção de um campo magnético sobre um elemento de corrente estacionária e
+             sobre uma carga eléctrica em movimento.
+       16.5. Movimento de cargas eléctricas num campo magnético.
+       16.6. Movimento de cargas eléctricas sob acção simultânea de um campo eléctrico e
+             de um campo magnético.
+       16.7. Campo magnético de uma corrente rectilínea.
+       16.8. Interacção entre correntes eléctricas paralelas.
+17 – Fenómenos que envolvem campos electromagnéticos variáveis. Indução
+   electromagnética. (12ª classe)
+
+       17.1. Fluxo magnético. Lei de indução electromagnética. Sentido da corrente
+             induzida. Lei de Lenz.
+       17.2. Autoindução. Indução mútua.
+       17.3. Correntes de Foucault. Bobina de indução.
+       17.4. Transformadores estáticos. Geradores e motores. 18 – Corrente eléctrica
+             alternada sinusoidal. (12ª classe)
+
+
+
+                                     Página 7 de 14
+      18.1. Produção da corrente alternada sinusoidal.
+      18.2. Efeitos da corrente alternada de baixa frequência.
+      18.3. Intensidade e diferença de potencial eficaz.
+      18.4. Circuitos em corrente alternada.
+      18.5. Diferença de fase entre a intensidade da corrente e a diferença de potencial em
+            circuitos de corrente alternada.
+      18.6. Impedância. Lei de Ohm em corrente alternada (RL, RC, RLC).
+19 – Oscilações electromagnéticas. (12ª classe)
+
+               19.1.   Transformação de energia num circuito oscilante fechado.
+               19.2.   Frequência de oscilações próprias.
+               19.3.   Oscilações electromagnéticas amortecidas.
+               19.4.   Ressonância eléctrica.
+               19.5.   Obtenção de oscilações não-amortecidas com o auxílio de gerador de
+       válvula.
+               19.6.   Correntes de altas frequências e a sua aplicação.
+               19.7.   Circuito oscilante aberto. Radiação. 20 – Ondas electromagnéticas.
+       (12ª classe)
+
+    20.1. Propagação de ondas electromagnéticas.
+    20.2. Campos eléctricos e magnéticos associados à onda electromagnética.
+    20.3. Micro-ondas.
+    20.4. Hipótese de Maxwell.
+    20.5. Experiência de Hertz. Comunicação radiofónica.
+    20.6. Espectro electromagnético. Espectro óptico.
+QUÍMICA
+
+1.1.1.1.2
+1 – Equações químicas. (10ª classe)
+
+       1.1. Significado de equação química.
+       1.2. Apresentação das equações químicas.
+       1.3. Reacções completas e reacções incompletas.
+       1.4. Cálculos baseados nas equações químicas.
+       1.5. A análise química.
+2 – Velocidade das reacções químicas. (10ª classe)
+
+      2.1. Avaliação da rapidez de uma reacção química.
+      2.2. Efeito da concentração dos reagentes. 2.3. Reacções químicas a nível
+            molecular.
+      2.4. Outros factores que influenciam a velocidade de uma reacção.
+3 – Equilíbrio químico. (10ª classe)
+
+              3.1.     Introdução.
+
+
+
+                                       Página 8 de 14
+                3.2.   Reversibilidade das transformações e químicas.
+                3.3.   Noção de sistema.
+                3.4.   Equilíbrio em sistemas homogêneos.
+                3.5.   Factores que afectam o estado de equilíbrio de um sistema.
+                3.6.   Aplicações práticas do princípio de le Chantilier.
+                3.7.   Equilíbrio em sistemas heterogéneos. 4 – Reacções ácido-base. (10ª
+      classe)
+
+      4.1. Ácidos em solução aquosa.
+      4.2. pH de uma solução. Relação com a concentração do ião H+.
+      4.3. Dissociação completa e incompleta.
+      4.4. Caracterização qualitativa do equilíbrio.
+5 – Comportamento ácido-base de outras substâncias. (10ª classe)
+
+              5.1. Ácidos polipróticos e os seus sais.
+              5.2. Comportamento ácido ou básico de soluções de alguns sais.
+              5.3. Os hidróxidos solúveis.
+              5.4. Reacções de neutralização.
+6 – Estrutura do átomo e da molécula. (11ª classe)
+
+            6.1. O modelo atómico do Bohr.
+            6.2. A Mecânica Quântica e a estrutura electrónica dos átomos.
+            6.3. Átomos polielectrónicos.
+            6.4. Espetro de emissão de hidrogénio.
+            6.5. Energia de ionização.
+            6.6. Distribuição electrónica de alguns átomos e dos respectivos iões.
+            6.7. Energia de ionização e tabela periódica. 7 – Estrutura das
+      moléculas. (11ª classe)
+
+          7.1.      Ligações químicas em moléculas diatómicas.
+          7.2.      Ligações químicas em moléculas poliatómicas. 8 –
+   Electroquímica. (11ª classe)
+
+      8.1. O que é uma reacção de oxidação e redução.
+      8.2. Acerto de equação redox.
+      8.3. Pilhas electroquímicas.
+      8.4. A electrólise.
+9 – Compostos de coordenação. (11ª classe)
+
+      9.1. Compostos e iões complexos. Importância. Definição. Diferença entre sais e
+           compostos.
+      9.2. Teoria de coordenação de Werner.
+      9.3. Definição de ião central, ligante, esfera interna e externa, nº de coordenação,
+           carga de ião complexo.
+
+
+
+                                       Página 9 de 14
+       9.4. Nomenclatura dos compostos de coordenação.
+       9.5. Geometria dos iões complexos, de coordenação 2, 4 e 6.
+       9.6. Dissociação electrolítica. Constante de formação ou de estabilidade dos iões
+            complexos.
+       9.7. Importância e aplicação dos compostos de coordenação. 10 – Estudo do
+            grupo 14 (IV A) da tabela periódica. (11ª classe)
+
+       10.1. Características gerais dos elementos do grupo.
+       10.2. O carbono.
+       10.3. O silício.
+       10.4. Indústria do vidro e do cimento.
+11 – O que é a Química Orgânica? (11ª classe)
+
+                 11.1. Introdução.
+                 11.2. Os hidrocarbonetos.
+                 11.3. Outros compostos orgânicos. 12 – Compostos orgânicos. (12ª
+       classe)
+
+       12.1. Os álcoois.
+       12.2. Aldeídos e cetonas.
+       12.3. Ácidos carboxílicos.
+       12.4. Éteres.
+       12.5. Ésteres.
+       12.6. As aminas.
+       12.7. Amidas.
+13 – Reacções dos compostos orgânicos. (12ª classe)
+       13.1. Introdução.
+       13.2. Oxidação.
+       13.3. Reacções de substituição, mecanismo.
+       13.4. Adição a compostos insaturados, mecanismo.
+       13.5. Esterificação.
+       13.6. Hidrólise.
+       13.7. Polímeros.
+14 – As biomoléculas. (12ª classe)
+
+       14.1. As biomoléculas.
+       14.2. Os aminoácidos.
+       14.3. As proteínas.
+       14.4. Os glícidos.
+       13.5. Os lípidos.
+15 – As forças intermoleculares. O estado gasoso (12ª classe)
+
+       15.1. As forças intermoleculares.
+       15.2. Tipos de forças intermoleculares.
+
+
+                                      Página 10 de 14
+       15.3. Moléculas no estado gasoso.
+       15.4. O equilíbrio líquido-vapor.
+       15.5. Propriedades coligativas de soluções.
+
+        DESENHO E GEOMETRIA DESCRITIVA
+1.1.1.1.3
+1 – Projecções. (11ª classe)
+
+        1.1. Geometria descritiva.
+        1.2. Variações num sistema de projecções.
+        1.3. Sistema de múltipla projecção ortogonal.
+        1.4. Sistemas de projecções axonométricas.
+2 – Sistema da dupla projecção ortogonal. (11ª classe)
+
+      2.1. Organização do espaço.
+      2.2. Representação do ponto.
+      2.3. Representação da recta.
+      2.4. Visibilidade e invisibilidade da recta.
+      2.5. Posição relativa de duas rectas.
+      2.6. Representação do plano.
+      2.7. Intersecções de rectas com planos.
+      2.8. Representação de figuras planas situadas nos planos de projecções ou em
+            planos paralelos a este.
+      2.9. Representação de poliedros rectos ou oblíquos (paralelepípedos, prismas e
+            pirâmides) com bases situadas nos planos de projecção ou em planos paralelos
+            a estes.
+      2.10. Representação de cones e cilindros de revolução com base(s) situada(s) nos
+            planos de projecção ou em planos paralelos a estes.
+      2.11. Representação de cones e cilindros oblíquos com base(s) situada(s) nos planos
+            de projecção ou em planos paralelos a estes.
+3 – Métodos geométricos auxiliares e problemas métricos. (11ª classe)
+
+      3.1. Generalidades.
+      3.2. Estrutura comparada dos métodos auxiliares.
+      3.3. Métodos de mudança dos planos de projecção.
+      3.4. Métodos de rotação.
+      3.5. Métodos de rebatimentos.
+4 – Representação de formas. (11ª classe)
+
+       4.1. Representação de figuras geométricas planas situadas em planos não paralelos
+            aos planos de projecção.
+            4.1.1. Métodos de rebatimento.
+            4.1.2. Método de mudança dos planos de projecção.
+            4.1.3. Circunferências existentes em planos verticais.
+
+
+                                      Página 11 de 14
+       4.2. Representação de sólidos rectos com base nos planos paralelos aos planos de
+            posição.
+            4.2.1. Poliedros assentes em planos de topo e verticais.
+            4.2.2. Sólidos com bases assentes em planos de topo.
+            4.2.3. Sólidos com bases assentes em planos de perfil.
+
+LÍNGUA PORTUGUESA
+
+1- FUNCIONAMENTO DA LÍNGUA
+
+Constituintes da frase.
+Tempos e modos verbais.
+Pronominalização.
+Frase.
+Regência nominal e verbal.
+Relações lexicais: sinonímia, antonímia, homofonia, homografia e paronímia.
+Pontuação.
+Acentuação.
+Classificação das orações.
+Concordância.
+Vozes activas e passiva.
+Tipos de discurso.
+Funções da linguagem.
+2- LITERATURA
+
+Figuras de estilo.
+Obras e autores angolanos: Agostinho Neto, António Jacinto.
+Manuel Rui Monteiro, Menas Abrantes, Óscar Ribas, Pepetela.
+BIBLIOGRAFIA
+
+A bibliografia base é constituída pelos manuais utilizados nos cursos MÉDIOS e PUNIV,
+aprovados pelo Ministério da Educação para o Ensino Secundário.
+
+1. AMORIM, Clara e SOUSA, Catarina, Gramática da Língua.
+AMORlM, Clara e 50 USA, Catarina, Gramática da Língua Portuguesa, Porto,
+Area.1 Editora, 2006.
+2. COSTA, João D. (Coord.), Gramática da Língua Portuguesa, Lisboa, Escolar
+   Editora, 2010.
+3. CUNHA, Celso e CINTRA, Lindley, Nova Gramática do Português
+   Contemporâneo, Lisboa, Edições Sá da Costa, 1993.
+4. LARANJEIRA, Pires, Literaturas Africanas de Expressão Portuguesa, Universidade
+   Aberta, Lisboa, 2001.
+5. MIGUEL, Maria Helena & ALVES, Maria Antónia, Convergências Manual
+   Universitário de Português, Luanda.
+
+
+                                     Página 12 de 14
+6 PINTO, José Manuel da Costa e LOPES, Maria di Céu Vielra, Gramática do
+Português, Lisboa, Plátano Editora, 2002.
+
+
+
+
+                                   Página 13 de 14
+

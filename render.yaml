@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: luanda-prep
+    runtime: node
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm build
+    preDeployCommand: pnpm exec drizzle-kit migrate
+    startCommand: pnpm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.13.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
