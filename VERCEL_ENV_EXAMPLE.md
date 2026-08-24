@@ -4,7 +4,8 @@ No painel **Vercel → luanda-prep → Settings → Environment Variables**, cri
 
 | Variável | Valor de exemplo | Uso |
 | --- | --- | --- |
-| `DATABASE_URL` | `mysql://USER:PASSWORD@HOST:3306/DATABASE?ssl={"rejectUnauthorized":true}` | Base externa MySQL/TiDB com TLS. |
+| `POSTGRES_URL` | `postgres://USER:PASSWORD@HOST:6543/postgres?sslmode=require` | Variável fornecida pela integração Supabase no Vercel; a aplicação usa-a automaticamente. |
+| `DATABASE_URL` | `postgres://USER:PASSWORD@HOST:6543/postgres?sslmode=require` | Alternativa somente se não usar a variável `POSTGRES_URL` criada pela integração Supabase. |
 | `JWT_SECRET` | `substitua-por-um-segredo-longo-e-aleatorio` | Assinatura das sessões locais. |
 | `GROQ_API_KEY` | `gsk_substitua-pela-sua-chave` | Chave privada do LUANDA AI. |
 | `GROQ_MODEL` | `openai/gpt-oss-20b` | Modelo padrão do tutor. |

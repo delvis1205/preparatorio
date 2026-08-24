@@ -13,7 +13,7 @@ import { generateLessonExpansionPdf, generateModuleStudyGuidePdf, generateSimula
 import { getDb } from "../db";
 import { questionAttempts, savedLessonExpansions } from "../../drizzle/schema";
 import { automationConfig } from "../../drizzle/schema";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { getModule } from "../content";
 import { requireCronTask } from "./cronAuth";
 import { sendWeeklyProgressEmails } from "../emailAutomation";
@@ -57,7 +57,17 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 
 async function configureApp(app: express.Express, server?: ReturnType<typeof createServer>) {
   app.set("trust proxy", 1);
-  app.get("/api/health", (_req, res) => res.status(200).json({ ok: true, service: "luanda-prep" }));
+  app.get("/api/health", async (_req, res) => {
+    try {
+      const db = await getDb();
+      if (!db) return res.status(503).json({ ok: false, service: "luanda-prep", database: "unavailable" });
+      await db.execute(sql`select 1`);
+      return res.status(200).json({ ok: true, service: "luanda-prep", database: "connected" });
+    } catch (error) {
+      console.error("[Health] Database unavailable", error);
+      return res.status(503).json({ ok: false, service: "luanda-prep", database: "unavailable" });
+    }
+  });
 
   // PDF Export Endpoint
   app.get("/api/export/pdf", async (req, res) => {

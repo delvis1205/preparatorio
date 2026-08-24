@@ -27,7 +27,7 @@ Depois de adicionar as variáveis e concluir o primeiro deploy, confira `/api/he
 1. Abra o projeto **luanda-prep** no Vercel e vá em **Settings → Environment Variables**.
 2. Crie cada variável listada acima, escolhendo os ambientes **Production** e **Preview**. Utilize `VERCEL_ENV_EXAMPLE.md` no repositório como modelo de nomes e valores ilustrativos.
 3. Para o tutor, cole a sua chave no campo `GROQ_API_KEY` e mantenha `GROQ_MODEL` como `openai/gpt-oss-20b`, a menos que queira escolher outro modelo que a sua conta Groq disponibilize.
-4. Use uma base **externa** em `DATABASE_URL`; a base e as credenciais internas da Manus não devem ser copiadas para o Vercel. Aplique as migrações nessa base antes de permitir registos no domínio Vercel.
+4. Para a base Supabase criada no Vercel, mantenha as variáveis sincronizadas `POSTGRES_URL` e `POSTGRES_URL_NON_POOLING`. A aplicação usa `POSTGRES_URL` durante a execução serverless e `POSTGRES_URL_NON_POOLING` para aplicar o esquema durante o build. Não copie a base nem as credenciais internas da Manus para o Vercel: o deploy aplica a migração PostgreSQL automaticamente.
 5. Salve as variáveis e acione **Deployments → Redeploy** no deployment de produção. Depois valide `https://luanda-prep.vercel.app/api/health`, o registo/login, um aprofundamento LUANDA AI e um e-mail de recuperação.
 
 > O código já usa Groq automaticamente quando `GROQ_API_KEY` está presente. As chaves inseridas no Vercel permanecem privadas e não são enviadas ao GitHub nem ao navegador.

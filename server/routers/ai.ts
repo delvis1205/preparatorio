@@ -51,9 +51,8 @@ export const aiRouter = router({
     if (!getModule(input.moduleId)) throw new TRPCError({ code: "NOT_FOUND", message: "Módulo não encontrado." });
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
-    const result = await db.insert(savedLessonExpansions).values({ userId: ctx.user.id, ...input });
-    const id = Number((result as unknown as [{ insertId: number }])[0].insertId);
-    return { id };
+    const [created] = await db.insert(savedLessonExpansions).values({ userId: ctx.user.id, ...input }).returning({ id: savedLessonExpansions.id });
+    return { id: created!.id };
   }),
 
   lessonExpansion: protectedProcedure.input(z.object({ moduleId: z.string().min(1), topic: z.string().max(180).optional() })).mutation(async ({ input }) => {
@@ -89,8 +88,8 @@ export const aiRouter = router({
       const owned = await db.select().from(aiConversations).where(and(eq(aiConversations.id, conversationId), eq(aiConversations.userId, ctx.user.id))).limit(1);
       if (!owned[0]) throw new TRPCError({ code: "FORBIDDEN", message: "Esta conversa não está disponível." });
     } else {
-      const result = await db.insert(aiConversations).values({ userId: ctx.user.id, title: input.message.slice(0, 80), context: { moduleId: input.moduleId, questionId: input.questionId } });
-      conversationId = Number((result as unknown as [{ insertId: number }])[0].insertId);
+      const [created] = await db.insert(aiConversations).values({ userId: ctx.user.id, title: input.message.slice(0, 80), context: { moduleId: input.moduleId, questionId: input.questionId } }).returning({ id: aiConversations.id });
+      conversationId = created!.id;
     }
     const question = input.questionId ? getQuestion(input.questionId) : undefined;
     const module = input.moduleId ? getModule(input.moduleId) : question ? getModule(question.moduleId) : undefined;

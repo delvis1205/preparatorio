@@ -184,7 +184,7 @@ export const learningRouter = router({
     save: protectedProcedure.input(z.object({ displayName: z.string().min(2).max(80), examDate: z.string().optional(), dailyMinutes: z.number().int().min(10).max(360), studyDays: z.array(z.string()).max(7), goal: z.string().max(240).optional(), theme: z.enum(["light", "dark", "system"]).default("system") })).mutation(async ({ ctx, input }) => {
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
-      await db.insert(studentProfiles).values({ userId: ctx.user.id, displayName: input.displayName, examDate: input.examDate || null, dailyMinutes: input.dailyMinutes, studyDays: input.studyDays, goal: input.goal || null, theme: input.theme }).onDuplicateKeyUpdate({ set: { displayName: input.displayName, examDate: input.examDate || null, dailyMinutes: input.dailyMinutes, studyDays: input.studyDays, goal: input.goal || null, theme: input.theme } });
+      await db.insert(studentProfiles).values({ userId: ctx.user.id, displayName: input.displayName, examDate: input.examDate || null, dailyMinutes: input.dailyMinutes, studyDays: input.studyDays, goal: input.goal || null, theme: input.theme }).onConflictDoUpdate({ target: studentProfiles.userId, set: { displayName: input.displayName, examDate: input.examDate || null, dailyMinutes: input.dailyMinutes, studyDays: input.studyDays, goal: input.goal || null, theme: input.theme } });
       return { success: true };
     }),
   }),
@@ -220,8 +220,8 @@ export const learningRouter = router({
         await db.update(notes).set({ body: input.body, moduleId: input.moduleId ?? null }).where(eq(notes.id, input.noteId));
         return { id: input.noteId };
       }
-      const result = await db.insert(notes).values({ userId: ctx.user.id, moduleId: input.moduleId ?? null, body: input.body });
-      return { id: Number((result as unknown as [{ insertId: number }])[0].insertId) };
+      const [created] = await db.insert(notes).values({ userId: ctx.user.id, moduleId: input.moduleId ?? null, body: input.body }).returning({ id: notes.id });
+      return { id: created!.id };
     }),
   }),
 
@@ -246,7 +246,7 @@ export const learningRouter = router({
     save: protectedProcedure.input(z.object({ title: z.string().min(3).max(120), dailyMinutes: z.number().int().min(10).max(360), tasks: z.array(z.object({ id: z.string().min(1), label: z.string().min(1).max(180), minutes: z.number().int().min(5).max(360), done: z.boolean(), moduleId: z.string().optional() })).min(1).max(21) })).mutation(async ({ ctx, input }) => {
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
-      await db.insert(studyPlans).values({ userId: ctx.user.id, title: input.title, dailyMinutes: input.dailyMinutes, tasks: input.tasks }).onDuplicateKeyUpdate({ set: { title: input.title, dailyMinutes: input.dailyMinutes, tasks: input.tasks } });
+      await db.insert(studyPlans).values({ userId: ctx.user.id, title: input.title, dailyMinutes: input.dailyMinutes, tasks: input.tasks }).onConflictDoUpdate({ target: studyPlans.userId, set: { title: input.title, dailyMinutes: input.dailyMinutes, tasks: input.tasks } });
       return { success: true };
     }),
     reset: protectedProcedure.mutation(async ({ ctx }) => {
@@ -259,7 +259,7 @@ export const learningRouter = router({
       ]);
       const dailyMinutes = saved[0]?.dailyMinutes ?? profileRows[0]?.dailyMinutes ?? 45;
       const nextPlan = { title: "Ciclo semanal de preparação", dailyMinutes, tasks: buildWeeklyTasks(dailyMinutes, progressRows) };
-      await db.insert(studyPlans).values({ userId: ctx.user.id, ...nextPlan }).onDuplicateKeyUpdate({ set: nextPlan });
+      await db.insert(studyPlans).values({ userId: ctx.user.id, ...nextPlan }).onConflictDoUpdate({ target: studyPlans.userId, set: nextPlan });
       return { success: true };
     }),
   }),
@@ -279,7 +279,7 @@ export const learningRouter = router({
       const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.moduleId, input.moduleId)));
       const mastery = calculateMastery({ attempts: attempts.length, correct: attempts.filter((attempt) => attempt.isCorrect).length, completionPercent: input.completionPercent, daysSinceLastStudy: 0 });
       const existing = (await db.select().from(moduleProgress).where(and(eq(moduleProgress.userId, ctx.user.id), eq(moduleProgress.moduleId, input.moduleId))).limit(1))[0];
-      await db.insert(moduleProgress).values({ userId: ctx.user.id, moduleId: input.moduleId, status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() }).onDuplicateKeyUpdate({ set: { status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() } });
+      await db.insert(moduleProgress).values({ userId: ctx.user.id, moduleId: input.moduleId, status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() }).onConflictDoUpdate({ target: [moduleProgress.userId, moduleProgress.moduleId], set: { status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() } });
       if (input.status === "completed" && existing?.status !== "completed" && ctx.user.email) {
         try {
           await sendOnce({ userId: ctx.user.id, eventKey: `module-complete:${input.moduleId}`, kind: "module_complete", subject: `Módulo concluído: ${module.title} — LUANDA PREP`, send: () => sendModuleCompleteEmail({ to: ctx.user.email!, name: ctx.user.name, moduleTitle: module.title, mastery, appUrl: appUrl(ctx.req) }) });
@@ -316,7 +316,7 @@ export const learningRouter = router({
       const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.moduleId, question.moduleId)));
       const current = (await db.select().from(moduleProgress).where(and(eq(moduleProgress.userId, ctx.user.id), eq(moduleProgress.moduleId, question.moduleId))).limit(1))[0];
       const mastery = calculateMastery({ attempts: attempts.length, correct: attempts.filter((attempt) => attempt.isCorrect).length, completionPercent: current?.completionPercent ?? 0, daysSinceLastStudy: 0 });
-      await db.insert(moduleProgress).values({ userId: ctx.user.id, moduleId: question.moduleId, status: "in_progress", completionPercent: current?.completionPercent ?? 0, mastery, currentLessonId: current?.currentLessonId ?? getModule(question.moduleId)?.lesson.id, lastAccessedAt: new Date() }).onDuplicateKeyUpdate({ set: { mastery, status: "in_progress", lastAccessedAt: new Date() } });
+      await db.insert(moduleProgress).values({ userId: ctx.user.id, moduleId: question.moduleId, status: "in_progress", completionPercent: current?.completionPercent ?? 0, mastery, currentLessonId: current?.currentLessonId ?? getModule(question.moduleId)?.lesson.id, lastAccessedAt: new Date() }).onConflictDoUpdate({ target: [moduleProgress.userId, moduleProgress.moduleId], set: { mastery, status: "in_progress", lastAccessedAt: new Date() } });
       return { isCorrect, correctOption: question.correctOption, explanation: question.explanation, errorHint: question.errorHint, mastery, masteryLabel: masteryLabel(mastery), recommendation: isCorrect ? "Excelente. Continue para uma questão de dificuldade semelhante ou avance no módulo." : `Reveja “${question.topic}” e tente outra questão de treino antes de aumentar a dificuldade.` };
     }),
   }),
