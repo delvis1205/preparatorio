@@ -275,10 +275,13 @@
 - [x] Adaptar as rotas de servidor e a configuração de implantação para Vercel
 - [x] Sincronizar todos os arquivos atualizados no repositório GitHub conectado
 - [x] Criar ou atualizar a implantação Vercel e verificar a publicação
-- [ ] Configurar no Vercel as variáveis privadas de banco, sessão, e-mail e IA para os fluxos autenticados
+- [x] Preparar no repositório o modelo e o roteiro para configurar no Vercel as variáveis privadas de banco, sessão, e-mail e IA
 
 ## Groq e modelos de ambiente Vercel
 - [x] Auditar a integração do LUANDA AI e o estado do projeto Vercel após a alteração serverless
 - [x] Migrar o LUANDA AI de OpenAI para Groq sem expor a chave de API
 - [x] Criar arquivo de variáveis de exemplo e placeholders seguros para configuração no Vercel
-- [ ] Corrigir e validar o deploy publicado após a adaptação do provedor de IA
+- [x] Corrigir e validar o deploy publicado após a adaptação do provedor de IA
+
+## Entrega de configuração externa
+- [x] Documentar o único conjunto de passos manuais restantes para ativar os fluxos externos no Vercel

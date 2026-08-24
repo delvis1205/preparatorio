@@ -21,3 +21,13 @@ Configure as variáveis abaixo nos ambientes **Preview** e **Production** do pro
 Antes de usar a versão Vercel, crie ou selecione uma base MySQL/TiDB externa e aplique as migrações a partir de uma máquina com `DATABASE_URL` configurada: `pnpm drizzle-kit migrate`. O Vercel não deve executar migrações automaticamente durante o build.
 
 Depois de adicionar as variáveis e concluir o primeiro deploy, confira `/api/health`, faça login, gere um aprofundamento com o LUANDA AI e valide a exportação de PDF. A rota de storage da Manus continua exclusiva da hospedagem Manus; se a aplicação passar a receber uploads de utilizadores no Vercel, configure armazenamento S3 compatível antes de habilitar esse fluxo.
+
+## Configuração manual no painel Vercel
+
+1. Abra o projeto **luanda-prep** no Vercel e vá em **Settings → Environment Variables**.
+2. Crie cada variável listada acima, escolhendo os ambientes **Production** e **Preview**. Utilize `VERCEL_ENV_EXAMPLE.md` no repositório como modelo de nomes e valores ilustrativos.
+3. Para o tutor, cole a sua chave no campo `GROQ_API_KEY` e mantenha `GROQ_MODEL` como `openai/gpt-oss-20b`, a menos que queira escolher outro modelo que a sua conta Groq disponibilize.
+4. Use uma base **externa** em `DATABASE_URL`; a base e as credenciais internas da Manus não devem ser copiadas para o Vercel. Aplique as migrações nessa base antes de permitir registos no domínio Vercel.
+5. Salve as variáveis e acione **Deployments → Redeploy** no deployment de produção. Depois valide `https://luanda-prep.vercel.app/api/health`, o registo/login, um aprofundamento LUANDA AI e um e-mail de recuperação.
+
+> O código já usa Groq automaticamente quando `GROQ_API_KEY` está presente. As chaves inseridas no Vercel permanecem privadas e não são enviadas ao GitHub nem ao navegador.
