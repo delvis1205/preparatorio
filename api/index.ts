@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 
 type ServerBundle = { createApp: () => Promise<(req: Request, res: Response) => unknown> };
-const loadServerBundle = Function("return import('./server.mjs')") as () => Promise<ServerBundle>;
+type ImportedServerBundle = ServerBundle & { default?: ServerBundle };
+const loadServerBundle = Function("return import('./server.cjs')") as () => Promise<ImportedServerBundle>;
 let appPromise: ReturnType<ServerBundle["createApp"]> | undefined;
 
 export default async function handler(req: Request, res: Response) {
@@ -13,7 +14,9 @@ export default async function handler(req: Request, res: Response) {
   }
   if (!appPromise) {
     const server = await loadServerBundle();
-    appPromise = server.createApp();
+    const createApp = server.createApp ?? server.default?.createApp;
+    if (!createApp) throw new Error("O bundle do servidor não expõe createApp.");
+    appPromise = createApp();
   }
   const app = await appPromise;
   return app(req, res);
