@@ -1,5 +1,6 @@
 import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
-import { MODULE_TEACHING_MATERIAL, buildModuleCheckpointQuestion, buildSpecificTopicSession, buildTopicTrainingQuestion } from "./moduleMaterials";
+import { MODULE_TEACHING_MATERIAL, buildModuleCheckpointQuestion, buildTopicTrainingQuestion } from "./moduleMaterials";
+import { getTopicGuide } from "./topicGuides";
 
 export type Lesson = {
   id: string;
@@ -16,7 +17,7 @@ export type Lesson = {
   quickCheck?: { prompt: string; answer: string };
   concepts?: { term: string; definition: string; application: string }[];
   conceptQuestions?: { prompt: string; answer: string }[];
-  topicSessions?: { topic: string; focus: string; definition: string; explanation: string; example: string; checkpoint: string; answer: string; practiceAction: string }[];
+  topicSessions?: { topic: string; focus: string; definition: string; explanation: string; example: string; checkpoint: string; answer: string; practiceAction: string; formula?: string; formulaLatex?: string }[];
 };
 
 export type DisciplineId = "matematica" | "portugues" | "cultura" | "fisica" | "quimica" | "geometria";
@@ -479,15 +480,27 @@ for (const module of CURRICULUM) {
     ];
   }
 
-  module.lesson.topicSessions = module.officialTopics.map((topic, index) => buildSpecificTopicSession({
-    moduleId: module.id,
-    moduleTitle: module.title,
-    disciplineId: module.disciplineId,
-    topic,
-    index,
-    baseDefinition: topicDefinition(topic, module.disciplineId),
-    baseExplanation: module.lesson.explanation,
-  }));
+  module.lesson.topicSessions = module.officialTopics.map((topic, index) => {
+    const topicGuide = getTopicGuide({
+      moduleId: module.id,
+      moduleTitle: module.title,
+      moduleDescription: module.description,
+      disciplineId: module.disciplineId,
+      topic,
+    });
+    return {
+      topic,
+      focus: `Sessão ${index + 1}: ${topic}`,
+      definition: topicGuide.definition,
+      explanation: `${topicGuide.explanation}${topicGuide.formula ? ` Fórmula de apoio: ${topicGuide.formula}.` : ""}`,
+      example: topicGuide.example,
+      checkpoint: topicGuide.checkpoint,
+      answer: topicGuide.answer,
+      practiceAction: topicGuide.practiceAction,
+      formula: topicGuide.formula,
+      formulaLatex: topicGuide.formulaLatex,
+    };
+  });
 }
 
 export const TRAINING_QUESTIONS: TrainingQuestion[] = [
@@ -566,7 +579,17 @@ TRAINING_QUESTIONS.push(...OFFICIAL_ENGINEERING_MODULES.flatMap((module) => {
 }));
 
 TRAINING_QUESTIONS.push(...CURRICULUM.flatMap((module) => module.officialTopics.map((topic, index): TrainingQuestion => {
-  const session = module.lesson.topicSessions?.find((item) => item.topic === topic) ?? buildSpecificTopicSession({ moduleId: module.id, moduleTitle: module.title, disciplineId: module.disciplineId, topic, index, baseDefinition: topicDefinition(topic, module.disciplineId), baseExplanation: module.lesson.explanation });
+  const topicGuide = getTopicGuide({ moduleId: module.id, moduleTitle: module.title, moduleDescription: module.description, disciplineId: module.disciplineId, topic });
+  const session = module.lesson.topicSessions?.find((item) => item.topic === topic) ?? {
+    topic,
+    focus: `Sessão ${index + 1}: ${topic}`,
+    definition: topicGuide.definition,
+    explanation: `${topicGuide.explanation}${topicGuide.formula ? ` Fórmula de apoio: ${topicGuide.formula}.` : ""}`,
+    example: topicGuide.example,
+    checkpoint: topicGuide.checkpoint,
+    answer: topicGuide.answer,
+    practiceAction: topicGuide.practiceAction,
+  };
   const question = buildTopicTrainingQuestion({ moduleTitle: module.title, topic, definition: session.definition, checkpoint: session.checkpoint, answer: session.answer, practiceAction: session.practiceAction });
   return {
     id: `q-${module.id}-topico-${index + 1}`,

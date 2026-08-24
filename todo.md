@@ -301,3 +301,10 @@
 - [x] Configurar a URL pública canónica para links de recuperação e e-mails no domínio preparatorio.morasio.shop
 - [x] Criar e aplicar favicon alinhado ao símbolo do logotipo LUANDA PREP
 - [x] Validar o link enviado por e-mail e o favicon publicados no domínio personalizado
+
+## Revisão curricular completa
+- [x] Inventariar aulas, definições, exemplos, fórmulas, perguntas e respostas por módulo
+- [x] Identificar e substituir conteúdos genéricos, lacunas pedagógicas e respostas sem explicação
+- [x] Reestruturar prioritariamente Matemática e Língua Portuguesa com conteúdo disciplinar correto
+- [x] Completar os demais módulos com conceitos, exemplos resolvidos, prática e critérios de resposta
+- [x] Cobrir a revisão curricular com testes de consistência, validar a experiência de estudo e publicar a atualização

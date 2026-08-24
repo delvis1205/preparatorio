@@ -82,4 +82,29 @@ describe("currículo pedagógico", () => {
       expect(module?.lesson.examples?.some((example) => example.walkthrough.includes(material.example)), `${moduleId} deve ter exemplo próprio`).toBe(true);
     }
   });
+
+  it("evita respostas-modelo nas sessões e nas questões geradas para cada tópico", () => {
+    const genericPatterns = [
+      /é um tópico oficial de/i,
+      /reconheça a ideia central/i,
+      /destaque primeiro os dados/i,
+      /identifique o conceito.*dados relevantes/i,
+      /construa uma resolução curta/i,
+    ];
+
+    for (const module of CURRICULUM) {
+      for (const session of module.lesson.topicSessions ?? []) {
+        const content = `${session.definition} ${session.explanation} ${session.example} ${session.answer}`;
+        for (const pattern of genericPatterns) {
+          expect(pattern.test(content), `${module.id}:${session.topic} não deve usar texto-padrão ${pattern}`).toBe(false);
+        }
+      }
+    }
+
+    for (const question of TRAINING_QUESTIONS) {
+      for (const pattern of genericPatterns) {
+        expect(pattern.test(question.explanation), `${question.id} não deve usar explicação-padrão`).toBe(false);
+      }
+    }
+  });
 });
