@@ -12,7 +12,10 @@ let _migrationPromise: Promise<void> | null = null;
 
 async function ensureSupabaseSchema(db: ReturnType<typeof drizzle>) {
   if (!process.env.VERCEL || _migrationPromise) return _migrationPromise;
-  _migrationPromise = migrate(db, { migrationsFolder: path.join(process.cwd(), "drizzle", "supabase") });
+  const migrationsFolder = process.env.VERCEL
+    ? path.join(process.cwd(), "api", "migrations")
+    : path.join(process.cwd(), "drizzle", "supabase");
+  _migrationPromise = migrate(db, { migrationsFolder });
   return _migrationPromise;
 }
 

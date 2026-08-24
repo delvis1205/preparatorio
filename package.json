@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
-    "build": "vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && esbuild server/_core/index.ts --platform=node --bundle --format=cjs --minify --outfile=api/server.cjs",
+    "build": "vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && esbuild server/_core/index.ts --platform=node --bundle --format=cjs --minify --outfile=api/server.cjs && rm -rf api/migrations && cp -R drizzle/supabase api/migrations",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc --noEmit",
     "format": "prettier --write .",
