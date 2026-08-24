@@ -18,6 +18,13 @@ function credentialError(error: unknown, mode: "login" | "register") {
   return mode === "login" ? "Não foi possível entrar agora. Tente novamente em instantes." : "Não foi possível criar a conta agora. Reveja os dados e tente novamente.";
 }
 
+function recoveryError(error: unknown) {
+  const raw = error instanceof Error ? error.message : "";
+  if (raw.includes("demorou demasiado") || raw.includes("timeout") || raw.includes("Unexpected token")) return "O serviço de e-mail demorou a responder. Aguarde alguns instantes e tente novamente.";
+  if (raw.includes("Não foi possível enviar")) return "Não foi possível enviar o link de recuperação agora. Tente novamente em instantes.";
+  return "Não foi possível concluir o pedido de recuperação agora. Tente novamente em instantes.";
+}
+
 export default function LoginPage() {
   const { user, loading, refresh } = useAuth(); const [, navigate] = useLocation(); const [mode, setMode] = useState<"login" | "register">("login"); const [name, setName] = useState(""); const [identifier, setIdentifier] = useState(""); const [phone, setPhone] = useState(""); const [password, setPassword] = useState(""); const [message, setMessage] = useState<string | null>(null); const login = trpc.auth.login.useMutation(); const register = trpc.auth.register.useMutation();
   useEffect(() => { if (!loading && user) navigate("/app", { replace: true }); }, [loading, navigate, user]);
@@ -28,9 +35,9 @@ export default function LoginPage() {
 }
 
 export function PasswordRecoveryPage() {
-  const [, navigate] = useLocation(); const [email, setEmail] = useState(""); const [sent, setSent] = useState(false); const request = trpc.auth.requestPasswordReset.useMutation();
-  async function submit(event: React.FormEvent) { event.preventDefault(); try { await request.mutateAsync({ email }); setSent(true); } catch { /* the mutation error is rendered below */ } }
-  return <AuthPanel><KeyRound className="mb-5 h-9 w-9 text-[#0A36A8]" /><p className="app-kicker">Recuperar acesso</p><h2 className="mt-2 text-3xl font-bold text-slate-950">Redefina a sua palavra-passe</h2>{sent ? <div className="mt-5 rounded-2xl bg-emerald-50 p-5 text-sm leading-6 text-emerald-800">Se houver uma conta com este e-mail, enviámos um link de redefinição. Verifique também a pasta de spam.</div> : <form onSubmit={submit} className="mt-6 space-y-4"><p className="leading-7 text-slate-600">Indique o e-mail associado à sua conta e receberá um link de uso único.</p><label className="block text-sm font-semibold text-slate-700">E-mail<input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4" placeholder="nome@exemplo.com" /></label>{request.error && <p className="text-sm text-rose-700">{request.error.message}</p>}<Button disabled={request.isPending} className="h-12 w-full bg-[#0A36A8]">{request.isPending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />A enviar…</> : "Enviar link de recuperação"}</Button></form>}<button type="button" onClick={() => navigate("/entrar")} className="mt-6 text-sm font-semibold text-[#0A36A8] hover:underline">Voltar à entrada</button></AuthPanel>;
+  const [, navigate] = useLocation(); const [email, setEmail] = useState(""); const [sent, setSent] = useState(false); const [message, setMessage] = useState<string | null>(null); const request = trpc.auth.requestPasswordReset.useMutation();
+  async function submit(event: React.FormEvent) { event.preventDefault(); setMessage(null); try { await request.mutateAsync({ email }); setSent(true); } catch (error) { setMessage(recoveryError(error)); } }
+  return <AuthPanel><KeyRound className="mb-5 h-9 w-9 text-[#0A36A8]" /><p className="app-kicker">Recuperar acesso</p><h2 className="mt-2 text-3xl font-bold text-slate-950">Redefina a sua palavra-passe</h2>{sent ? <div className="mt-5 rounded-2xl bg-emerald-50 p-5 text-sm leading-6 text-emerald-800">Se houver uma conta com este e-mail, enviámos um link de redefinição. Verifique também a pasta de spam.</div> : <form onSubmit={submit} className="mt-6 space-y-4"><p className="leading-7 text-slate-600">Indique o e-mail associado à sua conta e receberá um link de uso único.</p><label className="block text-sm font-semibold text-slate-700">E-mail<input required type="email" value={email} onChange={(event) => { setEmail(event.target.value); setMessage(null); }} autoComplete="email" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4" placeholder="nome@exemplo.com" /></label>{message && <p role="alert" className="text-sm text-rose-700">{message}</p>}<Button disabled={request.isPending} className="h-12 w-full bg-[#0A36A8]">{request.isPending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />A enviar…</> : "Enviar link de recuperação"}</Button></form>}<button type="button" onClick={() => navigate("/entrar")} className="mt-6 text-sm font-semibold text-[#0A36A8] hover:underline">Voltar à entrada</button></AuthPanel>;
 }
 
 export function ResetPasswordPage() {

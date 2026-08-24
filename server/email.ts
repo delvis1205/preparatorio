@@ -2,6 +2,7 @@ import { ENV } from "./_core/env";
 
 type EmailAction = { label: string; url: string };
 type EmailFrame = { eyebrow: string; title: string; intro: string; body: string; action?: EmailAction; preheader: string };
+const EMAIL_REQUEST_TIMEOUT_MS = 12_000;
 
 const escapeHtml = (value: string) => value.replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character] ?? character);
 const escapeUrl = (value: string) => escapeHtml(value).replace(/"/g, "%22");
@@ -13,8 +14,17 @@ function renderEmail(frame: EmailFrame) {
 
 async function sendEmail(input: { to: string; subject: string; text: string; frame: EmailFrame }) {
   if (!ENV.resendApiKey || !ENV.emailFrom) throw new Error("O serviço de e-mail não está configurado.");
-  const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${ENV.resendApiKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: ENV.emailFrom, to: [input.to], subject: input.subject, text: input.text, html: renderEmail(input.frame) }) });
-  if (!response.ok) throw new Error(`Falha no envio de e-mail: ${response.status} ${await response.text()}`);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), EMAIL_REQUEST_TIMEOUT_MS);
+  try {
+    const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${ENV.resendApiKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: ENV.emailFrom, to: [input.to], subject: input.subject, text: input.text, html: renderEmail(input.frame) }), signal: controller.signal });
+    if (!response.ok) throw new Error(`Falha no envio de e-mail: ${response.status} ${await response.text()}`);
+  } catch (error) {
+    if (controller.signal.aborted) throw new Error("O serviço de e-mail demorou demasiado a responder. Tente novamente em instantes.");
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export async function sendPasswordResetEmail(input: { to: string; name: string | null; resetUrl: string }) {

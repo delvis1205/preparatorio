@@ -291,3 +291,8 @@
 - [x] Preparar valores-modelo seguros para todas as variáveis de ambiente Vercel
 - [x] Compatibilizar a camada de persistência com a base Supabase externa e aplicar o esquema necessário
 - [x] Validar a conexão e a implantação com as novas configurações
+
+## Correção de recuperação de acesso em produção
+- [ ] Diagnosticar o erro de resposta não JSON no pedido de recuperação de palavra-passe
+- [ ] Verificar de forma segura as variáveis de e-mail, sessão e URL pública no ambiente Vercel
+- [ ] Corrigir e validar o envio do link de recuperação sem expor credenciais
