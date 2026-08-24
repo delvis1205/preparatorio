@@ -15,4 +15,5 @@ export const ENV = {
   cronSecret: process.env.CRON_SECRET ?? "",
   resendApiKey: process.env.RESEND_API_KEY ?? "",
   emailFrom: process.env.EMAIL_FROM ?? "",
+  appUrl: process.env.APP_URL ?? "",
 };

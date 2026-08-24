@@ -14,6 +14,7 @@ import { LOCAL_SESSION_COOKIE, LOCAL_SESSION_MAX_AGE_MS, createLocalSessionToken
 import { sendPasswordResetEmail } from "./email";
 import { sendOnce } from "./emailAutomation";
 import { sendWelcomeEmail } from "./email";
+import { getPublicAppOrigin } from "./publicAppUrl";
 import { z } from "zod";
 
 const passwordSchema = z.string().min(8, "Use pelo menos 8 caracteres.").max(128);
@@ -27,12 +28,11 @@ function safeUser(user: typeof users.$inferSelect) {
 }
 
 function getRequestOrigin(req: { protocol?: string; headers: Record<string, unknown>; get?: (header: string) => string | undefined }) {
-  const forwardedProto = typeof req.headers["x-forwarded-proto"] === "string" ? req.headers["x-forwarded-proto"].split(",")[0] : undefined;
-  const forwardedHost = typeof req.headers["x-forwarded-host"] === "string" ? req.headers["x-forwarded-host"].split(",")[0] : undefined;
-  const host = forwardedHost || req.get?.("host") || (typeof req.headers.host === "string" ? req.headers.host : undefined);
-  const protocol = forwardedProto || req.protocol || "https";
-  if (!host) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Não foi possível criar o link de recuperação." });
-  return `${protocol}://${host}`;
+  try {
+    return getPublicAppOrigin(req);
+  } catch {
+    throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Não foi possível criar o link de recuperação." });
+  }
 }
 
 export const appRouter = router({

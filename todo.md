@@ -296,3 +296,8 @@
 - [x] Diagnosticar o erro de resposta não JSON no pedido de recuperação de palavra-passe
 - [x] Verificar de forma segura as variáveis de e-mail, sessão e URL pública no ambiente Vercel
 - [x] Corrigir e validar o envio do link de recuperação sem expor credenciais
+
+## Domínio dos e-mails e favicon
+- [ ] Configurar a URL pública canónica para links de recuperação e e-mails no domínio preparatorio.morasio.shop
+- [ ] Criar e aplicar favicon alinhado ao símbolo do logotipo LUANDA PREP
+- [ ] Validar o link enviado por e-mail e o favicon publicados no domínio personalizado
