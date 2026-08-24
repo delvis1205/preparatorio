@@ -29,6 +29,13 @@
       "when": 1787565257187,
       "tag": "0003_bright_virginia_dare",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1787568446392,
+      "tag": "0004_soft_quicksilver",
+      "breakpoints": true
     }
   ]
 }

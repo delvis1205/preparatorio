@@ -228,5 +228,16 @@
 - [x] Adicionar efeito de digitação acessível e cancelável às respostas do LUANDA AI
 - [x] Criar painel de estatísticas diárias na página inicial autenticada, baseado na atividade real do estudante
 - [x] Substituir conteúdos genéricos por materiais específicos, explicações, respostas e exercícios em todos os módulos
-- [ ] Cobrir as novas regras e rotas com testes, validar a interface e salvar checkpoint final
-- [ ] Orientar a publicação da atualização validada
+- [x] Cobrir as novas regras e rotas com testes, validar a interface e salvar checkpoint final
+- [x] Orientar a publicação da atualização validada
+
+## Autenticação própria e recuperação de acesso
+- [x] Definir a recuperação segura por link de uso único enviado por e-mail
+- [x] Configurar o serviço de e-mail transacional para o envio do link de recuperação
+- [x] Adaptar o esquema de utilizador para nome, e-mail ou telefone, palavra-passe protegida e tokens de recuperação
+- [x] Implementar registo com nome, e-mail ou telefone e palavra-passe no primeiro acesso
+- [x] Implementar entrada e término de sessão por credenciais locais, sem OAuth Manus
+- [x] Implementar solicitação, validação e redefinição de palavra-passe esquecida
+- [x] Proteger as áreas pessoais com sessão local e preservar os dados existentes por utilizador
+- [x] Cobrir o novo fluxo de autenticação com testes e validar no preview
+- [ ] Salvar checkpoint final e orientar a publicação

@@ -1,5 +1,4 @@
 import { useAuth } from "@/_core/hooks/useAuth";
-import { startLogin } from "@/const";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -69,7 +68,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <p className="app-kicker">LUANDA PREP</p>
           <h1 className="mt-2 font-display text-3xl text-slate-950">Entre para continuar o seu percurso.</h1>
           <p className="mt-4 text-sm leading-6 text-slate-600">O seu progresso, respostas, simulados e notas ficam vinculados à sua conta.</p>
-          <Button onClick={() => startLogin()} className="mt-7 w-full rounded-xl bg-[#0A36A8] py-6 text-white hover:bg-[#092e90]">Entrar com Manus</Button>
+          <Button onClick={() => window.location.assign("/entrar")} className="mt-7 w-full rounded-xl bg-[#0A36A8] py-6 text-white hover:bg-[#092e90]">Entrar</Button>
         </section>
       </main>
     );

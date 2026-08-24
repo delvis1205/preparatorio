@@ -1,53 +1,30 @@
-import { useEffect } from "react";
-import { ArrowRight, BookOpen, ShieldCheck } from "lucide-react";
-import { startLogin } from "@/const";
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc";
+import { ArrowRight, BookOpen, KeyRound, ShieldCheck } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { useLocation } from "wouter";
+
+function AuthPanel({ children }: { children: ReactNode }) {
+  return <main className="min-h-screen bg-[#F7F9FC] text-slate-950"><div className="mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-6 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:px-10"><section className="relative overflow-hidden rounded-[2rem] bg-[#0A36A8] px-8 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-12 sm:py-16"><div className="absolute -right-24 -top-24 h-64 w-64 rounded-full border-[28px] border-[#FFCC5C]/20" /><div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[#FFCC5C]/10" /><div className="relative max-w-xl"><div className="mb-10 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold tracking-wide"><BookOpen className="h-4 w-4 text-[#FFCC5C]" />LUANDA PREP</div><p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#FFCC5C]">Estudo com direcção</p><h1 className="max-w-lg text-4xl font-bold leading-tight sm:text-6xl">Prepare-se para o exame com clareza e consistência.</h1><p className="mt-6 max-w-lg text-lg leading-8 text-blue-100">Módulos organizados, prática inteligente, revisão espaçada, simulados e apoio contextual do LUANDA AI numa única experiência.</p><div className="mt-10 grid gap-4 text-sm text-blue-100 sm:grid-cols-3"><div><strong className="block text-2xl text-white">5</strong>disciplinas</div><div><strong className="block text-2xl text-white">100%</strong>foco no percurso</div><div><strong className="block text-2xl text-white">AI</strong>tutor contextual</div></div></div></section><section className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-900/5 sm:p-10">{children}</section></div></main>;
+}
 
 export default function LoginPage() {
-  const { user, loading } = useAuth();
+  const { user, loading, refresh } = useAuth(); const [, navigate] = useLocation(); const [mode, setMode] = useState<"login" | "register">("login"); const [name, setName] = useState(""); const [identifier, setIdentifier] = useState(""); const [phone, setPhone] = useState(""); const [password, setPassword] = useState(""); const [message, setMessage] = useState<string | null>(null); const login = trpc.auth.login.useMutation(); const register = trpc.auth.register.useMutation();
+  useEffect(() => { if (!loading && user) navigate("/app", { replace: true }); }, [loading, navigate, user]);
+  const pending = login.isPending || register.isPending;
+  async function submit(event: React.FormEvent) { event.preventDefault(); setMessage(null); try { if (mode === "login") await login.mutateAsync({ identifier, password }); else await register.mutateAsync({ name, email: identifier, phone: phone || undefined, password }); await refresh(); navigate("/app", { replace: true }); } catch (error) { setMessage(error instanceof Error ? error.message : "Não foi possível concluir o acesso."); } }
+  return <AuthPanel><div className="mb-8"><p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#0A36A8]">Área do estudante</p><h2 className="text-3xl font-bold tracking-tight text-slate-950">{mode === "login" ? "Entre para continuar o seu percurso" : "Crie a sua conta de estudante"}</h2><p className="mt-3 leading-7 text-slate-600">{mode === "login" ? "Aceda com o seu e-mail ou telefone e a sua palavra-passe." : "O nome é pedido apenas no primeiro acesso. O e-mail permite recuperar a palavra-passe."}</p></div><div className="mb-7 grid grid-cols-2 rounded-xl bg-slate-100 p-1 text-sm font-semibold"><button type="button" onClick={() => setMode("login")} className={`rounded-lg px-3 py-2 ${mode === "login" ? "bg-white text-[#0A36A8] shadow-sm" : "text-slate-500"}`}>Entrar</button><button type="button" onClick={() => setMode("register")} className={`rounded-lg px-3 py-2 ${mode === "register" ? "bg-white text-[#0A36A8] shadow-sm" : "text-slate-500"}`}>Criar conta</button></div><form className="space-y-4" onSubmit={submit}>{mode === "register" && <label className="block text-sm font-semibold text-slate-700">Nome completo<input required value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4 outline-none focus:border-[#0A36A8] focus:ring-2 focus:ring-[#0A36A8]/15" placeholder="Como quer ser chamado?" /></label>}<label className="block text-sm font-semibold text-slate-700">{mode === "login" ? "E-mail ou telefone" : "E-mail"}<input required value={identifier} onChange={(event) => setIdentifier(event.target.value)} autoComplete={mode === "login" ? "username" : "email"} type={mode === "register" ? "email" : "text"} className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4 outline-none focus:border-[#0A36A8] focus:ring-2 focus:ring-[#0A36A8]/15" placeholder={mode === "login" ? "nome@exemplo.com ou +244…" : "nome@exemplo.com"} /></label>{mode === "register" && <label className="block text-sm font-semibold text-slate-700">Telefone <span className="font-normal text-slate-400">(opcional)</span><input value={phone} onChange={(event) => setPhone(event.target.value)} autoComplete="tel" type="tel" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4 outline-none focus:border-[#0A36A8] focus:ring-2 focus:ring-[#0A36A8]/15" placeholder="+244 9XX XXX XXX" /></label>}<label className="block text-sm font-semibold text-slate-700">Palavra-passe<input required minLength={8} value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} type="password" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4 outline-none focus:border-[#0A36A8] focus:ring-2 focus:ring-[#0A36A8]/15" placeholder="Pelo menos 8 caracteres" /></label>{message && <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">{message}</p>}<Button type="submit" disabled={pending} className="h-12 w-full bg-[#0A36A8] text-base font-semibold text-white hover:bg-[#082d8d]">{pending ? "A validar…" : mode === "login" ? "Entrar" : "Criar conta"}<ArrowRight className="ml-2 h-5 w-5" /></Button></form>{mode === "login" && <button type="button" onClick={() => navigate("/recuperar-acesso")} className="mt-5 w-full text-sm font-semibold text-[#0A36A8] hover:underline">Esqueci a palavra-passe</button>}<div className="mt-6 flex items-start gap-3 rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-slate-600"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#0A36A8]" /><span>A palavra-passe é armazenada apenas como hash protegido. O link de recuperação expira após 30 minutos.</span></div></AuthPanel>;
+}
 
-  useEffect(() => {
-    if (!loading && user) window.location.replace("/app");
-  }, [loading, user]);
+export function PasswordRecoveryPage() {
+  const [, navigate] = useLocation(); const [email, setEmail] = useState(""); const [sent, setSent] = useState(false); const request = trpc.auth.requestPasswordReset.useMutation();
+  async function submit(event: React.FormEvent) { event.preventDefault(); try { await request.mutateAsync({ email }); setSent(true); } catch { /* the mutation error is rendered below */ } }
+  return <AuthPanel><KeyRound className="mb-5 h-9 w-9 text-[#0A36A8]" /><p className="app-kicker">Recuperar acesso</p><h2 className="mt-2 text-3xl font-bold text-slate-950">Redefina a sua palavra-passe</h2>{sent ? <div className="mt-5 rounded-2xl bg-emerald-50 p-5 text-sm leading-6 text-emerald-800">Se houver uma conta com este e-mail, enviámos um link de redefinição. Verifique também a pasta de spam.</div> : <form onSubmit={submit} className="mt-6 space-y-4"><p className="leading-7 text-slate-600">Indique o e-mail associado à sua conta e receberá um link de uso único.</p><label className="block text-sm font-semibold text-slate-700">E-mail<input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4" placeholder="nome@exemplo.com" /></label>{request.error && <p className="text-sm text-rose-700">{request.error.message}</p>}<Button disabled={request.isPending} className="h-12 w-full bg-[#0A36A8]">{request.isPending ? "A enviar…" : "Enviar link de recuperação"}</Button></form>}<button type="button" onClick={() => navigate("/entrar")} className="mt-6 text-sm font-semibold text-[#0A36A8] hover:underline">Voltar à entrada</button></AuthPanel>;
+}
 
-  return (
-    <main className="min-h-screen bg-[#F7F9FC] text-slate-950">
-      <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-6 py-10 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
-        <section className="relative overflow-hidden rounded-[2rem] bg-[#0A36A8] px-8 py-12 text-white shadow-2xl shadow-blue-950/20 sm:px-12 sm:py-16">
-          <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full border-[28px] border-[#FFCC5C]/20" />
-          <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[#FFCC5C]/10" />
-          <div className="relative max-w-xl">
-            <div className="mb-10 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold tracking-wide">
-              <BookOpen className="h-4 w-4 text-[#FFCC5C]" />
-              LUANDA PREP
-            </div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-[#FFCC5C]">Estudo com direcção</p>
-            <h1 className="max-w-lg text-4xl font-bold leading-tight sm:text-6xl">Prepare-se para o exame com clareza e consistência.</h1>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-blue-100">Módulos organizados, prática inteligente, revisão espaçada, simulados e apoio contextual do LUANDA AI numa única experiência.</p>
-            <div className="mt-10 grid gap-4 text-sm text-blue-100 sm:grid-cols-3">
-              <div><strong className="block text-2xl text-white">5</strong>disciplinas</div>
-              <div><strong className="block text-2xl text-white">100%</strong>foco no percurso</div>
-              <div><strong className="block text-2xl text-white">AI</strong>tutor contextual</div>
-            </div>
-          </div>
-        </section>
-        <section className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-900/5 sm:p-10">
-          <div className="mb-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#0A36A8]">Área do estudante</p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-950">Entre para continuar o seu percurso</h2>
-            <p className="mt-3 leading-7 text-slate-600">Use a sua conta Manus para manter o perfil, o progresso, os favoritos, as revisões e os resultados sincronizados com segurança.</p>
-          </div>
-          <Button type="button" onClick={() => startLogin()} disabled={loading} className="h-12 w-full bg-[#0A36A8] text-base font-semibold text-white hover:bg-[#082d8d]">
-            {loading ? "A preparar acesso…" : "Entrar com Manus"}
-            {!loading && <ArrowRight className="ml-2 h-5 w-5" />}
-          </Button>
-          <div className="mt-6 flex items-start gap-3 rounded-2xl bg-blue-50 p-4 text-sm leading-6 text-slate-600">
-            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#0A36A8]" />
-            <span>A autenticação é gerida pela Manus. O LUANDA PREP não armazena palavras-passe próprias.</span>
-          </div>
-        </section>
-      </div>
-    </main>
-  );
+export function ResetPasswordPage() {
+  const [, navigate] = useLocation(); const token = new URLSearchParams(window.location.search).get("token") ?? ""; const [password, setPassword] = useState(""); const [confirm, setConfirm] = useState(""); const [message, setMessage] = useState<string | null>(null); const reset = trpc.auth.resetPassword.useMutation();
+  async function submit(event: React.FormEvent) { event.preventDefault(); if (password !== confirm) { setMessage("As palavras-passe não correspondem."); return; } try { await reset.mutateAsync({ token, password }); navigate("/app", { replace: true }); } catch (error) { setMessage(error instanceof Error ? error.message : "Não foi possível redefinir a palavra-passe."); } }
+  return <AuthPanel><KeyRound className="mb-5 h-9 w-9 text-[#0A36A8]" /><p className="app-kicker">Nova palavra-passe</p><h2 className="mt-2 text-3xl font-bold text-slate-950">Escolha uma nova palavra-passe</h2><form onSubmit={submit} className="mt-6 space-y-4"><label className="block text-sm font-semibold text-slate-700">Nova palavra-passe<input required minLength={8} type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="new-password" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4" /></label><label className="block text-sm font-semibold text-slate-700">Confirmar palavra-passe<input required minLength={8} type="password" value={confirm} onChange={(event) => setConfirm(event.target.value)} autoComplete="new-password" className="mt-2 h-12 w-full rounded-xl border border-slate-200 px-4" /></label>{message && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-700">{message}</p>}<Button disabled={reset.isPending || !token} className="h-12 w-full bg-[#0A36A8]">{reset.isPending ? "A redefinir…" : "Guardar nova palavra-passe"}</Button></form></AuthPanel>;
 }

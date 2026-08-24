@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import AboutPage from "@/pages/AboutPage";
-import LoginPage from "@/pages/LoginPage";
+import LoginPage, { PasswordRecoveryPage, ResetPasswordPage } from "@/pages/LoginPage";
 import QuizPage from "@/pages/QuizPage";
 import ChallengesPage from "@/pages/ChallengesPage";
 import TicTimelinePage from "@/pages/TicTimelinePage";
@@ -32,6 +32,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/sobre" component={AboutPage} />
       <Route path="/entrar" component={LoginPage} />
+      <Route path="/recuperar-acesso" component={PasswordRecoveryPage} />
+      <Route path="/redefinir-senha" component={ResetPasswordPage} />
       <Route path="/app" component={StudentDashboardPlus} />
       <Route path="/app/estudar" component={StudyPage} />
       <Route path="/app/aula/:moduleId" component={LessonPage} />
