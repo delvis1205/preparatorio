@@ -287,7 +287,7 @@
 - [x] Documentar o único conjunto de passos manuais restantes para ativar os fluxos externos no Vercel
 
 ## Valores-modelo e Supabase no Vercel
-- [ ] Inspecionar a integração Supabase criada no Vercel e identificar a string de conexão correta
-- [ ] Preparar valores-modelo seguros para todas as variáveis de ambiente Vercel
-- [ ] Compatibilizar a camada de persistência com a base Supabase externa e aplicar o esquema necessário
-- [ ] Validar a conexão e a implantação com as novas configurações
+- [x] Inspecionar a integração Supabase criada no Vercel e identificar a string de conexão correta
+- [x] Preparar valores-modelo seguros para todas as variáveis de ambiente Vercel
+- [x] Compatibilizar a camada de persistência com a base Supabase externa e aplicar o esquema necessário
+- [x] Validar a conexão e a implantação com as novas configurações
