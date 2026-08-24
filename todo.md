@@ -293,6 +293,6 @@
 - [x] Validar a conexão e a implantação com as novas configurações
 
 ## Correção de recuperação de acesso em produção
-- [ ] Diagnosticar o erro de resposta não JSON no pedido de recuperação de palavra-passe
-- [ ] Verificar de forma segura as variáveis de e-mail, sessão e URL pública no ambiente Vercel
-- [ ] Corrigir e validar o envio do link de recuperação sem expor credenciais
+- [x] Diagnosticar o erro de resposta não JSON no pedido de recuperação de palavra-passe
+- [x] Verificar de forma segura as variáveis de e-mail, sessão e URL pública no ambiente Vercel
+- [x] Corrigir e validar o envio do link de recuperação sem expor credenciais
