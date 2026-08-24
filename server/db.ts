@@ -1,11 +1,20 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { Pool } from "pg";
+import path from "path";
 import { InsertUser, users } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 let _pool: Pool | null = null;
+let _migrationPromise: Promise<void> | null = null;
+
+async function ensureSupabaseSchema(db: ReturnType<typeof drizzle>) {
+  if (!process.env.VERCEL || _migrationPromise) return _migrationPromise;
+  _migrationPromise = migrate(db, { migrationsFolder: path.join(process.cwd(), "drizzle", "supabase") });
+  return _migrationPromise;
+}
 
 export async function getDb() {
   if (!_db && ENV.databaseUrl) {
@@ -16,6 +25,7 @@ export async function getDb() {
         ssl: ENV.databaseUrl.includes("supabase") ? { rejectUnauthorized: false } : undefined,
       });
       _db = drizzle(_pool);
+      await ensureSupabaseSchema(_db);
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
