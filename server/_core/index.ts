@@ -2,11 +2,12 @@ import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import net from "net";
+import path from "path";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
-import type { serveStatic, setupVite } from "./vite";
+import type { setupVite } from "./vite";
 import { getLocalUserFromRequest } from "../localAuth";
 import { generateLessonExpansionPdf, generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
 import { getDb } from "../db";
@@ -18,11 +19,16 @@ import { requireCronTask } from "./cronAuth";
 import { sendWeeklyProgressEmails } from "../emailAutomation";
 
 type ViteRuntime = {
-  serveStatic: typeof serveStatic;
   setupVite: typeof setupVite;
 };
 
 const loadViteRuntime = () => (0, eval)("import('./vite.ts')") as Promise<ViteRuntime>;
+
+function serveProductionStatic(app: express.Express) {
+  const publicDir = path.resolve(process.cwd(), "dist", "public");
+  app.use(express.static(publicDir));
+  app.get("*", (_req, res) => res.sendFile(path.join(publicDir, "index.html")));
+}
 
 function requestOrigin(req: express.Request) {
   const forwardedProto = typeof req.headers["x-forwarded-proto"] === "string" ? req.headers["x-forwarded-proto"].split(",")[0] : undefined;
@@ -145,8 +151,7 @@ async function configureApp(app: express.Express, server?: ReturnType<typeof cre
     const { setupVite } = await loadViteRuntime();
     await setupVite(app, server);
   } else if (!process.env.VERCEL) {
-    const { serveStatic } = await loadViteRuntime();
-    serveStatic(app);
+    serveProductionStatic(app);
   }
 
   return app;

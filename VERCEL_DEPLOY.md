@@ -10,11 +10,11 @@ Configure as variáveis abaixo nos ambientes **Preview** e **Production** do pro
 | --- | --- |
 | `DATABASE_URL` | String de conexão MySQL/TiDB externa, com SSL conforme o provedor. |
 | `JWT_SECRET` | Segredo forte e aleatório para a sessão local dos estudantes. |
-| `OPENAI_API_KEY` | Chave de uma conta OpenAI para o LUANDA AI, usando `gpt-5-mini`. |
+| `GROQ_API_KEY` | Chave da GroqCloud para o LUANDA AI. |
+| `GROQ_MODEL` | Modelo Groq; o padrão é `openai/gpt-oss-20b`. |
 | `RESEND_API_KEY` | Chave Resend para recuperação, boas-vindas e e-mails de progresso. |
 | `EMAIL_FROM` | Remetente verificado no Resend, por exemplo `LUANDA PREP <noreply@dominio.example>`. |
 | `CRON_SECRET` | Segredo longo para autenticar o cron semanal do Vercel. |
-| `OPENAI_BASE_URL` | Opcional; só use para um endpoint OpenAI compatível. |
 
 ## Base de dados e primeiro deploy
 

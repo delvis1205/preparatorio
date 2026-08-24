@@ -217,9 +217,12 @@ const resolveApiUrl = () =>
 
 const assertApiKey = () => {
   if (!ENV.llmApiKey) {
-    throw new Error("OPENAI_API_KEY is not configured");
+    throw new Error("A chave do provedor de IA não está configurada.");
   }
 };
+
+export const getDefaultLlmModel = () =>
+  ENV.groqApiKey ? ENV.groqModel : "gpt-5-mini";
 
 const normalizeResponseFormat = ({
   responseFormat,
