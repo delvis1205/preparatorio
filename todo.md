@@ -258,8 +258,8 @@
 - [x] Atualizar o e-mail de recuperação de palavra-passe com o novo template de marca
 - [x] Enviar e-mail de boas-vindas automaticamente após o registo
 - [x] Implementar e-mail de progresso com métricas reais, próximo passo e CTA de retorno ao estudo
-- [ ] Configurar a automação semanal de progresso para e-mails de resumo
+- [x] Configurar a automação semanal de progresso para e-mails de resumo
 - [x] Auditar os módulos e substituir explicações, exemplos, perguntas e respostas genéricas
 - [x] Adicionar geração contextual de aula com IA, sempre ancorada no conteúdo curricular do módulo
 - [x] Cobrir os novos fluxos de e-mail e conteúdo com testes e validação
-- [ ] Salvar checkpoint final e entregar a atualização
+- [x] Salvar checkpoint final e entregar a atualização
