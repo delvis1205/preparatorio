@@ -250,4 +250,16 @@
 - [x] Adicionar ao perfil uma seção de alteração de palavra-passe com validação de confirmação
 - [x] Melhorar estados de carregamento e mensagens de erro para entrada e registo
 - [x] Cobrir os novos procedimentos e fluxos de interface com testes e validação no preview
+- [x] Salvar checkpoint final e entregar a atualização
+
+## Comunicações LUANDA PREP e aprofundamento pedagógico
+- [x] Definir gatilhos imediatos por marcos e resumo semanal automático de progresso
+- [x] Criar um template HTML responsivo com a identidade azul e dourada do LUANDA PREP
+- [x] Atualizar o e-mail de recuperação de palavra-passe com o novo template de marca
+- [x] Enviar e-mail de boas-vindas automaticamente após o registo
+- [x] Implementar e-mail de progresso com métricas reais, próximo passo e CTA de retorno ao estudo
+- [ ] Configurar a automação semanal de progresso para e-mails de resumo
+- [x] Auditar os módulos e substituir explicações, exemplos, perguntas e respostas genéricas
+- [x] Adicionar geração contextual de aula com IA, sempre ancorada no conteúdo curricular do módulo
+- [x] Cobrir os novos fluxos de e-mail e conteúdo com testes e validação
 - [ ] Salvar checkpoint final e entregar a atualização

@@ -137,3 +137,22 @@ export const passwordResetTokens = mysqlTable("password_reset_tokens", {
   uniqueIndex("password_reset_tokens_hash_unique").on(table.tokenHash),
   index("password_reset_tokens_user_idx").on(table.userId),
 ]);
+
+export const emailDeliveries = mysqlTable("email_deliveries", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  eventKey: varchar("eventKey", { length: 160 }).notNull(),
+  kind: mysqlEnum("kind", ["welcome", "password_reset", "module_complete", "simulation", "weekly_progress"]).notNull(),
+  subject: varchar("subject", { length: 240 }).notNull(),
+  sentAt: timestamp("sentAt").defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("email_deliveries_user_event_unique").on(table.userId, table.eventKey),
+  index("email_deliveries_user_idx").on(table.userId),
+]);
+
+export const automationConfig = mysqlTable("automation_config", {
+  id: int("id").autoincrement().primaryKey(),
+  configKey: varchar("configKey", { length: 80 }).notNull(),
+  scheduleCronTaskUid: varchar("scheduleCronTaskUid", { length: 65 }),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, (table) => [uniqueIndex("automation_config_key_unique").on(table.configKey)]);

@@ -1,5 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
+import { LessonExpansion } from "@/components/LessonExpansion";
 import DashboardLayout from "@/components/DashboardLayout";
 import { ShareInviteButton } from "@/components/ShareInviteButton";
 import { PdfExportModal } from "@/components/PdfExportModal";
@@ -67,7 +68,12 @@ const subjectPalette: Record<string, { accent: string; soft: string; label: stri
 const formatTime = (seconds: number) => `${Math.floor(seconds / 60).toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
 
 function AppFrame({ children }: { children: React.ReactNode }) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return <DashboardLayout>{children}<CurrentLessonExpansion /></DashboardLayout>;
+}
+
+function CurrentLessonExpansion() {
+  const [, params] = useRoute("/app/aula/:moduleId");
+  return params?.moduleId ? <div className="mt-6"><LessonExpansion moduleId={params.moduleId} /></div> : null;
 }
 
 function PageHeading({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: React.ReactNode }) {

@@ -12,6 +12,8 @@ import { passwordResetTokens, users } from "../drizzle/schema";
 import { getDb } from "./db";
 import { LOCAL_SESSION_COOKIE, LOCAL_SESSION_MAX_AGE_MS, createLocalSessionToken } from "./localAuth";
 import { sendPasswordResetEmail } from "./email";
+import { sendOnce } from "./emailAutomation";
+import { sendWelcomeEmail } from "./email";
 import { z } from "zod";
 
 const passwordSchema = z.string().min(8, "Use pelo menos 8 caracteres.").max(128);
@@ -55,6 +57,11 @@ export const appRouter = router({
       const token = await createLocalSessionToken(userId);
       ctx.res.cookie(LOCAL_SESSION_COOKIE, token, { ...getSessionCookieOptions(ctx.req), maxAge: LOCAL_SESSION_MAX_AGE_MS });
       const created = await db.select().from(users).where(eq(users.id, userId)).limit(1);
+      try {
+        await sendOnce({ userId, eventKey: "welcome", kind: "welcome", subject: "Bem-vindo ao LUANDA PREP", send: () => sendWelcomeEmail({ to: email, name: input.name, appUrl: `${getRequestOrigin(ctx.req)}/app` }) });
+      } catch (error) {
+        console.error("[Email] Falha ao enviar boas-vindas", error);
+      }
       return safeUser(created[0]!);
     }),
     login: publicProcedure.input(z.object({ identifier: z.string().trim().min(3).max(320), password: passwordSchema })).mutation(async ({ ctx, input }) => {

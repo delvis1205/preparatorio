@@ -7,6 +7,15 @@ import { getDb } from "../db";
 import { isWeeklyStudyPlan, luandaDateKey, selectDailyQuestion, type StudyPlanTask } from "../learningCycle";
 import { calculateMastery, masteryLabel } from "../mastery";
 import { protectedProcedure, router } from "../_core/trpc";
+import { sendModuleCompleteEmail, sendSimulationEmail } from "../email";
+import { sendOnce } from "../emailAutomation";
+
+function appUrl(req: { protocol?: string; headers: Record<string, unknown>; get?: (header: string) => string | undefined }) {
+  const forwardedProto = typeof req.headers["x-forwarded-proto"] === "string" ? req.headers["x-forwarded-proto"].split(",")[0] : undefined;
+  const forwardedHost = typeof req.headers["x-forwarded-host"] === "string" ? req.headers["x-forwarded-host"].split(",")[0] : undefined;
+  const host = forwardedHost || req.get?.("host") || (typeof req.headers.host === "string" ? req.headers.host : undefined);
+  return host ? `${forwardedProto || req.protocol || "https"}://${host}/app` : "/app";
+}
 
 const statusSchema = z.enum(["not_started", "in_progress", "completed", "review"]);
 const difficultySchema = z.enum(["Inicial", "Intermédio", "Avançado"]);
@@ -269,7 +278,13 @@ export const learningRouter = router({
       if (!module) throw new TRPCError({ code: "NOT_FOUND", message: "Módulo não encontrado." });
       const attempts = await db.select().from(questionAttempts).where(and(eq(questionAttempts.userId, ctx.user.id), eq(questionAttempts.moduleId, input.moduleId)));
       const mastery = calculateMastery({ attempts: attempts.length, correct: attempts.filter((attempt) => attempt.isCorrect).length, completionPercent: input.completionPercent, daysSinceLastStudy: 0 });
+      const existing = (await db.select().from(moduleProgress).where(and(eq(moduleProgress.userId, ctx.user.id), eq(moduleProgress.moduleId, input.moduleId))).limit(1))[0];
       await db.insert(moduleProgress).values({ userId: ctx.user.id, moduleId: input.moduleId, status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() }).onDuplicateKeyUpdate({ set: { status: input.status, completionPercent: input.completionPercent, mastery, currentLessonId: input.currentLessonId ?? module.lesson.id, lastAccessedAt: new Date() } });
+      if (input.status === "completed" && existing?.status !== "completed" && ctx.user.email) {
+        try {
+          await sendOnce({ userId: ctx.user.id, eventKey: `module-complete:${input.moduleId}`, kind: "module_complete", subject: `Módulo concluído: ${module.title} — LUANDA PREP`, send: () => sendModuleCompleteEmail({ to: ctx.user.email!, name: ctx.user.name, moduleTitle: module.title, mastery, appUrl: appUrl(ctx.req) }) });
+        } catch (error) { console.error("[Email] Falha ao enviar marco de módulo", error); }
+      }
       return { success: true, mastery, label: masteryLabel(mastery) };
     }),
   }),
@@ -419,7 +434,8 @@ export const learningRouter = router({
       }).filter(Boolean) as { question: TrainingQuestion; selectedOption: number; isCorrect: boolean }[];
       await Promise.all(results.map((result) => db.insert(questionAttempts).values({ userId: ctx.user.id, questionId: result.question.id, moduleId: result.question.moduleId, topic: result.question.topic, selectedOption: result.selectedOption, isCorrect: result.isCorrect, durationSeconds: Math.round(input.durationSeconds / Math.max(results.length, 1)) })));
       const correct = results.filter((result) => result.isCorrect).length;
-      await db.insert(simulationAttempts).values({ userId: ctx.user.id, mode: input.mode, totalQuestions: results.length, correctAnswers: correct, durationSeconds: input.durationSeconds, answers: input.answers, completedAt: new Date() });
+      const simulationResult = await db.insert(simulationAttempts).values({ userId: ctx.user.id, mode: input.mode, totalQuestions: results.length, correctAnswers: correct, durationSeconds: input.durationSeconds, answers: input.answers, completedAt: new Date() });
+      const simulationId = Number((simulationResult as unknown as [{ insertId: number }])[0].insertId);
       const byDiscipline = ["matematica", "fisica", "quimica", "geometria", "portugues", "cultura"].map((disciplineId) => {
         const entries = results.filter((result) => result.question.disciplineId === disciplineId);
         return { id: disciplineId, label: CURRICULUM.find((item) => item.disciplineId === disciplineId)?.discipline ?? disciplineId, total: entries.length, correct: entries.filter((entry) => entry.isCorrect).length };
@@ -433,7 +449,13 @@ export const learningRouter = router({
         return acc;
       }, {}));
       const weakTopic = [...byTopic].sort((a, b) => (a.correct / a.total) - (b.correct / b.total))[0];
-      return { total: results.length, correct, incorrect: results.length - correct, percent: results.length ? Math.round((correct / results.length) * 100) : 0, durationSeconds: input.durationSeconds, byDiscipline, byTopic, results: results.map((result) => ({ question: withoutAnswers(result.question), selectedOption: result.selectedOption, isCorrect: result.isCorrect, correctOption: result.question.correctOption, explanation: result.question.explanation })), recommendation: weak ? `Antes do próximo simulado, reveja ${weak.label}${weakTopic ? `, com foco em “${weakTopic.topic}”.` : "."}` : "Continue a praticar com questões de treino." };
+      const percent = results.length ? Math.round((correct / results.length) * 100) : 0;
+      if (ctx.user.email) {
+        try {
+          await sendOnce({ userId: ctx.user.id, eventKey: `simulation:${simulationId}`, kind: "simulation", subject: `Resultado do simulado: ${percent}% — LUANDA PREP`, send: () => sendSimulationEmail({ to: ctx.user.email!, name: ctx.user.name, percent, correct, total: results.length, appUrl: appUrl(ctx.req) }) });
+        } catch (error) { console.error("[Email] Falha ao enviar marco de simulado", error); }
+      }
+      return { total: results.length, correct, incorrect: results.length - correct, percent, durationSeconds: input.durationSeconds, byDiscipline, byTopic, results: results.map((result) => ({ question: withoutAnswers(result.question), selectedOption: result.selectedOption, isCorrect: result.isCorrect, correctOption: result.question.correctOption, explanation: result.question.explanation })), recommendation: weak ? `Antes do próximo simulado, reveja ${weak.label}${weakTopic ? `, com foco em “${weakTopic.topic}”.` : "."}` : "Continue a praticar com questões de treino." };
     }),
   }),
 });

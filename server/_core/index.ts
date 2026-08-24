@@ -11,7 +11,16 @@ import { getLocalUserFromRequest } from "../localAuth";
 import { generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
 import { getDb } from "../db";
 import { questionAttempts } from "../../drizzle/schema";
+import { automationConfig } from "../../drizzle/schema";
 import { eq } from "drizzle-orm";
+import { requireCronTask } from "./cronAuth";
+import { sendWeeklyProgressEmails } from "../emailAutomation";
+
+function requestOrigin(req: express.Request) {
+  const forwardedProto = typeof req.headers["x-forwarded-proto"] === "string" ? req.headers["x-forwarded-proto"].split(",")[0] : undefined;
+  const forwardedHost = typeof req.headers["x-forwarded-host"] === "string" ? req.headers["x-forwarded-host"].split(",")[0] : undefined;
+  return `${forwardedProto || req.protocol || "https"}://${forwardedHost || req.get("host")}`;
+}
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -94,6 +103,19 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  app.post("/api/scheduled/weekly-progress", async (req, res) => {
+    try {
+      const cron = await requireCronTask(req);
+      const db = await getDb();
+      const config = db ? (await db.select().from(automationConfig).where(eq(automationConfig.configKey, "weekly_progress")).limit(1))[0] : null;
+      if (!config || config.scheduleCronTaskUid !== cron.taskUid) return res.status(403).json({ error: "invalid scheduled task" });
+      const result = await sendWeeklyProgressEmails(requestOrigin(req));
+      return res.json({ ok: true, ...result });
+    } catch (error) {
+      console.error("[Weekly Progress Email]", error);
+      return res.status(500).json({ error: String(error), timestamp: new Date().toISOString() });
+    }
+  });
   registerStorageProxy(app);
   // tRPC API
   app.use(

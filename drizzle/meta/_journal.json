@@ -36,6 +36,13 @@
       "when": 1787568446392,
       "tag": "0004_soft_quicksilver",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1787571741584,
+      "tag": "0005_breezy_alex_power",
+      "breakpoints": true
     }
   ]
 }
