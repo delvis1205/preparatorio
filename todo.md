@@ -274,4 +274,5 @@
 - [x] Auditar a configuração de execução e as variáveis necessárias fora da Manus
 - [x] Adaptar as rotas de servidor e a configuração de implantação para Vercel
 - [x] Sincronizar todos os arquivos atualizados no repositório GitHub conectado
-- [ ] Criar ou atualizar a implantação Vercel e verificar a publicação
+- [x] Criar ou atualizar a implantação Vercel e verificar a publicação
+- [ ] Configurar no Vercel as variáveis privadas de banco, sessão, e-mail e IA para os fluxos autenticados
