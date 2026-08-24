@@ -273,5 +273,5 @@
 ## Sincronização GitHub e implantação Vercel
 - [x] Auditar a configuração de execução e as variáveis necessárias fora da Manus
 - [x] Adaptar as rotas de servidor e a configuração de implantação para Vercel
-- [ ] Sincronizar todos os arquivos atualizados no repositório GitHub conectado
+- [x] Sincronizar todos os arquivos atualizados no repositório GitHub conectado
 - [ ] Criar ou atualizar a implantação Vercel e verificar a publicação
