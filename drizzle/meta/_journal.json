@@ -43,6 +43,13 @@
       "when": 1787571741584,
       "tag": "0005_breezy_alex_power",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1787573252682,
+      "tag": "0006_quiet_tinkerer",
+      "breakpoints": true
     }
   ]
 }

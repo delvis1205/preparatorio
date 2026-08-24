@@ -263,3 +263,9 @@
 - [x] Adicionar geração contextual de aula com IA, sempre ancorada no conteúdo curricular do módulo
 - [x] Cobrir os novos fluxos de e-mail e conteúdo com testes e validação
 - [x] Salvar checkpoint final e entregar a atualização
+
+## Aprofundamentos complementares do LUANDA AI
+- [x] Modelar o armazenamento privado de aprofundamentos complementares por estudante e aula
+- [x] Permitir guardar e consultar aprofundamentos no contexto de cada aula
+- [x] Permitir exportar um aprofundamento guardado em formato PDF
+- [x] Cobrir salvamento e exportação com testes, validação visual e publicação

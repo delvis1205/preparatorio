@@ -126,6 +126,23 @@ export const aiMessages = mysqlTable("ai_messages", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 }, (table) => [index("ai_messages_conversation_idx").on(table.conversationId)]);
 
+export const savedLessonExpansions = mysqlTable("saved_lesson_expansions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  moduleId: varchar("moduleId", { length: 120 }).notNull(),
+  focus: varchar("focus", { length: 240 }).notNull(),
+  title: varchar("title", { length: 240 }).notNull(),
+  explanation: text("explanation").notNull(),
+  workedExample: text("workedExample").notNull(),
+  selfCheck: text("selfCheck").notNull(),
+  answerGuide: text("answerGuide").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, (table) => [
+  index("saved_lesson_expansions_user_idx").on(table.userId),
+  index("saved_lesson_expansions_user_module_idx").on(table.userId, table.moduleId),
+]);
+
 export const passwordResetTokens = mysqlTable("password_reset_tokens", {
   id: int("id").autoincrement().primaryKey(),
   userId: int("userId").notNull(),

@@ -9,6 +9,18 @@ export interface PdfExportOptions {
   title?: string;
 }
 
+export interface LessonExpansionPdfOptions {
+  moduleTitle: string;
+  discipline: string;
+  focus: string;
+  title: string;
+  explanation: string;
+  workedExample: string;
+  selfCheck: string;
+  answerGuide: string;
+  savedAt: Date;
+}
+
 function addWatermarkAndHeaders(doc: PDFKit.PDFDocument, subtitle: string) {
   const range = doc.bufferedPageRange();
   for (let i = range.start; i < range.start + range.count; i++) {
@@ -32,6 +44,37 @@ function addWatermarkAndHeaders(doc: PDFKit.PDFDocument, subtitle: string) {
     doc.text('Contacto: +244 973 929 712 | Plataforma Gratuita de Exame', 50, 790, { align: 'left' });
     doc.text(`Página ${i + 1}`, 500, 790, { align: 'right' });
   }
+}
+
+export function generateLessonExpansionPdf(expansion: LessonExpansionPdfOptions): PDFKit.PDFDocument {
+  const doc = new PDFDocument({ size: "A4", margins: { top: 58, bottom: 58, left: 50, right: 50 }, bufferPages: true });
+  const ensureSpace = (height: number) => { if (doc.y + height > 755) { doc.addPage(); doc.y = 58; } };
+  const section = (label: string, content: string, color = "#0A36A8") => {
+    ensureSpace(85);
+    doc.fontSize(10).fillColor(color).text(label.toUpperCase(), { characterSpacing: 0.8 });
+    doc.moveDown(0.35);
+    doc.fontSize(10).fillColor("#334155").text(content, { lineGap: 5 });
+    doc.moveDown(1.2);
+  };
+  doc.rect(0, 0, 595.28, 170).fill("#0A36A8");
+  doc.fontSize(24).fillColor("#FFFFFF").text("LUANDA PREP", 50, 58);
+  doc.fontSize(11).fillColor("#FFCC5C").text("APROFUNDAMENTO COMPLEMENTAR — LUANDA AI", 50, 94, { characterSpacing: 0.7 });
+  doc.fontSize(9).fillColor("#DCE8FF").text(`${expansion.discipline} · ${expansion.moduleTitle}`, 50, 122);
+  doc.y = 205;
+  doc.fontSize(9).fillColor("#0A36A8").text(expansion.focus.toUpperCase(), { characterSpacing: 0.7 });
+  doc.moveDown(0.5);
+  doc.fontSize(20).fillColor("#0F172A").text(expansion.title, { lineGap: 5 });
+  doc.moveDown(1);
+  doc.fontSize(9).fillColor("#64748B").text(`Guardado em ${expansion.savedAt.toLocaleDateString("pt-PT")}. Material complementar gerado pelo LUANDA AI a partir do currículo do módulo; confirme sempre com a aula e o programa oficial.`);
+  doc.moveDown(1.4);
+  section("Explicação complementar", expansion.explanation);
+  section("Exemplo orientado", expansion.workedExample, "#087765");
+  section("Auto-verificação", expansion.selfCheck, "#A15C00");
+  section("Guia de resposta", expansion.answerGuide, "#7A3C85");
+  doc.moveDown(0.5);
+  doc.fontSize(8).fillColor("#64748B").text("Este conteúdo não substitui a aula-base nem o programa oficial. Use-o para rever, explicar e praticar o raciocínio.", { align: "center" });
+  addWatermarkAndHeaders(doc, "Aprofundamento complementar LUANDA AI");
+  return doc;
 }
 
 export function generateModuleStudyGuidePdf(options: PdfExportOptions): PDFKit.PDFDocument {

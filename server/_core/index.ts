@@ -8,11 +8,12 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { getLocalUserFromRequest } from "../localAuth";
-import { generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
+import { generateLessonExpansionPdf, generateModuleStudyGuidePdf, generateSimulatedExamPdf, generateErrorSheetPdf } from "../pdfExport";
 import { getDb } from "../db";
-import { questionAttempts } from "../../drizzle/schema";
+import { questionAttempts, savedLessonExpansions } from "../../drizzle/schema";
 import { automationConfig } from "../../drizzle/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
+import { getModule } from "../content";
 import { requireCronTask } from "./cronAuth";
 import { sendWeeklyProgressEmails } from "../emailAutomation";
 
@@ -64,7 +65,16 @@ async function startServer() {
       let doc: PDFKit.PDFDocument;
       let filename = "luanda-prep-documento.pdf";
 
-      if (exportType === "exam") {
+      if (exportType === "expansion") {
+        const expansionId = Number(req.query.expansionId);
+        if (!Number.isInteger(expansionId) || expansionId <= 0) return res.status(400).json({ error: "Aprofundamento inválido." });
+        const db = await getDb();
+        const expansion = db ? (await db.select().from(savedLessonExpansions).where(and(eq(savedLessonExpansions.id, expansionId), eq(savedLessonExpansions.userId, user.id))).limit(1))[0] : null;
+        if (!expansion) return res.status(404).json({ error: "Aprofundamento não encontrado." });
+        const module = getModule(expansion.moduleId);
+        doc = generateLessonExpansionPdf({ moduleTitle: module?.title ?? "Aula", discipline: module?.discipline ?? "LUANDA PREP", focus: expansion.focus, title: expansion.title, explanation: expansion.explanation, workedExample: expansion.workedExample, selfCheck: expansion.selfCheck, answerGuide: expansion.answerGuide, savedAt: expansion.createdAt });
+        filename = `luanda-prep-aprofundamento-${expansion.id}.pdf`;
+      } else if (exportType === "exam") {
         const rawIds = typeof req.query.questionIds === "string" ? req.query.questionIds : "";
         const questionIds = rawIds ? rawIds.split(",") : undefined;
         doc = generateSimulatedExamPdf({ questionIds, includeAnswers, title });

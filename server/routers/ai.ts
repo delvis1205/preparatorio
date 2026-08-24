@@ -1,13 +1,22 @@
 import { TRPCError } from "@trpc/server";
-import { and, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import { aiConversations, aiMessages } from "../../drizzle/schema";
+import { aiConversations, aiMessages, savedLessonExpansions } from "../../drizzle/schema";
 import { getModule, getQuestion } from "../content";
 import { getDb } from "../db";
 import { invokeLLM } from "../_core/llm";
 import { protectedProcedure, router } from "../_core/trpc";
 
 const messageSchema = z.object({ role: z.enum(["user", "assistant"]), content: z.string() });
+const savedExpansionSchema = z.object({
+  moduleId: z.string().min(1).max(120),
+  focus: z.string().min(1).max(240),
+  title: z.string().min(1).max(240),
+  explanation: z.string().min(1).max(12000),
+  workedExample: z.string().min(1).max(6000),
+  selfCheck: z.string().min(1).max(4000),
+  answerGuide: z.string().min(1).max(4000),
+});
 
 export const aiRouter = router({
   conversations: protectedProcedure.query(async ({ ctx }) => {
@@ -22,6 +31,21 @@ export const aiRouter = router({
     const conversation = await db.select().from(aiConversations).where(and(eq(aiConversations.id, input.conversationId), eq(aiConversations.userId, ctx.user.id))).limit(1);
     if (!conversation[0]) throw new TRPCError({ code: "FORBIDDEN", message: "Esta conversa não está disponível." });
     return db.select().from(aiMessages).where(eq(aiMessages.conversationId, input.conversationId)).orderBy(aiMessages.createdAt);
+  }),
+
+  savedLessonExpansions: protectedProcedure.input(z.object({ moduleId: z.string().min(1).max(120) })).query(async ({ ctx, input }) => {
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+    return db.select().from(savedLessonExpansions).where(and(eq(savedLessonExpansions.userId, ctx.user.id), eq(savedLessonExpansions.moduleId, input.moduleId))).orderBy(desc(savedLessonExpansions.createdAt));
+  }),
+
+  saveLessonExpansion: protectedProcedure.input(savedExpansionSchema).mutation(async ({ ctx, input }) => {
+    if (!getModule(input.moduleId)) throw new TRPCError({ code: "NOT_FOUND", message: "Módulo não encontrado." });
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+    const result = await db.insert(savedLessonExpansions).values({ userId: ctx.user.id, ...input });
+    const id = Number((result as unknown as [{ insertId: number }])[0].insertId);
+    return { id };
   }),
 
   lessonExpansion: protectedProcedure.input(z.object({ moduleId: z.string().min(1), topic: z.string().max(180).optional() })).mutation(async ({ input }) => {
