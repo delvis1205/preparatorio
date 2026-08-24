@@ -10,6 +10,13 @@ let _db: ReturnType<typeof drizzle> | null = null;
 let _pool: Pool | null = null;
 let _migrationPromise: Promise<void> | null = null;
 
+function normalizeSupabaseConnectionString(connectionString: string) {
+  const url = new URL(connectionString);
+  url.searchParams.delete("sslmode");
+  url.searchParams.delete("sslrootcert");
+  return url.toString();
+}
+
 async function ensureSupabaseSchema(db: ReturnType<typeof drizzle>) {
   if (!process.env.VERCEL || _migrationPromise) return _migrationPromise;
   const migrationsFolder = process.env.VERCEL
@@ -23,7 +30,7 @@ export async function getDb() {
   if (!_db && ENV.databaseUrl) {
     try {
       _pool = new Pool({
-        connectionString: ENV.databaseUrl,
+        connectionString: ENV.databaseUrl.includes("supabase") ? normalizeSupabaseConnectionString(ENV.databaseUrl) : ENV.databaseUrl,
         max: 1,
         ssl: ENV.databaseUrl.includes("supabase") ? { rejectUnauthorized: false } : undefined,
       });
