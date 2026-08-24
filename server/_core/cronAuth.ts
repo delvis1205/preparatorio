@@ -4,8 +4,12 @@ import type { Request } from "express";
 import { ENV } from "./env";
 
 export async function requireCronTask(req: Request) {
+  const authorization = req.headers.authorization;
+  if (ENV.cronSecret && authorization === `Bearer ${ENV.cronSecret}`) {
+    return { taskUid: "vercel-weekly-progress" };
+  }
   const cookieToken = parseCookie(req.headers.cookie ?? "").app_session_id;
-  const headerToken = typeof req.headers.authorization === "string" && req.headers.authorization.startsWith("Bearer ") ? req.headers.authorization.slice(7) : undefined;
+  const headerToken = typeof authorization === "string" && authorization.startsWith("Bearer ") ? authorization.slice(7) : undefined;
   const token = cookieToken ?? headerToken;
   if (!token) throw new Error("missing scheduled task token");
   const { payload } = await jwtVerify(token, new TextEncoder().encode(ENV.cookieSecret), { algorithms: ["HS256"] });

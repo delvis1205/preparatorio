@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist/public",
+  "functions": {
+    "api/index.ts": {
+      "runtime": "nodejs22.x",
+      "maxDuration": 60
+    },
+    "api/[...path].ts": {
+      "runtime": "nodejs22.x",
+      "maxDuration": 60
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/scheduled/weekly-progress",
+      "schedule": "0 8 * * 1"
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

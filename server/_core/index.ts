@@ -42,10 +42,8 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
   throw new Error(`No available port found starting from ${startPort}`);
 }
 
-async function startServer() {
-  const app = express();
+async function configureApp(app: express.Express, server?: ReturnType<typeof createServer>) {
   app.set("trust proxy", 1);
-  const server = createServer(app);
   app.get("/api/health", (_req, res) => res.status(200).json({ ok: true, service: "luanda-prep" }));
 
   // PDF Export Endpoint
@@ -118,7 +116,7 @@ async function startServer() {
       const cron = await requireCronTask(req);
       const db = await getDb();
       const config = db ? (await db.select().from(automationConfig).where(eq(automationConfig.configKey, "weekly_progress")).limit(1))[0] : null;
-      if (!config || config.scheduleCronTaskUid !== cron.taskUid) return res.status(403).json({ error: "invalid scheduled task" });
+      if (!config || (config.scheduleCronTaskUid !== cron.taskUid && cron.taskUid !== "vercel-weekly-progress")) return res.status(403).json({ error: "invalid scheduled task" });
       const result = await sendWeeklyProgressEmails(requestOrigin(req));
       return res.json({ ok: true, ...result });
     } catch (error) {
@@ -136,11 +134,23 @@ async function startServer() {
     })
   );
   // development mode uses Vite, production mode uses static files
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" && server) {
     await setupVite(app, server);
-  } else {
+  } else if (!process.env.VERCEL) {
     serveStatic(app);
   }
+
+  return app;
+}
+
+export function createApp() {
+  return configureApp(express());
+}
+
+async function startServer() {
+  const app = express();
+  const server = createServer(app);
+  await configureApp(app, server);
 
   const preferredPort = parseInt(process.env.PORT || "3000");
   const port = await findAvailablePort(preferredPort);
@@ -154,4 +164,6 @@ async function startServer() {
   });
 }
 
-startServer().catch(console.error);
+if (!process.env.VERCEL) {
+  startServer().catch(console.error);
+}

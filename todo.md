@@ -269,3 +269,9 @@
 - [x] Permitir guardar e consultar aprofundamentos no contexto de cada aula
 - [x] Permitir exportar um aprofundamento guardado em formato PDF
 - [x] Cobrir salvamento e exportação com testes, validação visual e publicação
+
+## Sincronização GitHub e implantação Vercel
+- [x] Auditar a configuração de execução e as variáveis necessárias fora da Manus
+- [x] Adaptar as rotas de servidor e a configuração de implantação para Vercel
+- [ ] Sincronizar todos os arquivos atualizados no repositório GitHub conectado
+- [ ] Criar ou atualizar a implantação Vercel e verificar a publicação
