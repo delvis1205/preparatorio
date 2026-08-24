@@ -136,7 +136,8 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem onClick={() => setLocation("/app/perfil")} className="cursor-pointer"><UserRound className="mr-2 h-4 w-4" />Perfil</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLocation("/app/perfil")} className="cursor-pointer"><UserRound className="mr-2 h-4 w-4" />Conta e segurança</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLocation("/app/preferencias")} className="cursor-pointer"><UserRound className="mr-2 h-4 w-4" />Preferências</DropdownMenuItem>
               <DropdownMenuItem onClick={logout} className="cursor-pointer text-destructive focus:text-destructive"><LogOut className="mr-2 h-4 w-4" />Sair</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

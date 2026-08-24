@@ -240,4 +240,14 @@
 - [x] Implementar solicitação, validação e redefinição de palavra-passe esquecida
 - [x] Proteger as áreas pessoais com sessão local e preservar os dados existentes por utilizador
 - [x] Cobrir o novo fluxo de autenticação com testes e validar no preview
-- [ ] Salvar checkpoint final e orientar a publicação
+- [x] Salvar checkpoint final e orientar a publicação
+
+## Gestão de conta e experiência de credenciais
+- [x] Auditar a página de perfil e os formulários locais de entrada e registo
+- [x] Criar procedimentos protegidos para atualizar e-mail e telefone da conta
+- [x] Criar procedimento protegido para alterar palavra-passe com confirmação da palavra-passe atual
+- [x] Adicionar ao perfil uma seção de dados de acesso com atualização de e-mail e telefone
+- [x] Adicionar ao perfil uma seção de alteração de palavra-passe com validação de confirmação
+- [x] Melhorar estados de carregamento e mensagens de erro para entrada e registo
+- [x] Cobrir os novos procedimentos e fluxos de interface com testes e validação no preview
+- [ ] Salvar checkpoint final e entregar a atualização

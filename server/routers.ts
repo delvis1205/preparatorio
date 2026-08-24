@@ -1,11 +1,11 @@
 import { COOKIE_NAME } from "@shared/const";
-import { and, eq, isNull } from "drizzle-orm";
+import { and, eq, isNull, ne } from "drizzle-orm";
 import { randomBytes, createHash } from "node:crypto";
 import bcrypt from "bcryptjs";
 import { TRPCError } from "@trpc/server";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { aiRouter } from "./routers/ai";
 import { learningRouter } from "./routers/learning";
 import { passwordResetTokens, users } from "../drizzle/schema";
@@ -104,6 +104,30 @@ export const appRouter = router({
       const sessionToken = await createLocalSessionToken(user.id);
       ctx.res.cookie(LOCAL_SESSION_COOKIE, sessionToken, { ...getSessionCookieOptions(ctx.req), maxAge: LOCAL_SESSION_MAX_AGE_MS });
       return safeUser(user);
+    }),
+    updateContact: protectedProcedure.input(z.object({ name: z.string().trim().min(2).max(80), email: z.string().email(), phone: phoneSchema, currentPassword: passwordSchema })).mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db || !ctx.user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+      if (!ctx.user.passwordHash || !(await bcrypt.compare(input.currentPassword, ctx.user.passwordHash))) throw new TRPCError({ code: "UNAUTHORIZED", message: "A palavra-passe atual não está correta." });
+      const email = normalizeEmail(input.email);
+      const duplicateEmail = await db.select({ id: users.id }).from(users).where(and(eq(users.email, email), ne(users.id, ctx.user.id))).limit(1);
+      const duplicatePhone = input.phone ? await db.select({ id: users.id }).from(users).where(and(eq(users.phone, input.phone), ne(users.id, ctx.user.id))).limit(1) : [];
+      if (duplicateEmail[0] || duplicatePhone[0]) throw new TRPCError({ code: "CONFLICT", message: "Já existe uma conta com este e-mail ou telefone." });
+      await db.update(users).set({ name: input.name, email, phone: input.phone ?? null, updatedAt: new Date() }).where(eq(users.id, ctx.user.id));
+      const updated = (await db.select().from(users).where(eq(users.id, ctx.user.id)).limit(1))[0];
+      if (!updated) throw new TRPCError({ code: "NOT_FOUND", message: "Conta não encontrada." });
+      return safeUser(updated);
+    }),
+    changePassword: protectedProcedure.input(z.object({ currentPassword: passwordSchema, newPassword: passwordSchema })).mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db || !ctx.user) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "A base de dados não está disponível." });
+      if (!ctx.user.passwordHash || !(await bcrypt.compare(input.currentPassword, ctx.user.passwordHash))) throw new TRPCError({ code: "UNAUTHORIZED", message: "A palavra-passe atual não está correta." });
+      if (await bcrypt.compare(input.newPassword, ctx.user.passwordHash)) throw new TRPCError({ code: "BAD_REQUEST", message: "Escolha uma palavra-passe diferente da atual." });
+      const passwordHash = await bcrypt.hash(input.newPassword, 12);
+      await db.update(users).set({ passwordHash, updatedAt: new Date(), lastSignedIn: new Date() }).where(eq(users.id, ctx.user.id));
+      const sessionToken = await createLocalSessionToken(ctx.user.id);
+      ctx.res.cookie(LOCAL_SESSION_COOKIE, sessionToken, { ...getSessionCookieOptions(ctx.req), maxAge: LOCAL_SESSION_MAX_AGE_MS });
+      return { success: true } as const;
     }),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);

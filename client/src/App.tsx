@@ -3,6 +3,7 @@ import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import AboutPage from "@/pages/AboutPage";
 import LoginPage, { PasswordRecoveryPage, ResetPasswordPage } from "@/pages/LoginPage";
+import AccountSettingsPage from "@/pages/AccountSettingsPage";
 import QuizPage from "@/pages/QuizPage";
 import ChallengesPage from "@/pages/ChallengesPage";
 import TicTimelinePage from "@/pages/TicTimelinePage";
@@ -47,7 +48,8 @@ function Router() {
       <Route path="/app/ia" component={AiPage} />
       <Route path="/app/plano" component={PlanPage} />
       <Route path="/app/progresso" component={ProgressPage} />
-      <Route path="/app/perfil" component={ProfilePage} />
+      <Route path="/app/perfil" component={AccountSettingsPage} />
+      <Route path="/app/preferencias" component={ProfilePage} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
