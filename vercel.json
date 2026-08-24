@@ -7,9 +7,6 @@
   "functions": {
     "api/index.ts": {
       "maxDuration": 60
-    },
-    "api/[...path].ts": {
-      "maxDuration": 60
     }
   },
   "crons": [
@@ -19,6 +16,7 @@
     }
   ],
   "routes": [
+    { "src": "/api/(?<path>.*)", "dest": "/api/index?path=$path" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
