@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
-import { createApp } from "../server/_core/index";
 
-let appPromise: ReturnType<typeof createApp> | undefined;
+type ServerBundle = { createApp: () => Promise<(req: Request, res: Response) => unknown> };
+const loadServerBundle = Function("return import('./server.mjs')") as () => Promise<ServerBundle>;
+let appPromise: ReturnType<ServerBundle["createApp"]> | undefined;
 
 export default async function handler(req: Request, res: Response) {
   const routedPath = typeof req.query.path === "string" ? req.query.path.replace(/^\/+/, "") : "";
@@ -10,7 +11,10 @@ export default async function handler(req: Request, res: Response) {
     url.searchParams.delete("path");
     req.url = `/api/${routedPath}${url.search}`;
   }
-  appPromise ??= createApp();
+  if (!appPromise) {
+    const server = await loadServerBundle();
+    appPromise = server.createApp();
+  }
   const app = await appPromise;
   return app(req, res);
 }
