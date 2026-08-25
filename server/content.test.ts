@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CURRICULUM, OFFICIAL_PDF_COVERAGE, TRAINING_QUESTIONS } from "./content";
 import { OFFICIAL_PDF_SUBTOPICS } from "./officialPdfSubtopics";
 import { MODULE_TEACHING_MATERIAL } from "./moduleMaterials";
+import { getCurriculumQualityReport } from "./curriculumQuality";
 
 describe("currículo pedagógico", () => {
   it("oferece um exemplo guiado e uma verificação rápida em cada aula", () => {
@@ -106,5 +107,11 @@ describe("currículo pedagógico", () => {
         expect(pattern.test(question.explanation), `${question.id} não deve usar explicação-padrão`).toBe(false);
       }
     }
+  });
+
+  it("bloqueia sessões e questões que não tenham cobertura específica e suficiente do tópico", () => {
+    const report = getCurriculumQualityReport(CURRICULUM, TRAINING_QUESTIONS);
+    expect(report.sessionIssues).toEqual([]);
+    expect(report.questionIssues).toEqual([]);
   });
 });

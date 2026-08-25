@@ -10,6 +10,7 @@
     "check": "tsc --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
+    "audit:curriculum": "tsx scripts/audit-curriculum.mjs",
     "db:push": "drizzle-kit generate --config=drizzle.supabase.config.ts && drizzle-kit migrate --config=drizzle.supabase.config.ts",
     "db:supabase:generate": "drizzle-kit generate --config=drizzle.supabase.config.ts",
     "db:supabase:migrate": "drizzle-kit migrate --config=drizzle.supabase.config.ts"

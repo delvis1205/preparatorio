@@ -1,4 +1,5 @@
 import { CURRICULUM, TRAINING_QUESTIONS } from "../server/content.ts";
+import { getCurriculumQualityReport } from "../server/curriculumQuality.ts";
 
 const patterns = {
   genericDefinition: /tópico oficial de|reconheça a ideia central/i,
@@ -33,6 +34,7 @@ const rows = CURRICULUM.map((module) => {
 });
 
 console.table(rows);
+const qualityReport = getCurriculumQualityReport(CURRICULUM, TRAINING_QUESTIONS);
 console.log(JSON.stringify({
   totals: rows.reduce((total, row) => ({
     modules: total.modules + 1,
@@ -47,4 +49,13 @@ console.log(JSON.stringify({
   residualTopics: CURRICULUM.flatMap((module) => (module.lesson.topicSessions ?? [])
     .filter((session) => /integra o módulo/i.test(session.definition))
     .map((session) => ({ moduleId: module.id, disciplineId: module.disciplineId, topic: session.topic }))),
+  quality: {
+    sessionIssues: qualityReport.sessionIssues,
+    questionIssues: qualityReport.questionIssues,
+  },
 }, null, 2));
+
+if (qualityReport.hasIssues) {
+  console.error(`Auditoria reprovada: ${qualityReport.sessionIssues.length} problemas de sessão e ${qualityReport.questionIssues.length} problemas de questão.`);
+  process.exitCode = 1;
+}

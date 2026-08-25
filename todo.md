@@ -320,3 +320,9 @@
 - [x] Adicionar feedback visual de carregamento e proteção contra envio duplicado em entrada e registo
 - [x] Dividir o bundle JavaScript do cliente sem alterar os fluxos de navegação
 - [x] Validar interação, testes, build e publicação das otimizações
+
+## Proteção contínua contra conteúdo genérico
+- [x] Reexecutar a auditoria curricular em todos os módulos e questões
+- [x] Criar regras automáticas que rejeitem respostas-padrão e cobertura insuficiente por tópico
+- [x] Corrigir eventuais tópicos sinalizados pela nova auditoria
+- [ ] Validar os bloqueios em testes, publicar e confirmar a proteção em produção
