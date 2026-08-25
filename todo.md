@@ -325,4 +325,4 @@
 - [x] Reexecutar a auditoria curricular em todos os módulos e questões
 - [x] Criar regras automáticas que rejeitem respostas-padrão e cobertura insuficiente por tópico
 - [x] Corrigir eventuais tópicos sinalizados pela nova auditoria
-- [ ] Validar os bloqueios em testes, publicar e confirmar a proteção em produção
+- [x] Validar os bloqueios em testes, publicar e confirmar a proteção em produção
