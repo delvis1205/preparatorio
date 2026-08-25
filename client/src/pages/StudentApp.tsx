@@ -1,6 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
-import { LessonExpansion } from "@/components/LessonExpansion";
 import DashboardLayout from "@/components/DashboardLayout";
 import { ShareInviteButton } from "@/components/ShareInviteButton";
 import { PdfExportModal } from "@/components/PdfExportModal";
@@ -40,7 +39,7 @@ import {
   Trophy,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { BlockMath } from "react-katex";
 import { Link, useLocation, useRoute } from "wouter";
 
@@ -66,6 +65,7 @@ const subjectPalette: Record<string, { accent: string; soft: string; label: stri
 };
 
 const formatTime = (seconds: number) => `${Math.floor(seconds / 60).toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
+const LessonExpansion = lazy(() => import("@/components/LessonExpansion").then(module => ({ default: module.LessonExpansion })));
 
 function AppFrame({ children }: { children: React.ReactNode }) {
   return <DashboardLayout>{children}<CurrentLessonExpansion /></DashboardLayout>;
@@ -73,7 +73,7 @@ function AppFrame({ children }: { children: React.ReactNode }) {
 
 function CurrentLessonExpansion() {
   const [, params] = useRoute("/app/aula/:moduleId");
-  return params?.moduleId ? <div className="mt-6"><LessonExpansion moduleId={params.moduleId} /></div> : null;
+  return params?.moduleId ? <div className="mt-6"><Suspense fallback={<div className="rounded-2xl border border-[#D8E2FF] bg-[#F5F8FF] p-5 text-sm text-slate-600">A preparar o aprofundamento da aula…</div>}><LessonExpansion moduleId={params.moduleId} /></Suspense></div> : null;
 }
 
 function PageHeading({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: React.ReactNode }) {

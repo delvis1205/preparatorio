@@ -314,3 +314,9 @@
 - [x] Analisar erros de build e de execução relacionados à versão curricular publicada
 - [x] Corrigir, publicar e retestar qualquer falha identificada
 - [x] Corrigir a tipagem da entrada serverless `api/index.ts` reportada pelo build Vercel
+
+## Experiência de autenticação e desempenho
+- [x] Auditar os formulários de entrada e registo e o tamanho atual dos bundles do cliente
+- [x] Adicionar feedback visual de carregamento e proteção contra envio duplicado em entrada e registo
+- [x] Dividir o bundle JavaScript do cliente sem alterar os fluxos de navegação
+- [x] Validar interação, testes, build e publicação das otimizações
